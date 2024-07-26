@@ -43,30 +43,6 @@ public partial class MainControl : BaseUserControl
         BaseBinding.LoadDone += LoadDone;
     }
 
-    public override Task<bool> OnKeyDown(object? sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.F && e.KeyModifiers == KeyModifiers.Control)
-        {
-            if (DataContext is MainModel model
-                && Content1.Child is MainGamesControl con)
-            {
-                if (model.GameSearch)
-                {
-                    model.SearchClose();
-                }
-                else
-                {
-                    model.Search();
-                    Dispatcher.UIThread.Post(() =>
-                    {
-                        con.Search.Focus();
-                    });
-                }
-            }
-        }
-
-        return Task.FromResult(false);
-    }
 
     private void MainControl_SizeChanged(object? sender, SizeChangedEventArgs e)
     {
@@ -159,31 +135,6 @@ public partial class MainControl : BaseUserControl
         }
     }
 
-    private void SwitchView()
-    {
-        var model = (DataContext as MainModel)!;
-        if (model.NewsDisplay)
-        {
-            _news ??= new();
-            Content1.Child = _news;
-        }
-        else if (model.IsOneGame || model.IsGameError)
-        {
-            _oneGame ??= new();
-            Content1.Child = _oneGame;
-        }
-        else if (model.IsNotGame && Content1.Child is not MainEmptyControl)
-        {
-            _emptyGame ??= new();
-            Content1.Child = _emptyGame;
-            model.LoadEmptyGame();
-        }
-        else
-        {
-            _games ??= new();
-            Content1.Child = _games;
-        }
-    }
 
     public override void WindowStateChange(WindowState state)
     {
@@ -328,7 +279,7 @@ public partial class MainControl : BaseUserControl
     {
         if (e.PropertyName == MainModel.SwitchView)
         {
-            SwitchView();
+            // SwitchView();
         }
         else if (e.PropertyName == TopModel.MinModeName)
         {
@@ -338,28 +289,28 @@ public partial class MainControl : BaseUserControl
                 {
                     //HeadTop.Children.Remove(Buttons);
                     //ContentTop.Children.Add(Buttons);
-                    TopRight.IsVisible = false;
+                    //TopRight.IsVisible = false;
 
-                    TopRight.Child = null;
-                    ContentTop.Children.Add(HeadButton);
-                    HeadButton.Margin = new(0, 0, 0, 10);
+                    //TopRight.Child = null;
+                    // ContentTop.Children.Add(HeadButton);
+                    //HeadButton.Margin = new(0, 0, 0, 10);
 
-                    Right.Child = null;
-                    ContentTop.Children.Add(RightSide);
+                    // Right.Child = null;
+                    // ContentTop.Children.Add(RightSide);
                     model.SideDisplay = false;
                 }
                 else
                 {
                     //ContentTop.Children.Remove(Buttons);
                     //HeadTop.Children.Add(Buttons);
-                    TopRight.IsVisible = true;
+                    //TopRight.IsVisible = true;
 
-                    ContentTop.Children.Remove(HeadButton);
-                    TopRight.Child = HeadButton;
-                    HeadButton.Margin = new(0);
+                    // ContentTop.Children.Remove(HeadButton);
+                    //TopRight.Child = HeadButton;
+                    //HeadButton.Margin = new(0);
 
-                    ContentTop.Children.Remove(RightSide);
-                    Right.Child = RightSide;
+                    // ContentTop.Children.Remove(RightSide);
+                    // Right.Child = RightSide;
                     if (!model.NewsDisplay)
                     {
                         model.SideDisplay = true;
