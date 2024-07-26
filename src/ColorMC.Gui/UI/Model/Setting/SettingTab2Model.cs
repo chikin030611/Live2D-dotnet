@@ -345,7 +345,7 @@ public partial class SettingModel
         SaveWindowSetting();
     }
 
-    [RelayCommand]
+    [RelayCommand] // 
     public async Task InstallCore()
     {
         var file = await PathBinding.SelectFile(FileType.Live2DCore);

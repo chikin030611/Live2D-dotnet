@@ -77,7 +77,7 @@ public partial class App : Application
 
         if (ConfigUtils.Config == null)
         {
-            LoadLanguage(LanguageType.zh_cn);
+            LoadLanguage(LanguageType.en_us);
         }
         else
         {

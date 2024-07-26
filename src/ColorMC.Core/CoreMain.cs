@@ -214,7 +214,7 @@ public static class ColorMCCore
         BaseDir = arg.Local;
         Directory.CreateDirectory(BaseDir);
 
-        LanguageHelper.Load(LanguageType.zh_cn);
+        LanguageHelper.Load(LanguageType.en_us);
         Logs.Init(BaseDir);
         ToolPath.Init(BaseDir);
         ConfigUtils.Init(BaseDir);

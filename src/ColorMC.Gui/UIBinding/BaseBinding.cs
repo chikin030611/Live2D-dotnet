@@ -468,7 +468,7 @@ public static class BaseBinding
     /// </summary>
     /// <param name="local"></param>
     /// <returns></returns>
-    public static async Task<bool> SetLive2DCore(string local)
+    public static async Task<bool> SetLive2DCore(string local) //
     {
         using var stream = PathHelper.OpenRead(local);
         using var zip = new ZipFile(stream);
