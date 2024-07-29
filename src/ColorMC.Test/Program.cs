@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using Live2dAvatar.TextToSpeech;
 
 namespace ColorMC.Test;
 
@@ -42,7 +43,9 @@ internal class Program
 
         //TestItem.Item33();
 
-        GetSha1();
+        //GetSha1();
+
+        TextToSpeech.SynthesizeSpeech("你好!請問有咩可以幫到你?");
 
         Console.ReadLine();
     }

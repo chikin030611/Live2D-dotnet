@@ -1,0 +1,11 @@
+Goal: To show avatar responding to questions
+1. Prompt question to the avatar
+2. Avatar speaks the answer and moves its mouth
+
+
+Prompt question to the avatar:
+- How should I prompt the question to the avatar? Frontend buttons or CLI?
+
+Avatar speaks the answer:
+- Avatar needs to wait for the answer to be loaded before moving its mouth
+- How to make the avatar move its mouth?
