@@ -3,16 +3,16 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
+using DotNetEnv;
+using Microsoft.Extensions.Configuration;
 
 namespace Live2dAvatar.TextToSpeech
 { 
     public class TextToSpeech
     {
         // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-        //static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-        //static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
-        static string speechKey = "c363a081a77749298842547ca1112c8c";
-        static string speechRegion = "westus2";
+        //Env.Load();
+
         static string speechVoice = "zh-HK-HiuMaanNeural";
 
         public static void OutputSpeechSynthesisResult(SpeechSynthesisResult speechSynthesisResult, string text)
@@ -40,6 +40,15 @@ namespace Live2dAvatar.TextToSpeech
 
         public async static Task SynthesizeSpeech(string text)
         {
+            var builder = new ConfigurationBuilder()
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddUserSecrets<TextToSpeech>();
+
+            IConfiguration configuration = builder.Build();
+
+            string speechKey = configuration["SPEECH_KEY"];
+            string speechRegion = configuration["SPEECH_REGION"];
+
             var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
 
             // The neural multilingual voice can speak different languages based on the input text.
