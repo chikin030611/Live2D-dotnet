@@ -9,3 +9,10 @@ Prompt question to the avatar:
 Avatar speaks the answer:
 - Avatar needs to wait for the answer to be loaded before moving its mouth
 - How to make the avatar move its mouth?
+
+
+TODO first:
+- create a button to prompt the question
+- play the answer audio
+- move the avatar's mouth
+- when the audio ends, stop the avatar's mouth
