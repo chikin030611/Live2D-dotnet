@@ -12,7 +12,15 @@ Avatar speaks the answer:
 
 
 TODO first:
-- create a button to prompt the question
-- play the answer audio
+- create a button to prompt the question V (kinda)
+- play the answer audio V
 - move the avatar's mouth
 - when the audio ends, stop the avatar's mouth
+
+Optional:
+- add message history
+
+NEED TO BE FIXED:
+- fix absolute path for the audio file in QnAMapper.cs
+- add error handling in QnAMapper.cs
+- remove unnecessary modules in the solution
