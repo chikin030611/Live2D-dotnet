@@ -4,39 +4,26 @@ using System.Media;
 using System.Collections.Generic;
 using ColorMC.Gui.UI.Controls.Main;
 using Silk.NET.SDL;
+using ColorMC.Gui.AudioPlayer;
 
 namespace ColorMC.Gui.UI.Flyouts;
 
 public class Live2DFlyout
-{   
-    private void PlayIntroAudio()
+{
+    private void PlayAudio(int qnum)
     {
-        try
-        {
-            // Get the base directory of the application
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-            // Construct the relative path to the audio file
-            string audioFilePath = Path.Combine(baseDirectory, "Resource", "Audio", "intro.wav");
-
-            using (SoundPlayer player = new SoundPlayer(audioFilePath))
-            {
-                player.Load();
-                player.Play();
-            }
-        }
-        catch (Exception ex)
-        {
-            // Handle exceptions (e.g., file not found, format issues)
-            Console.WriteLine($"Error playing audio: {ex.Message}");
-        }
+        // Parameter: location of audio file
+        // Find file path of audio according question number
+        QnAMapper qnAMapper = new QnAMapper();
+        string path = qnAMapper.GetAudioFilePath(qnum);
+        AudioPlayer.AudioPlayer.PlayAudio(path);
     }
 
     public Live2DFlyout(Live2dRender live2d)
     {
-        _ = new FlyoutsControl(
-        [
-            (App.Lang("Live2dControl.Flyouts.Text1"), true, ()=>
+        var flyoutItems = new List<(string, bool, Action)>
+        {
+            (App.Lang("Live2dControl.Flyouts.Text1"), true, () =>
             {
                 var list = live2d.GetMotions();
                 if (list.Count != 0)
@@ -49,7 +36,7 @@ public class Live2DFlyout
                     _ = new FlyoutsControl([.. list1], live2d);
                 }
             }),
-            (App.Lang("Live2dControl.Flyouts.Text2"), true, ()=>
+            (App.Lang("Live2dControl.Flyouts.Text2"), true, () =>
             {
                 var list = live2d.GetExpressions();
                 if (list.Count != 0)
@@ -62,10 +49,18 @@ public class Live2DFlyout
                     _ = new FlyoutsControl([.. list1], live2d);
                 }
             }),
-            ("Speak intro", true, ()=>
-            {
-                PlayIntroAudio();
-            })
-        ], live2d);
+            ("Speak intro", true, () => PlayAudio(0))
+        };
+
+        // Add questions dynamically
+        QnAMapper qnAMapper = new QnAMapper();
+        int numberOfQuestions = qnAMapper.GetNumOfQuestions() - 1;
+        for (int i = 1; i <= numberOfQuestions; i++)
+        {
+            int questionNumber = i; // Capture the loop variable
+            flyoutItems.Add(($"Question {questionNumber}", true, () => PlayAudio(questionNumber)));
+        }
+
+        _ = new FlyoutsControl([.. flyoutItems], live2d);
     }
 }
