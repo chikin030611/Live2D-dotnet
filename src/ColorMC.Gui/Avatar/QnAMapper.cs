@@ -17,14 +17,22 @@ public class QnAMapper
     public QnAMapper()
     {
         // Define the path to the JSON file
-        // TODO: Use relative path instead of absolute path
-        jsonFilePath = "C:\\Personal\\Kenneth\\Live2D-dotnet\\src\\ColorMC.Gui\\AudioPlayer\\QuestionAndAnswer.json";
+        string relativePath = @"..\..\..\..\ColorMC.Gui\Avatar\QuestionAndAnswer.json";
+        string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
 
-        // Read the JSON file into a string
-        jsonString = File.ReadAllText(jsonFilePath);
+        try
+        {
+            // Read the JSON file into a string
+            jsonString = File.ReadAllText(fullPath);
 
-        // Parse the JSON string
-        jsonDocument = JsonDocument.Parse(jsonString);
+            // Parse the JSON string
+            jsonDocument = JsonDocument.Parse(jsonString);
+
+        } 
+        catch (Exception e)
+        {
+            throw new Exception($"Error reading JSON file: {e.Message}");
+        }
     }
 
     public int GetNumOfQuestions()

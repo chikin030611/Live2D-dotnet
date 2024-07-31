@@ -2,29 +2,15 @@ Goal: To show avatar responding to questions
 1. Prompt question to the avatar
 2. Avatar speaks the answer and moves its mouth
 
-
-Prompt question to the avatar:
-- How should I prompt the question to the avatar? Frontend buttons or CLI?
-
-Avatar speaks the answer:
-- Avatar needs to wait for the answer to be loaded before moving its mouth
-- How to make the avatar move its mouth?
-
-! Needs to rewrite the AudioPlayer class
-- delete the AudioPlayer class
-- write a LAppWavFileHandler class in Live2DCSharpSDK.App
-	- Initialize
-
 TODO first:
 - create a button to prompt the question V (kinda)
 - play the answer audio V
-- move the avatar's mouth
-- when the audio ends, stop the avatar's mouth
+- move the avatar's mouth V
+
+NEED TO BE FIXED:
+- better organize Live2DFlyout.cs --> move the avatar's mouth movement and audio playing to a separate class
+- fix mouth not moving when the original audio is interrupted
+- remove unnecessary modules in the solution
 
 Optional:
 - add message history
-
-NEED TO BE FIXED:
-- fix absolute path for the audio file in QnAMapper.cs
-- add error handling in QnAMapper.cs
-- remove unnecessary modules in the solution
