@@ -10,6 +10,10 @@ Avatar speaks the answer:
 - Avatar needs to wait for the answer to be loaded before moving its mouth
 - How to make the avatar move its mouth?
 
+! Needs to rewrite the AudioPlayer class
+- delete the AudioPlayer class
+- write a LAppWavFileHandler class in Live2DCSharpSDK.App
+	- Initialize
 
 TODO first:
 - create a button to prompt the question V (kinda)
