@@ -18,7 +18,7 @@ public class Live2DFlyout
         QnAMapper qnAMapper = new QnAMapper();
         string path = qnAMapper.GetAudioFilePath(qnum);
 
-        // TODO: find model.lappwavfilehandler
+        AudioPlayer.AudioPlayer.PlayAudio(path);
         live2d.StartSpeaking(path);
     }
 
