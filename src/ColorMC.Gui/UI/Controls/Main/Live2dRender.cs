@@ -304,4 +304,9 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
     {
         return IsVisible;
     }
+
+    public void StartSpeaking(string filePath)
+    {
+        _lapp.StartSpeaking(filePath);
+    }
 }
