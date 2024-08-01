@@ -8,8 +8,6 @@ TODO first:
 - move the avatar's mouth V
 
 NEED TO BE FIXED:
-- better organize Live2DFlyout.cs --> move the avatar's mouth movement and audio playing to a separate class
-- fix mouth not moving when the original audio is interrupted
 - remove unnecessary modules in the solution
 
 Optional:
