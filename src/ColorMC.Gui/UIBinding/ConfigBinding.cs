@@ -8,7 +8,6 @@ using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.Player;
 using ColorMC.Gui.Utils;
 
 
@@ -540,28 +539,6 @@ public static class ConfigBinding
         GuiConfigUtils.Config.ServerCustom ??= GuiConfigUtils.MakeServerCustomConfig();
         GuiConfigUtils.Config.ServerCustom.EnableUI = enable;
         GuiConfigUtils.Save();
-    }
-
-    /// <summary>
-    /// 设置背景音乐
-    /// </summary>
-    /// <param name="v1"></param>
-    /// <param name="v2"></param>
-    /// <param name="v3"></param>
-    /// <param name="v4"></param>
-    /// <param name="v5"></param>
-    public static void SetMusic(bool v1, bool v2, string? v3, int v4, bool v5, bool v6)
-    {
-        GuiConfigUtils.Config.ServerCustom ??= GuiConfigUtils.MakeServerCustomConfig();
-        GuiConfigUtils.Config.ServerCustom.PlayMusic = v1;
-        GuiConfigUtils.Config.ServerCustom.SlowVolume = v2;
-        GuiConfigUtils.Config.ServerCustom.Music = v3;
-        GuiConfigUtils.Config.ServerCustom.Volume = v4;
-        GuiConfigUtils.Config.ServerCustom.RunPause = v5;
-        GuiConfigUtils.Config.ServerCustom.MusicLoop = v6;
-        GuiConfigUtils.Save();
-
-        Media.Loop = v6;
     }
 
     /// <summary>

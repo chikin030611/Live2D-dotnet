@@ -21,7 +21,6 @@ using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Net.Apis;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.Player;
 using ColorMC.Gui.UI;
 using ColorMC.Gui.UI.Model.Items;
 using ColorMC.Gui.Utils;
@@ -89,7 +88,6 @@ public static class BaseBinding
                 if (sdl.Init(Sdl.InitGamecontroller | Sdl.InitAudio) == 0)
                 {
                     InputControl.Init(sdl);
-                    Media.Init(sdl);
                     SdlInit = true;
                 }
             }
@@ -325,93 +323,6 @@ public static class BaseBinding
     public static string GetRunDir()
     {
         return ColorMCCore.BaseDir;
-    }
-
-    /// <summary>
-    /// 设置音量
-    /// </summary>
-    /// <param name="value">音量</param>
-    public static void SetVolume(int value)
-    {
-        if (value > 100 || value < 0)
-            return;
-
-        Media.Volume = (float)value / 100;
-    }
-
-    /// <summary>
-    /// 播放音乐
-    /// </summary>
-    public static void MusicStart()
-    {
-        var config = GuiConfigUtils.Config.ServerCustom;
-        if (config == null)
-        {
-            return;
-        }
-        var file = config.Music;
-        if (file == null)
-            return;
-
-        Media.Loop = config.MusicLoop;
-        Media.PlayMusic(file, config.SlowVolume, config.Volume);
-    }
-
-    /// <summary>
-    /// 启动后音乐播放
-    /// </summary>
-    public static void LoadMusic()
-    {
-        if (GuiConfigUtils.Config.ServerCustom.PlayMusic)
-        {
-            MusicStart();
-        }
-    }
-
-    /// <summary>
-    /// 音乐停止
-    /// </summary>
-    public static void MusicStop()
-    {
-        Media.Stop();
-    }
-
-    /// <summary>
-    /// 音乐恢复
-    /// </summary>
-    public static void MusicPlay()
-    {
-        Media.Play();
-    }
-
-    /// <summary>
-    /// 音乐暂停
-    /// </summary>
-    public static void MusicPause()
-    {
-        Media.Pause();
-    }
-
-    /// <summary>
-    /// 测试启动自定义窗口
-    /// </summary>
-    /// <param name="file"></param>
-    /// <returns></returns>
-    public static bool TestCustomWindow()
-    {
-        try
-        {
-            WindowManager.ShowCustom(true);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            var data = App.Lang("BaseBinding.Error8");
-            Logs.Error(data, ex);
-            WindowManager.ShowError(data, ex);
-
-            return false;
-        }
     }
 
     /// <summary>

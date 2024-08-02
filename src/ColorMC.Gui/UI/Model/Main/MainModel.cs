@@ -117,25 +117,6 @@ public partial class MainModel : TopModel, IMainTop
     }
 
     [RelayCommand]
-    public void MusicPause()
-    {
-        if (_isplay)
-        {
-            BaseBinding.MusicPause();
-
-            Model.Title = App.Lang("Name");
-        }
-        else
-        {
-            BaseBinding.MusicPlay();
-
-            Model.Title = App.Lang("Name") + " " + App.Lang("MainWindow.Info33");
-        }
-
-        _isplay = !_isplay;
-    }
-
-    [RelayCommand]
     public void ShowSkin()
     {
         WindowManager.ShowSkin();
@@ -237,8 +218,6 @@ public partial class MainModel : TopModel, IMainTop
 
         LoadMotd();
         _ = LoadNews();
-
-        BaseBinding.LoadMusic();
 
         var config = GuiConfigUtils.Config;
         var config1 = ConfigUtils.Config;

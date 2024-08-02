@@ -15,7 +15,6 @@ using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.Player;
 using ColorMC.Gui.UI.Animations;
 using ColorMC.Gui.UIBinding;
 using ColorMC.Gui.Utils;
@@ -171,7 +170,6 @@ public partial class App : Application
     public static void Hide()
     {
         IsHide = true;
-        Media.Stop();
         WindowManager.Hide();
     }
 

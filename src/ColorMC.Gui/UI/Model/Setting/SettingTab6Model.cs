@@ -73,8 +73,6 @@ public partial class SettingModel
     {
         if (_serverLoad)
             return;
-
-        SetMusic();
     }
 
     partial void OnEnableUIChanged(bool value)
@@ -88,33 +86,6 @@ public partial class SettingModel
     partial void OnEnableOneLoginChanged(bool value)
     {
         SetLoginLock();
-    }
-
-    partial void OnVolumeChanged(int value)
-    {
-        BaseBinding.SetVolume(value);
-
-        SetMusic();
-    }
-
-    partial void OnMusicChanged(string? value)
-    {
-        SetMusic();
-    }
-
-    partial void OnEnableMusicChanged(bool value)
-    {
-        SetMusic();
-    }
-
-    partial void OnSlowVolumeChanged(bool value)
-    {
-        SetMusic();
-    }
-
-    partial void OnRunPauseChanged(bool value)
-    {
-        SetMusic();
     }
 
     partial void OnMotdFontColorChanged(Color value)
@@ -161,57 +132,10 @@ public partial class SettingModel
         SetIP();
     }
 
-
-    [RelayCommand]
-    public void Test()
-    {
-        var res = BaseBinding.TestCustomWindow();
-        if (!res)
-        {
-            Model.Show(App.Lang("BaseBinding.Error8"));
-        }
-    }
-
     [RelayCommand]
     public void UIGuide()
     {
         WebBinding.OpenWeb(WebType.UIGuide);
-    }
-
-    [RelayCommand]
-    public void MusicPlay()
-    {
-        BaseBinding.MusicPlay();
-    }
-
-    [RelayCommand]
-    public void MusicPause()
-    {
-        BaseBinding.MusicPause();
-    }
-
-    [RelayCommand]
-    public void MusicStart()
-    {
-        BaseBinding.MusicStart();
-    }
-
-    [RelayCommand]
-    public void MusicStop()
-    {
-        BaseBinding.MusicStop();
-    }
-
-    [RelayCommand]
-    public async Task SelectMusic()
-    {
-        var file = await PathBinding.SelectFile(FileType.Music);
-        if (file.Item1 == null)
-        {
-            return;
-        }
-
-        Music = file.Item1;
     }
 
     [RelayCommand]
@@ -324,14 +248,6 @@ public partial class SettingModel
         }
 
         _serverLoad = false;
-    }
-
-    private void SetMusic()
-    {
-        if (_serverLoad)
-            return;
-
-        ConfigBinding.SetMusic(EnableMusic, SlowVolume, Music, Volume, RunPause, Loop);
     }
 
     private void SetLoginLock()

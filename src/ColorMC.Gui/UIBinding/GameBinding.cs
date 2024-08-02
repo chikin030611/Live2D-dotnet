@@ -30,7 +30,6 @@ using ColorMC.Core.Objs.ServerPack;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.Player;
 using ColorMC.Gui.UI.Model;
 using ColorMC.Gui.UI.Model.Items;
 using ColorMC.Gui.Utils;
@@ -405,7 +404,6 @@ public static class GameBinding
 
         if (GuiConfigUtils.Config.ServerCustom.RunPause)
         {
-            Media.Pause();
         }
 
         var list1 = new Dictionary<string, LaunchState>();
@@ -582,7 +580,6 @@ public static class GameBinding
         {
             if (GuiConfigUtils.Config.ServerCustom.RunPause)
             {
-                Media.Pause();
             }
 
             obj.LaunchData.LastTime = DateTime.Now;
