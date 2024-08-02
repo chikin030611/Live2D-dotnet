@@ -51,12 +51,6 @@ public static class WindowManager
                 AllWindow.Model.HeadDisplay = false;
                 AllWindow.Opened();
             }
-            else if (SystemInfo.Os == OsType.Linux)
-            {
-                var win = new SingleLinuxWindow();
-                AllWindow = win.Win;
-                win.Show();
-            }
             else
             {
                 var win = new SingleWindow();
@@ -155,14 +149,7 @@ public static class WindowManager
                 }
 
                 AMultiWindow win;
-                if (SystemInfo.Os == OsType.Linux)
-                {
-                    win = new MultiLinuxWindow(con);
-                }
-                else
-                {
-                    win = new MultiWindow(con);
-                }
+                win = new MultiWindow(con);
                 con.SetBaseModel(win.Model);
                 win.Show();
             }
@@ -175,14 +162,7 @@ public static class WindowManager
         else
         {
             AMultiWindow win;
-            if (SystemInfo.Os == OsType.Linux)
-            {
-                win = new MultiLinuxWindow(con);
-            }
-            else
-            {
-                win = new MultiWindow(con);
-            }
+            win = new MultiWindow(con);
             App.TopLevel ??= win;
             con.SetBaseModel(win.Model);
             win.Show();
