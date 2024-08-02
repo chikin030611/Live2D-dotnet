@@ -13,7 +13,6 @@ using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI.Controls;
 using ColorMC.Gui.UI.Controls.Add;
-using ColorMC.Gui.UI.Controls.Count;
 using ColorMC.Gui.UI.Controls.Download;
 using ColorMC.Gui.UI.Controls.Error;
 using ColorMC.Gui.UI.Controls.GameCloud;
@@ -46,7 +45,6 @@ public static class WindowManager
     public static AddModPackControl? AddModPackWindow { get; set; }
     public static SettingControl? SettingWindow { get; set; }
     public static AddJavaControl? AddJavaWindow { get; set; }
-    public static CountControl? CountWindow { get; set; }
     public static NetFrpControl? NetFrpWindow { get; set; }
 
     public static Dictionary<string, GameEditControl> GameEditWindows { get; } = [];
@@ -480,19 +478,6 @@ public static class WindowManager
         }
     }
 
-    public static void ShowCount()
-    {
-        if (CountWindow != null)
-        {
-            CountWindow.Window.TopActivate();
-        }
-        else
-        {
-            CountWindow = new();
-            AWindow(CountWindow);
-        }
-    }
-
     public static void ShowNetFrp()
     {
         if (NetFrpWindow != null)
@@ -665,7 +650,6 @@ public static class WindowManager
     public static void CloseAllWindow()
     {
         (NetFrpWindow?.GetVisualRoot() as Window)?.Close();
-        (CountWindow?.GetVisualRoot() as Window)?.Close();
         (AddJavaWindow?.GetVisualRoot() as Window)?.Close();
         (SettingWindow?.GetVisualRoot() as Window)?.Close();
         (AddModPackWindow?.GetVisualRoot() as Window)?.Close();

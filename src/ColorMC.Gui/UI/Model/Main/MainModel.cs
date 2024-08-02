@@ -110,12 +110,6 @@ public partial class MainModel : TopModel, IMainTop
     }
 
     [RelayCommand]
-    public void ShowCount()
-    {
-        WindowManager.ShowCount();
-    }
-
-    [RelayCommand]
     public void ShowUser()
     {
         WindowManager.ShowUser();
