@@ -24,7 +24,6 @@ public partial class MainControl : BaseUserControl
     public readonly SelfPageSlideSide SidePageSlide300 = new(TimeSpan.FromMilliseconds(300));
 
     private MainOneGameControl? _oneGame;
-    private MinecraftNewsControl? _news;
     private MainEmptyControl? _emptyGame;
     private MainGamesControl? _games;
 
