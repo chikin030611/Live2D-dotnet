@@ -55,14 +55,6 @@
                 Command="{Binding Cancel}"
                 Content="{setting:Localize Button.Cancel}"
                 DockPanel.Dock="Right" />
-            <Button
-                Width="100"
-                Height="35"
-                Margin="1,-2,3,-2"
-                Classes="top"
-                Command="{Binding Register}"
-                Content="{setting:Localize UserWindow.Text7}"
-                IsEnabled="{Binding CanRegister}" />
         </DockPanel>
     </StackPanel>
 </UserControl>

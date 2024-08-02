@@ -45,32 +45,6 @@ public partial class ErrorModel : TopModel
 
     public async void Push()
     {
-        if (string.IsNullOrWhiteSpace(Text.Text))
-        {
-            Model.Show(App.Lang("GameLogWindow.Error2"));
-            return;
-        }
-        var res = await Model.ShowWait(App.Lang("GameLogWindow.Info4"));
-        if (!res)
-        {
-            return;
-        }
-
-        Model.Progress(App.Lang("GameLogWindow.Info6"));
-        var url = await WebBinding.Push(Text.Text);
-        Model.ProgressClose();
-        if (url == null)
-        {
-            Model.Show(App.Lang("GameLogWindow.Error1"));
-            return;
-        }
-        else
-        {
-            Model.ShowReadInfoOne(string.Format(App.Lang("GameLogWindow.Info5"), url), null);
-
-            await BaseBinding.CopyTextClipboard(url);
-            Model.Notify(App.Lang("GameLogWindow.Info7"));
-        }
     }
 
     public override void Close()

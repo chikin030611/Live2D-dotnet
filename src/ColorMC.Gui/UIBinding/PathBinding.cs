@@ -268,65 +268,6 @@ public static class PathBinding
             return false;
         }
 
-        switch (type)
-        {
-            case FileType.World:
-                var file = await SaveFile(top,
-                    App.Lang("PathBinding.Text18"), ".zip", "world.zip");
-                if (file == null)
-                    break;
-
-                try
-                {
-                    await GameBinding.ExportWorld((arg![0] as WorldObj)!,
-                        file.GetPath());
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Logs.Error(App.Lang("GameEditWindow.Tab5.Error1"), e);
-                    return false;
-                }
-            case FileType.Text:
-                file = await SaveFile(top,
-                    App.Lang("PathBinding.Text3"), ".txt", "log.txt");
-                if (file == null)
-                    break;
-
-                try
-                {
-                    var name = file.GetPath();
-                    if (name == null)
-                        return false;
-                    await File.WriteAllTextAsync(name, arg![0] as string);
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Logs.Error(App.Lang("PathBinding.Errro3"), e);
-                    return false;
-                }
-            case FileType.InputConfig:
-                file = await SaveFile(top,
-                    App.Lang("PathBinding.Text15"), ".json", arg![0] + ".json");
-                if (file == null)
-                    break;
-
-                try
-                {
-                    var name = file.GetPath();
-                    if (name == null)
-                        return false;
-                    await File.WriteAllTextAsync(name, JsonConvert.SerializeObject(arg![1]));
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Logs.Error(App.Lang("PathBinding.Errro4"), e);
-                    return false;
-                }
-        }
-
         return null;
     }
 
@@ -534,71 +475,6 @@ public static class PathBinding
         }
 
         return (null, null);
-    }
-
-    public static async Task<bool?> AddFile(GameSettingObj obj, FileType type)
-    {
-        var top = App.TopLevel;
-        if (top == null)
-        {
-            return false;
-        }
-
-        switch (type)
-        {
-            case FileType.Schematic:
-                var res = await SelectFile(top,
-                      App.Lang("GameEditWindow.Tab12.Text1"),
-                      ["*" + Schematic.Name1, "*" + Schematic.Name2],
-                      App.Lang("PathBinding.Text23"), true);
-                if (res?.Any() == true)
-                {
-                    return GameBinding.AddSchematic(obj, res);
-                }
-                return null;
-            case FileType.Shaderpack:
-                res = await SelectFile(top,
-                    App.Lang("GameEditWindow.Tab11.Text1"),
-                    ZIPFILE,
-                    App.Lang("PathBinding.Text22"), true);
-                if (res?.Any() == true)
-                {
-                    return await GameBinding.AddShaderpack(obj, res);
-                }
-                return null;
-            case FileType.Mod:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text16"),
-                    JARFILE,
-                    App.Lang("PathBinding.Text17"), true);
-                if (res?.Any() == true)
-                {
-                    return await GameBinding.AddMods(obj, res);
-                }
-                return null;
-            case FileType.World:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text18"),
-                    ZIPFILE,
-                    App.Lang("PathBinding.Text19"));
-                if (res?.Any() == true)
-                {
-                    return await GameBinding.AddWorld(obj, res[0].GetPath());
-                }
-                return null;
-            case FileType.Resourcepack:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text20"),
-                    ZIPFILE,
-                    App.Lang("PathBinding.Text21"), true);
-                if (res?.Any() == true)
-                {
-                    return await GameBinding.AddResourcepack(obj, res);
-                }
-                return null;
-        }
-
-        return null;
     }
 
     public static async Task<bool?> Export(GameExportModel model)

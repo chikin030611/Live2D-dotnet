@@ -332,12 +332,6 @@ public partial class SettingModel
     }
 
     [RelayCommand]
-    public void DownloadCore()
-    {
-        WebBinding.OpenWeb(WebType.Live2DCore);
-    }
-
-    [RelayCommand]
     public void ColorReset()
     {
         _load = true;

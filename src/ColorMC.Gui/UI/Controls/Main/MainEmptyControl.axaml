@@ -46,40 +46,6 @@
                                     Text="{setting:Localize MainWindow.Text2}" />
                             </StackPanel>
                         </Button>
-                        <Button
-                            Width="200"
-                            Margin="10"
-                            BorderThickness="0"
-                            Command="{Binding SetJava}"
-                            CornerRadius="5">
-                            <StackPanel Orientation="Horizontal">
-                                <svg:SvgControl
-                                    Width="50"
-                                    Height="50"
-                                    Path="/Resource/Icon/Main/svg2.svg" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
-                                    Text="{setting:Localize MainWindow.Text4}" />
-                            </StackPanel>
-                        </Button>
-                        <Button
-                            Width="200"
-                            Margin="10"
-                            BorderThickness="0"
-                            Command="{Binding AddGame}"
-                            CornerRadius="5">
-                            <StackPanel Orientation="Horizontal">
-                                <svg:SvgControl
-                                    Width="50"
-                                    Height="50"
-                                    Path="/Resource/Icon/AddMenu/item1.svg" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
-                                    Text="{setting:Localize MainWindow.Text6}" />
-                            </StackPanel>
-                        </Button>
                     </StackPanel>
                     <WrapPanel HorizontalAlignment="Center" IsVisible="{Binding !MinMode}">
                         <Button
@@ -94,34 +60,6 @@
                             <StackPanel>
                                 <svg:SvgControl Path="/Resource/Icon/Main/svg1.svg" />
                                 <TextBlock HorizontalAlignment="Center" Text="{setting:Localize MainWindow.Text2}" />
-                            </StackPanel>
-                        </Button>
-                        <Button
-                            Width="100"
-                            Height="130"
-                            Margin="20"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            BorderThickness="0"
-                            Command="{Binding SetJava}"
-                            CornerRadius="5">
-                            <StackPanel>
-                                <svg:SvgControl Path="/Resource/Icon/Main/svg2.svg" />
-                                <TextBlock HorizontalAlignment="Center" Text="{setting:Localize MainWindow.Text4}" />
-                            </StackPanel>
-                        </Button>
-                        <Button
-                            Width="100"
-                            Height="130"
-                            Margin="20"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            BorderThickness="0"
-                            Command="{Binding AddGame}"
-                            CornerRadius="5">
-                            <StackPanel>
-                                <svg:SvgControl Path="/Resource/Icon/AddMenu/item1.svg" />
-                                <TextBlock HorizontalAlignment="Center" Text="{setting:Localize MainWindow.Text6}" />
                             </StackPanel>
                         </Button>
                     </WrapPanel>

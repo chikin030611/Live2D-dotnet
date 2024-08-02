@@ -71,11 +71,6 @@ public partial class SettingModel
         }
     }
 
-    private void ShowAddJava()
-    {
-        WindowManager.ShowAddJava(_needJava);
-    }
-
     private async void AddJavaZip()
     {
         var file = await PathBinding.SelectFile(FileType.JavaZip);

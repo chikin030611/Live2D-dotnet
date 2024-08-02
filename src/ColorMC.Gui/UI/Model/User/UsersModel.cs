@@ -260,28 +260,6 @@ public partial class UsersControlModel : TopModel
     }
 
     [RelayCommand]
-    public void Register()
-    {
-        AuthType type;
-        if (LockLogin)
-        {
-            type = _locks[Type].Type;
-        }
-        else
-        {
-            type = (AuthType)Type;
-        }
-        switch (type)
-        {
-            case AuthType.OAuth:
-            case AuthType.Nide8:
-            case AuthType.LittleSkin:
-                WebBinding.OpenRegister(type, Name);
-                break;
-        }
-    }
-
-    [RelayCommand]
     public void SetAdd()
     {
         if (Type == -1)

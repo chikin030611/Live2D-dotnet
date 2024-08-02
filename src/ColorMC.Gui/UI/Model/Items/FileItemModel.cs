@@ -71,16 +71,6 @@ public partial class FileItemModel : SelectItemModel
         EnableButton = Top || IsSelect;
     }
 
-    [RelayCommand]
-    public void OpenWeb()
-    {
-        var url = Data.SourceType == SourceType.McMod ? Data.GetMcMod() : Data.GetUrl();
-        if (url != null)
-        {
-            BaseBinding.OpUrl(url);
-        }
-    }
-
     private async Task<Bitmap?> GetImage()
     {
         if (_img != null)

@@ -133,12 +133,6 @@ public partial class SettingModel
     }
 
     [RelayCommand]
-    public void UIGuide()
-    {
-        WebBinding.OpenWeb(WebType.UIGuide);
-    }
-
-    [RelayCommand]
     public async Task AddLockLogin()
     {
         var model = new AddLockLoginModel();
@@ -190,64 +184,6 @@ public partial class SettingModel
         Locks.Remove(model);
 
         SetLoginLock();
-    }
-
-    public void LoadServer()
-    {
-        _serverLoad = true;
-
-        var list = from item in GameBinding.GetGames() select (item.UUID, item.Name);
-        var list1 = new List<string>();
-
-        _uuids.Clear();
-        foreach (var (UUID, Name) in list)
-        {
-            list1.Add(Name);
-            _uuids.Add(UUID);
-        }
-
-        GameList.Clear();
-        GameList.AddRange(list1);
-
-        var config = GuiConfigUtils.Config.ServerCustom;
-        if (config is { })
-        {
-            ServerIP = config.IP;
-            ServerPort = config.Port;
-            Music = config.Music;
-
-            EnableMotd = config.Motd;
-            EnableJoin = config.JoinServer;
-            EnableOneGame = config.LockGame;
-            EnableMusic = config.PlayMusic;
-            EnableUI = config.EnableUI;
-            RunPause = config.RunPause;
-            SlowVolume = config.SlowVolume;
-            Loop = config.MusicLoop;
-
-            MotdFontColor = ColorSel.MotdColor.ToColor();
-            MotdBackColor = ColorSel.MotdBackColor.ToColor();
-            if (config.GameName == null)
-            {
-                Game = -1;
-            }
-            else
-            {
-                Game = _uuids.IndexOf(config.GameName);
-            }
-
-            Volume = config.Volume;
-
-            EnableOneLogin = config.LockLogin;
-
-            Locks.Clear();
-            foreach (var item in config.LockLogins)
-            {
-                Locks.Add(new(this, item));
-            }
-        }
-
-        _serverLoad = false;
     }
 
     private void SetLoginLock()

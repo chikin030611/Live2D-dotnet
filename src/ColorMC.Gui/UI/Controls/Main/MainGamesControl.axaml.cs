@@ -9,19 +9,5 @@ public partial class MainGamesControl : UserControl
     public MainGamesControl()
     {
         InitializeComponent();
-
-        ScrollViewer1.PointerPressed += ScrollViewer1_PointerPressed;
-    }
-
-    private void ScrollViewer1_PointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-        if (e.GetCurrentPoint(ScrollViewer1).Properties.IsLeftButtonPressed)
-        {
-            if (DataContext is MainModel model)
-            {
-                model.SearchClose();
-                model.Select(null);
-            }
-        }
     }
 }

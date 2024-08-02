@@ -20,11 +20,5 @@
                 Text="{setting:Localize MainWindow.Text24}"
                 TextWrapping="Wrap" />
         </Border>
-        <Decorator
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            IsVisible="{Binding IsOneGame}">
-            <views1:GameControl DataContext="{Binding OneGame}" />
-        </Decorator>
     </Panel>
 </UserControl>

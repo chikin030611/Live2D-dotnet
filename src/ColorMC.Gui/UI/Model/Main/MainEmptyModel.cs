@@ -29,24 +29,6 @@ public partial class MainModel
         WindowManager.ShowSetting(SettingType.SetJava);
     }
 
-    [RelayCommand]
-    public void AddGame()
-    {
-        WindowManager.ShowAddGame(null);
-    }
-
-    [RelayCommand]
-    public void OpenWeb1()
-    {
-        WebBinding.OpenWeb(WebType.Web);
-    }
-
-    [RelayCommand]
-    public void OpenWeb2()
-    {
-        WebBinding.OpenWeb(WebType.Minecraft);
-    }
-
     partial void OnLanguageChanged(LanguageType value)
     {
         if (_emptyLoad)

@@ -54,27 +54,6 @@
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </DockPanel>
-                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button
-                        Width="35"
-                        Height="35"
-                        Margin="-2,-8,-3,3"
-                        Classes="top"
-                        Command="{Binding OpenWeb}"
-                        IsVisible="{Binding EnableButton}">
-                        <svg:SvgControl Path="/Resource/Icon/Item/web.svg" />
-                    </Button>
-                    <Button
-                        Width="35"
-                        Height="35"
-                        Margin="-2,-3,-3,-2"
-                        Classes="top"
-                        Command="{Binding Install}"
-                        IsEnabled="{Binding HaveDownload}"
-                        IsVisible="{Binding EnableButton, FallbackValue=true}">
-                        <svg:SvgControl Path="/Resource/Icon/Item/download.svg" />
-                    </Button>
-                </StackPanel>
                 <TextBlock
                     Padding="3"
                     HorizontalAlignment="Right"

@@ -124,14 +124,6 @@ public partial class MainControl : BaseUserControl
             var item = files.ToList()[0];
             if (item == null)
                 return;
-            if (item is IStorageFolder forder && Directory.Exists(forder.GetPath()))
-            {
-                WindowManager.ShowAddGame(null, true, forder.GetPath());
-            }
-            else if (item.Name.EndsWith(".zip") || item.Name.EndsWith(".mrpack"))
-            {
-                WindowManager.ShowAddGame(null, false, item.GetPath());
-            }
         }
     }
 
@@ -185,18 +177,7 @@ public partial class MainControl : BaseUserControl
             return true;
         }
 
-        if (GameManager.IsGameRuning())
-        {
-            App.Hide();
-            return true;
-        }
-
         return false;
-    }
-
-    public void GameClose(string uuid)
-    {
-        (DataContext as MainModel)!.GameClose(uuid);
     }
 
     public void LoadDone()
@@ -211,7 +192,6 @@ public partial class MainControl : BaseUserControl
     {
         Dispatcher.UIThread.Post(() =>
         {
-            (DataContext as MainModel)!.LoadGameItem();
         });
     }
 
@@ -227,7 +207,6 @@ public partial class MainControl : BaseUserControl
     {
         Dispatcher.UIThread.Post(() =>
         {
-            (DataContext as MainModel)!.IsDelete();
         });
     }
 
@@ -329,7 +308,7 @@ public partial class MainControl : BaseUserControl
     {
         if (DataContext is MainModel model)
         {
-            model.IconChange(uuid);
+            //model.IconChange(uuid);
         }
     }
 }

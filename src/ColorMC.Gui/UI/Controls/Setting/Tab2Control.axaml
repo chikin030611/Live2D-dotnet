@@ -127,15 +127,6 @@
                         <Button
                             Width="90"
                             Height="35"
-                            Margin="-2,-2,3,-2"
-                            HorizontalAlignment="Right"
-                            Classes="top"
-                            Command="{Binding DownloadCore}"
-                            Content="{setting:Localize SettingWindow.Tab2.Text31}"
-                            IsEnabled="{Binding !CoreInstall}" />
-                        <Button
-                            Width="90"
-                            Height="35"
                             Margin="-2,-2,-3,-2"
                             HorizontalAlignment="Right"
                             Classes="top"

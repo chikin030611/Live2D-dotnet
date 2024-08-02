@@ -73,23 +73,10 @@ public partial class FileItemControl : UserControl
         }
         model.SetSelect();
 
-        void OpenFlyout()
-        {
-            var url = model.Data?.GetUrl();
-            var url1 = model.Data?.GetMcMod();
-            if (url == null && url1 == null)
-            {
-                return;
-            }
-
-            _ = new UrlFlyout((sender as Control)!, url, url1);
-            e.Handled = true;
-        }
 
         var ev = e.GetCurrentPoint(this);
         if (ev.Properties.IsRightButtonPressed)
         {
-            OpenFlyout();
         }
         else if (ev.Properties.IsXButton1Pressed)
         {
@@ -107,7 +94,6 @@ public partial class FileItemControl : UserControl
             {
                 Dispatcher.UIThread.Post(() =>
                 {
-                    OpenFlyout();
                 });
             });
         }

@@ -104,7 +104,6 @@ public static class UserBinding
         }
         if (string.IsNullOrWhiteSpace(res1.Auth?.UUID))
         {
-            WebBinding.OpenWeb(WebType.Minecraft);
             return (false, App.Lang("UserBinding.Error3"));
         }
         AuthDatabase.Save(res1.Auth!);
@@ -266,7 +265,6 @@ public static class UserBinding
             var have = AuthDatabase.Auths.Keys.Any(a => a.Item2 == AuthType.OAuth);
             if (!have)
             {
-                WebBinding.OpenWeb(WebType.Minecraft);
                 return (null, App.Lang("GameBinding.Error4"));
             }
         }

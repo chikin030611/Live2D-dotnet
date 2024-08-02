@@ -94,7 +94,6 @@ public partial class App : Application
             };
         }
 
-        GameSocket.Init();
         UpdateChecker.Init();
         GameCloudUtils.Init(ColorMCGui.RunDir);
         FrpConfigUtils.Init(ColorMCGui.RunDir);
@@ -116,7 +115,6 @@ public partial class App : Application
             Task.Run(() =>
             {
                 ColorMCCore.Init1();
-                BaseBinding.Init1();
             });
         }
         _ = ImageManager.LoadImage();
@@ -175,9 +173,5 @@ public partial class App : Application
 
     public static void TestClose()
     {
-        if (IsHide && !GameManager.IsGameRuning())
-        {
-            ColorMCGui.Close();
-        }
     }
 }

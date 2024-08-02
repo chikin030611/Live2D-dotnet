@@ -14,7 +14,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ColorMC.Gui.UI.Model.Main;
 
-public partial class MainModel : TopModel, IMainTop
+public partial class MainModel : TopModel
 {
     public const string SwitchView = "SwitchView";
 
@@ -24,7 +24,6 @@ public partial class MainModel : TopModel, IMainTop
     public bool IsPhone { get; } = SystemInfo.Os == OsType.Android;
 
     private readonly Semaphore _semaphore = new(0, 2);
-    private readonly Dictionary<string, GameItemModel> Launchs = [];
 
     private bool _isplay = true;
     private bool _isCancel;
@@ -70,44 +69,6 @@ public partial class MainModel : TopModel, IMainTop
         ShowHello();
     }
 
-    [RelayCommand]
-    public async Task NewInfo()
-    {
-        if (_isGetNewInfo)
-        {
-            return;
-        }
-        _isGetNewInfo = true;
-
-        var data = await WebBinding.GetNewLog();
-        if (data == null)
-        {
-            Model.Show(App.Lang("MainWindow.Error1"));
-        }
-        else
-        {
-            Model.ShowText(App.Lang("MainWindow.Info40"), data);
-        }
-
-        _isGetNewInfo = false;
-    }
-
-    [RelayCommand]
-    public async Task Upgrade()
-    {
-        var res = await Model.ShowTextWait(App.Lang("BaseBinding.Info2"), _updateStr);
-        if (res)
-        {
-            if (_isNewUpdate)
-            {
-                WebBinding.OpenWeb(WebType.ColorMCDownload);
-            }
-            else
-            {
-                UpdateChecker.StartUpdate();
-            }
-        }
-    }
 
     [RelayCommand]
     public void ShowUser()
@@ -119,31 +80,6 @@ public partial class MainModel : TopModel, IMainTop
     public void ShowSetting()
     {
         WindowManager.ShowSetting(SettingType.Normal);
-    }
-
-    [RelayCommand]
-    public async Task OpenGuide()
-    {
-        var list = LanguageBinding.GetGuide();
-        var res = await Model.ShowCombo(App.Lang("SettingWindow.Tab7.Info3"), list);
-        if (res.Cancel)
-        {
-            return;
-        }
-        WebBinding.OpenWeb(res.Index == 0 ? WebType.Guide1 : WebType.Guide);
-    }
-
-    [RelayCommand]
-    public void OpenNetFrp()
-    {
-        if (UserBinding.HaveOnline())
-        {
-            WindowManager.ShowNetFrp();
-        }
-        else
-        {
-            Model.Show(App.Lang("MainWindow.Error6"));
-        }
     }
 
     [RelayCommand]
@@ -193,11 +129,9 @@ public partial class MainModel : TopModel, IMainTop
 
     public async void LoadDone()
     {
-        LoadGameItem();
         LoadUser();
 
         LoadMotd();
-        _ = LoadNews();
 
         var config = GuiConfigUtils.Config;
         var config1 = ConfigUtils.Config;
@@ -220,12 +154,5 @@ public partial class MainModel : TopModel, IMainTop
 
     public override void Close()
     {
-        GroupList.Clear();
-        foreach (var item in GameGroups)
-        {
-            item.Close();
-        }
-        GameGroups.Clear();
-        Launchs.Clear();
     }
 }

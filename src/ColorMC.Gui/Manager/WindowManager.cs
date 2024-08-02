@@ -12,15 +12,8 @@ using ColorMC.Core.Objs.Minecraft;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI.Controls;
-using ColorMC.Gui.UI.Controls.Add;
 using ColorMC.Gui.UI.Controls.Error;
-using ColorMC.Gui.UI.Controls.GameCloud;
-using ColorMC.Gui.UI.Controls.GameConfigEdit;
-using ColorMC.Gui.UI.Controls.GameEdit;
-using ColorMC.Gui.UI.Controls.GameLog;
 using ColorMC.Gui.UI.Controls.Main;
-using ColorMC.Gui.UI.Controls.NetFrp;
-using ColorMC.Gui.UI.Controls.ServerPack;
 using ColorMC.Gui.UI.Controls.Setting;
 using ColorMC.Gui.UI.Controls.User;
 using ColorMC.Gui.UI.Model;
@@ -38,19 +31,8 @@ public static class WindowManager
     public static SingleControl? AllWindow { get; set; }
     public static UsersControl? UserWindow { get; set; }
     public static MainControl? MainWindow { get; set; }
-    public static AddGameControl? AddGameWindow { get; set; }
     public static DllAssembly? CustomWindow { get; set; }
-    public static AddModPackControl? AddModPackWindow { get; set; }
     public static SettingControl? SettingWindow { get; set; }
-    public static AddJavaControl? AddJavaWindow { get; set; }
-    public static NetFrpControl? NetFrpWindow { get; set; }
-
-    public static Dictionary<string, GameEditControl> GameEditWindows { get; } = [];
-    public static Dictionary<string, GameConfigEditControl> ConfigEditWindows { get; } = [];
-    public static Dictionary<string, AddControl> AddWindows { get; } = [];
-    public static Dictionary<string, ServerPackControl> ServerPackWindows { get; } = [];
-    public static Dictionary<string, GameLogControl> GameLogWindows { get; } = [];
-    public static Dictionary<string, GameCloudControl> GameCloudWindows { get; } = [];
 
     private static readonly WindowTransparencyLevel[] WindowTran =
     [
@@ -209,24 +191,6 @@ public static class WindowManager
         }
     }
 
-    public static void ShowAddGame(string? group, bool isDir = false, string? file = null)
-    {
-        if (AddGameWindow != null)
-        {
-            AddGameWindow.Window.TopActivate();
-        }
-        else
-        {
-            AddGameWindow = new();
-            AWindow(AddGameWindow);
-        }
-        AddGameWindow.SetGroup(group);
-        if (!string.IsNullOrWhiteSpace(file))
-        {
-            AddGameWindow.AddFile(file, isDir);
-        }
-    }
-
     public static void ShowUser(bool add = false, bool relogin = false, string? url = null)
     {
         if (UserWindow != null)
@@ -266,19 +230,6 @@ public static class WindowManager
         }
     }
 
-    public static void ShowAddModPack()
-    {
-        if (AddModPackWindow != null)
-        {
-            AddModPackWindow.Window.TopActivate();
-        }
-        else
-        {
-            AddModPackWindow = new();
-            AWindow(AddModPackWindow);
-        }
-    }
-
     public static void ShowSetting(SettingType type, int value = 0)
     {
         if (SettingWindow != null)
@@ -293,184 +244,6 @@ public static class WindowManager
 
         SettingWindow?.GoTo(type);
     }
-
-    public static void ShowGameEdit(GameSettingObj obj, GameEditWindowType type
-        = GameEditWindowType.Normal)
-    {
-        if (GameEditWindows.TryGetValue(obj.UUID, out var win1))
-        {
-            win1.Window.TopActivate();
-            win1.SetType(type);
-        }
-        else
-        {
-            var con = new GameEditControl(obj);
-            GameEditWindows.Add(obj.UUID, con);
-            AWindow(con);
-            con.SetType(type);
-        }
-    }
-
-    public static void ShowAddJava(int version)
-    {
-        if (AddJavaWindow != null)
-        {
-            AddJavaWindow.Window.TopActivate();
-        }
-        else
-        {
-            AddJavaWindow = new()
-            {
-                NeedJava = version
-            };
-            AWindow(AddJavaWindow);
-        }
-    }
-
-    public static void ShowAdd(GameSettingObj obj, ModDisplayModel obj1)
-    {
-        var type1 = FuntionUtils.CheckNotNumber(obj1.PID) || FuntionUtils.CheckNotNumber(obj1.FID) ?
-            SourceType.Modrinth : SourceType.CurseForge;
-
-        if (AddWindows.TryGetValue(obj.UUID, out var value))
-        {
-            value.Window.TopActivate();
-            value.GoFile(type1, obj1.PID!);
-        }
-        else
-        {
-            var con = new AddControl(obj);
-            AddWindows.Add(obj.UUID, con);
-            AWindow(con);
-            con.GoFile(type1, obj1.PID!);
-        }
-    }
-
-    public static Task ShowAddSet(GameSettingObj obj)
-    {
-        if (AddWindows.TryGetValue(obj.UUID, out var value))
-        {
-            value.Window.TopActivate();
-            return value.GoSet();
-        }
-        else
-        {
-            var con = new AddControl(obj);
-            AddWindows.Add(obj.UUID, con);
-            AWindow(con);
-            return con.GoSet();
-        }
-    }
-
-    public static void ShowAdd(GameSettingObj obj, FileType type)
-    {
-        if (AddWindows.TryGetValue(obj.UUID, out var value))
-        {
-            value.Window.TopActivate();
-            value.GoTo(type);
-        }
-        else
-        {
-            var con = new AddControl(obj);
-            AddWindows.Add(obj.UUID, con);
-            AWindow(con);
-            con.GoTo(type);
-        }
-    }
-
-    public static void ShowServerPack(GameSettingObj obj)
-    {
-        if (ServerPackWindows.TryGetValue(obj.UUID, out var value))
-        {
-            value.Window.TopActivate();
-        }
-        else
-        {
-            var con = new ServerPackControl(obj);
-            ServerPackWindows.Add(obj.UUID, con);
-            AWindow(con);
-        }
-    }
-
-    public static void ShowGameLog(GameSettingObj obj)
-    {
-        if (GameLogWindows.TryGetValue(obj.UUID, out var value))
-        {
-            value.Window.TopActivate();
-        }
-        else
-        {
-            var con = new GameLogControl(obj);
-            GameLogWindows.Add(obj.UUID, con);
-            AWindow(con);
-        }
-    }
-
-    public static void ShowConfigEdit(GameSettingObj obj)
-    {
-        if (ConfigEditWindows.TryGetValue(obj.UUID, out var win1))
-        {
-            win1.Window.TopActivate();
-        }
-        else
-        {
-            var con = new GameConfigEditControl(obj);
-            ConfigEditWindows.Add(obj.UUID, con);
-            AWindow(con);
-        }
-    }
-
-    public static void ShowConfigEdit(WorldObj obj)
-    {
-        string key = obj.Game.UUID + ":" + obj.LevelName;
-        if (ConfigEditWindows.TryGetValue(key, out var win1))
-        {
-            win1.Window.TopActivate();
-        }
-        else
-        {
-            var con = new GameConfigEditControl(obj);
-            ConfigEditWindows.Add(key, con);
-            AWindow(con);
-        }
-    }
-
-    public static void ShowGameCloud(GameSettingObj obj, bool world = false)
-    {
-        string key = obj.UUID;
-        if (GameCloudWindows.TryGetValue(key, out var win1))
-        {
-            win1.Window.TopActivate();
-            if (world)
-            {
-                win1.GoWorld();
-            }
-        }
-        else
-        {
-            var con = new GameCloudControl(obj);
-            GameCloudWindows.Add(key, con);
-            AWindow(con);
-            if (world)
-            {
-                con.GoWorld();
-            }
-        }
-    }
-
-    public static void ShowNetFrp()
-    {
-        if (NetFrpWindow != null)
-        {
-            NetFrpWindow.Window.TopActivate();
-        }
-        else
-        {
-            NetFrpWindow = new();
-            AWindow(NetFrpWindow);
-        }
-    }
-
 
     public static void ShowError(string? data, Exception? e, bool close = false)
     {
@@ -488,37 +261,6 @@ public static class WindowManager
             var con = new ErrorControl(data, e, close);
             AWindow(con);
         });
-    }
-
-    public static void CloseGameWindow(GameSettingObj obj)
-    {
-        if (GameEditWindows.TryGetValue(obj.UUID, out var win))
-        {
-            Dispatcher.UIThread.Post(win.Window.Close);
-        }
-        if (GameLogWindows.TryGetValue(obj.UUID, out var win5))
-        {
-            Dispatcher.UIThread.Post(win5.Window.Close);
-        }
-        if (AddWindows.TryGetValue(obj.UUID, out var win1))
-        {
-            Dispatcher.UIThread.Post(win1.Window.Close);
-        }
-        if (GameCloudWindows.TryGetValue(obj.UUID, out var win2))
-        {
-            Dispatcher.UIThread.Post(win2.Window.Close);
-        }
-        if (ServerPackWindows.TryGetValue(obj.UUID, out var win4))
-        {
-            Dispatcher.UIThread.Post(win4.Window.Close);
-        }
-        foreach (var item in ConfigEditWindows)
-        {
-            if (item.Key.StartsWith(obj.UUID))
-            {
-                Dispatcher.UIThread.Post(item.Value.Window.Close);
-            }
-        }
     }
 
     public static IBaseWindow? GetMainWindow()
@@ -629,35 +371,5 @@ public static class WindowManager
 
     public static void CloseAllWindow()
     {
-        (NetFrpWindow?.GetVisualRoot() as Window)?.Close();
-        (AddJavaWindow?.GetVisualRoot() as Window)?.Close();
-        (SettingWindow?.GetVisualRoot() as Window)?.Close();
-        (AddModPackWindow?.GetVisualRoot() as Window)?.Close();
-        (AddGameWindow?.GetVisualRoot() as Window)?.Close();
-        (UserWindow?.GetVisualRoot() as Window)?.Close();
-        foreach (var item in GameEditWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
-        foreach (var item in ConfigEditWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
-        foreach (var item in AddWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
-        foreach (var item in ServerPackWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
-        foreach (var item in GameLogWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
-        foreach (var item in GameCloudWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
     }
 }
