@@ -4,14 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using ColorMC.Gui.UI.Controls;
-using ColorMC.Gui.UI.Controls.Custom;
 using ColorMC.Gui.UIBinding;
 
 namespace ColorMC.Gui.Utils;
 
 public class DllAssembly : AssemblyLoadContext
 {
-    public ICustomControl Plugin { get; init; }
 
     public bool IsLoad { get; private set; }
     public BaseUserControl Window { get; private set; }
@@ -37,20 +35,6 @@ public class DllAssembly : AssemblyLoadContext
         else
         {
             abs = LoadFromStream(stream);
-        }
-
-        foreach (var item1 in abs.GetTypes())
-        {
-            foreach (var item2 in item1.GetInterfaces())
-            {
-                if (item2 == typeof(ICustomControl))
-                {
-                    Plugin = (Activator.CreateInstance(item1) as ICustomControl)!;
-                    Window = Plugin.GetControl();
-                    IsLoad = true;
-                    return;
-                }
-            }
         }
     }
 }
