@@ -40,6 +40,5 @@ public partial class ServerPackItemModel : ObservableObject
         }
     }
 
-    public ModDisplayModel Mod;
     public ResourcepackObj Resourcepack;
 }
