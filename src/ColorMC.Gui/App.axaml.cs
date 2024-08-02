@@ -96,10 +96,8 @@ public partial class App : Application
 
         UpdateChecker.Init();
         GameCloudUtils.Init(ColorMCGui.RunDir);
-        FrpConfigUtils.Init(ColorMCGui.RunDir);
         ImageUtils.Init(ColorMCGui.RunDir);
         InputConfigUtils.Init(ColorMCGui.RunDir);
-        FrpPath.Init(ColorMCGui.RunDir);
 
         LoadPageSlide();
 

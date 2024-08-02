@@ -105,10 +105,6 @@ public partial class MainControl : BaseUserControl
             {
                 return;
             }
-            if (str.StartsWith("authlib-injector:yggdrasil-server:"))
-            {
-                WindowManager.ShowUser(false, url: str);
-            }
             else if (str.StartsWith("cloudkey:") || str.StartsWith("cloudKey:"))
             {
                 BaseBinding.SetCloudKey(str);

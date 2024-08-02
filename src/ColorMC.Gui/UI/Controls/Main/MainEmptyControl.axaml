@@ -27,43 +27,6 @@
                         <Setter Property="Background" Value="Transparent" />
                     </Style>
                 </StackPanel.Styles>
-                <Panel>
-                    <StackPanel IsVisible="{Binding MinMode}">
-                        <Button
-                            Width="200"
-                            Margin="10"
-                            BorderThickness="0"
-                            Command="{Binding AddUser}"
-                            CornerRadius="5">
-                            <StackPanel Orientation="Horizontal">
-                                <svg:SvgControl
-                                    Width="50"
-                                    Height="50"
-                                    Path="/Resource/Icon/Main/svg1.svg" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
-                                    Text="{setting:Localize MainWindow.Text2}" />
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-                    <WrapPanel HorizontalAlignment="Center" IsVisible="{Binding !MinMode}">
-                        <Button
-                            Width="100"
-                            Height="130"
-                            Margin="20"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            BorderThickness="0"
-                            Command="{Binding AddUser}"
-                            CornerRadius="5">
-                            <StackPanel>
-                                <svg:SvgControl Path="/Resource/Icon/Main/svg1.svg" />
-                                <TextBlock HorizontalAlignment="Center" Text="{setting:Localize MainWindow.Text2}" />
-                            </StackPanel>
-                        </Button>
-                    </WrapPanel>
-                </Panel>
                 <ComboBox
                     Width="200"
                     Margin="0,0,5,5"

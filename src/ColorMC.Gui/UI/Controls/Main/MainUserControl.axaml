@@ -39,50 +39,6 @@
                     </Style>
                 </Style>
             </Border.Styles>
-            <Button
-                Name="User"
-                Height="60"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Stretch"
-                BorderThickness="0"
-                Command="{Binding ShowUser}">
-                <DockPanel Margin="5,0,0,0">
-                    <Panel HorizontalAlignment="Left">
-                        <Border
-                            Width="50"
-                            Height="50"
-                            VerticalAlignment="Center">
-                            <Border.Background>
-                                <ImageBrush Source="{Binding Head}" Stretch="UniformToFill" />
-                            </Border.Background>
-                        </Border>
-                        <ProgressBar
-                            Width="38"
-                            Height="10"
-                            MinWidth="38"
-                            CornerRadius="20"
-                            IsIndeterminate="{Binding IsHeadLoad}"
-                            IsVisible="{Binding IsHeadLoad}" />
-                    </Panel>
-                    <StackPanel
-                        Margin="5,0,0,0"
-                        VerticalAlignment="Center"
-                        DockPanel.Dock="Left"
-                        RenderOptions.TextRenderingMode="Antialias">
-                        <TextBlock
-                            FontSize="17"
-                            Foreground="White"
-                            Text="{Binding UserId, FallbackValue=User Name}"
-                            TextTrimming="CharacterEllipsis"
-                            TextWrapping="NoWrap" />
-                        <TextBlock
-                            HorizontalAlignment="Left"
-                            FontSize="12"
-                            Foreground="White"
-                            Text="{Binding UserType, FallbackValue=456}" />
-                    </StackPanel>
-                </DockPanel>
-            </Button>
         </Border>
     </Border>
 </UserControl>

@@ -64,16 +64,7 @@ public partial class MainModel : TopModel
 
     public MainModel(BaseModel model) : base(model)
     {
-        UserBinding.UserEdit += LoadUser;
-
         ShowHello();
-    }
-
-
-    [RelayCommand]
-    public void ShowUser()
-    {
-        WindowManager.ShowUser();
     }
 
     [RelayCommand]
@@ -129,8 +120,6 @@ public partial class MainModel : TopModel
 
     public async void LoadDone()
     {
-        LoadUser();
-
         LoadMotd();
 
         var config = GuiConfigUtils.Config;

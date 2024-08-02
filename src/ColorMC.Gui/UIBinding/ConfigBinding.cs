@@ -57,16 +57,6 @@ public static class ConfigBinding
     }
 
     /// <summary>
-    /// 加载Frp配置文件
-    /// </summary>
-    /// <param name="local"></param>
-    /// <returns></returns>
-    public static bool LoadFrpConfig(string local)
-    {
-        return FrpConfigUtils.Load(local, true);
-    }
-
-    /// <summary>
     /// 设置RGB模式
     /// </summary>
     public static void SetRgb(bool enable)
@@ -555,11 +545,6 @@ public static class ConfigBinding
         GuiConfigUtils.Save();
 
         UserBinding.OnUserEdit();
-        if (WindowManager.UserWindow != null)
-        {
-            WindowManager.UserWindow.Close();
-            WindowManager.ShowUser();
-        }
     }
 
     /// <summary>
@@ -662,28 +647,6 @@ public static class ConfigBinding
     {
         ConfigUtils.Config.SafeLog4j = value;
         ConfigUtils.Save();
-    }
-
-    /// <summary>
-    /// 设置Frp密钥
-    /// </summary>
-    /// <param name="key"></param>
-    public static void SetFrpKeySakura(string key)
-    {
-        FrpConfigUtils.Config.SakuraFrp ??= new();
-        FrpConfigUtils.Config.SakuraFrp.Key = key;
-        FrpConfigUtils.Save();
-    }
-
-    /// <summary>
-    /// 设置Frp密钥
-    /// </summary>
-    /// <param name="key"></param>
-    public static void SetFrpKeyOpenFrp(string key)
-    {
-        FrpConfigUtils.Config.OpenFrp ??= new();
-        FrpConfigUtils.Config.OpenFrp.Key = key;
-        FrpConfigUtils.Save();
     }
 
     /// <summary>

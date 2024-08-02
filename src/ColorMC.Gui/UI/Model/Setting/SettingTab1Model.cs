@@ -203,26 +203,6 @@ public partial class SettingModel
             return;
         }
         Model.Progress(App.Lang("SettingWindow.Tab1.Info5"));
-
-        try
-        {
-            var res = ConfigBinding.LoadFrpConfig(local);
-            if (!res)
-            {
-                Model.Show(App.Lang("SettingWindow.Tab1.Error2"));
-                return;
-            }
-            Model.Notify(App.Lang("SettingWindow.Tab1.Info6"));
-        }
-        catch (Exception e1)
-        {
-            Model.Show(App.Lang("SettingWindow.Tab1.Error3"));
-            WindowManager.ShowError(App.Lang("SettingWindow.Tab1.Error3"), e1);
-        }
-        finally
-        {
-            Model.ProgressClose();
-        }
     }
 
     private async void Reset()

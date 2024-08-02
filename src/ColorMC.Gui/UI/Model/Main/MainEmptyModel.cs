@@ -18,12 +18,6 @@ public partial class MainModel
     private bool _emptyLoad = true;
 
     [RelayCommand]
-    public void AddUser()
-    {
-        WindowManager.ShowUser(true);
-    }
-
-    [RelayCommand]
     public void SetJava()
     {
         WindowManager.ShowSetting(SettingType.SetJava);

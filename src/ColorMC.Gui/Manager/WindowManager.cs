@@ -15,7 +15,6 @@ using ColorMC.Gui.UI.Controls;
 using ColorMC.Gui.UI.Controls.Error;
 using ColorMC.Gui.UI.Controls.Main;
 using ColorMC.Gui.UI.Controls.Setting;
-using ColorMC.Gui.UI.Controls.User;
 using ColorMC.Gui.UI.Model;
 using ColorMC.Gui.UI.Model.Items;
 using ColorMC.Gui.UI.Windows;
@@ -29,7 +28,6 @@ public static class WindowManager
     public static Window? LastWindow { get; set; }
 
     public static SingleControl? AllWindow { get; set; }
-    public static UsersControl? UserWindow { get; set; }
     public static MainControl? MainWindow { get; set; }
     public static DllAssembly? CustomWindow { get; set; }
     public static SettingControl? SettingWindow { get; set; }
@@ -188,32 +186,6 @@ public static class WindowManager
             App.TopLevel ??= win;
             con.SetBaseModel(win.Model);
             win.Show();
-        }
-    }
-
-    public static void ShowUser(bool add = false, bool relogin = false, string? url = null)
-    {
-        if (UserWindow != null)
-        {
-            UserWindow.Window.TopActivate();
-        }
-        else
-        {
-            UserWindow = new();
-            AWindow(UserWindow);
-        }
-
-        if (!string.IsNullOrWhiteSpace(url))
-        {
-            UserWindow?.AddUrl(url);
-        }
-        if (add)
-        {
-            UserWindow?.Add();
-        }
-        if (relogin)
-        {
-            UserWindow?.Relogin();
         }
     }
 
