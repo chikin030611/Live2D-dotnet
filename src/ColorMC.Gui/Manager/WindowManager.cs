@@ -25,7 +25,6 @@ using ColorMC.Gui.UI.Controls.Main;
 using ColorMC.Gui.UI.Controls.NetFrp;
 using ColorMC.Gui.UI.Controls.ServerPack;
 using ColorMC.Gui.UI.Controls.Setting;
-using ColorMC.Gui.UI.Controls.Skin;
 using ColorMC.Gui.UI.Controls.User;
 using ColorMC.Gui.UI.Model;
 using ColorMC.Gui.UI.Model.Items;
@@ -47,7 +46,6 @@ public static class WindowManager
     public static DllAssembly? CustomWindow { get; set; }
     public static AddModPackControl? AddModPackWindow { get; set; }
     public static SettingControl? SettingWindow { get; set; }
-    public static SkinControl? SkinWindow { get; set; }
     public static AddJavaControl? AddJavaWindow { get; set; }
     public static CountControl? CountWindow { get; set; }
     public static NetFrpControl? NetFrpWindow { get; set; }
@@ -318,19 +316,6 @@ public static class WindowManager
         }
 
         SettingWindow?.GoTo(type);
-    }
-
-    public static void ShowSkin()
-    {
-        if (SkinWindow != null)
-        {
-            SkinWindow.Window.TopActivate();
-        }
-        else
-        {
-            SkinWindow = new();
-            AWindow(SkinWindow);
-        }
     }
 
     public static void ShowGameEdit(GameSettingObj obj, GameEditWindowType type
@@ -702,7 +687,6 @@ public static class WindowManager
         (NetFrpWindow?.GetVisualRoot() as Window)?.Close();
         (CountWindow?.GetVisualRoot() as Window)?.Close();
         (AddJavaWindow?.GetVisualRoot() as Window)?.Close();
-        (SkinWindow?.GetVisualRoot() as Window)?.Close();
         (SettingWindow?.GetVisualRoot() as Window)?.Close();
         (AddModPackWindow?.GetVisualRoot() as Window)?.Close();
         (AddGameWindow?.GetVisualRoot() as Window)?.Close();

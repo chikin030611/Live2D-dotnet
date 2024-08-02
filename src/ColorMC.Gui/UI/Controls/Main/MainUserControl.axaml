@@ -64,21 +64,6 @@
                             IsIndeterminate="{Binding IsHeadLoad}"
                             IsVisible="{Binding IsHeadLoad}" />
                     </Panel>
-                    <Button
-                        Name="Skin"
-                        Width="35"
-                        Height="35"
-                        Margin="0,0,5,0"
-                        HorizontalAlignment="Right"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Command="{Binding ShowSkin}"
-                        CornerRadius="5"
-                        DockPanel.Dock="Right"
-                        ToolTip.Tip="{setting:Localize ToolTip.Text9}"
-                        ToolTip.VerticalOffset="-30">
-                        <svg:SvgControl Path="/Resource/Icon/skin.svg" Stroke="White" />
-                    </Button>
                     <StackPanel
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"

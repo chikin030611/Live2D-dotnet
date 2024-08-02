@@ -23,13 +23,10 @@ public static class ImageManager
 
     public static Bitmap? BackBitmap { get; private set; }
     public static SKBitmap? SkinBitmap { get; private set; }
-    public static SKBitmap? CapeBitmap { get; private set; }
-    public static Bitmap? HeadBitmap { get; private set; }
 
     private static readonly Dictionary<string, Bitmap> s_gameIcon = [];
 
     public static event Action? PicUpdate;
-    public static event Action? SkinChange;
 
     public static void Init()
     {
@@ -46,13 +43,6 @@ public static class ImageManager
             using var asset1 = AssetLoader.Open(new Uri("resm:ColorMC.Gui.Resource.Pic.load.png"));
             LoadIcon = new(asset1!);
         }
-    }
-
-    public static void SetDefaultHead()
-    {
-        RemoveSkin();
-        HeadBitmap = null;
-        OnSkinLoad();
     }
 
     public static void RemoveImage()
@@ -85,17 +75,6 @@ public static class ImageManager
         FuntionUtils.RunGC();
     }
 
-    public static void RemoveSkin()
-    {
-        SkinBitmap?.Dispose();
-        CapeBitmap?.Dispose();
-        HeadBitmap?.Dispose();
-
-        HeadBitmap = null;
-        SkinBitmap = null;
-        CapeBitmap = null;
-    }
-
     public static Bitmap? GetGameIcon(GameSettingObj obj)
     {
         if (s_gameIcon.TryGetValue(obj.UUID, out var image))
@@ -117,10 +96,5 @@ public static class ImageManager
     public static void OnPicUpdate()
     {
         PicUpdate?.Invoke();
-    }
-
-    public static void OnSkinLoad()
-    {
-        SkinChange?.Invoke();
     }
 }

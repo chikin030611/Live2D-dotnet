@@ -65,7 +65,6 @@ public partial class MainModel : TopModel, IMainTop
 
     public MainModel(BaseModel model) : base(model)
     {
-        ImageManager.SkinChange += SkinChange;
         UserBinding.UserEdit += LoadUser;
 
         ShowHello();
@@ -114,12 +113,6 @@ public partial class MainModel : TopModel, IMainTop
     public void ShowCount()
     {
         WindowManager.ShowCount();
-    }
-
-    [RelayCommand]
-    public void ShowSkin()
-    {
-        WindowManager.ShowSkin();
     }
 
     [RelayCommand]
@@ -186,13 +179,6 @@ public partial class MainModel : TopModel, IMainTop
         ShowHello();
         Model.PopBack();
         OnPropertyChanged(SwitchView);
-    }
-
-    private void SkinChange()
-    {
-        Head = ImageManager.HeadBitmap!;
-
-        IsHeadLoad = false;
     }
 
     public void LoadMotd()

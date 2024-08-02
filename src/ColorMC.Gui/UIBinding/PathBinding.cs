@@ -287,27 +287,6 @@ public static class PathBinding
                     Logs.Error(App.Lang("GameEditWindow.Tab5.Error1"), e);
                     return false;
                 }
-            case FileType.Skin:
-                file = await SaveFile(top,
-                    App.Lang("PathBinding.Text1"), ".png", "skin.png");
-                if (file == null)
-                    break;
-
-                try
-                {
-                    var name = file.GetPath();
-                    var data = ImageManager.SkinBitmap?.Encode(SKEncodedImageFormat.Png, 100);
-                    if (data?.AsSpan().ToArray() is { } data1)
-                    {
-                        PathHelper.WriteBytes(name!, data1);
-                    }
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Logs.Error(App.Lang("PathBinding.Errro2"), e);
-                    return false;
-                }
             case FileType.Text:
                 file = await SaveFile(top,
                     App.Lang("PathBinding.Text3"), ".txt", "log.txt");
