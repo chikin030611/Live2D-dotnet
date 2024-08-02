@@ -511,10 +511,6 @@ public partial class GameEditModel
             Model.Show(res.Message!);
         }
     }
-    private void ExportGame()
-    {
-        WindowManager.ShowGameExport(_obj);
-    }
 
     private void OpenGameLog()
     {

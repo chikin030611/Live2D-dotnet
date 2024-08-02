@@ -19,7 +19,6 @@ using ColorMC.Gui.UI.Controls.Error;
 using ColorMC.Gui.UI.Controls.GameCloud;
 using ColorMC.Gui.UI.Controls.GameConfigEdit;
 using ColorMC.Gui.UI.Controls.GameEdit;
-using ColorMC.Gui.UI.Controls.GameExport;
 using ColorMC.Gui.UI.Controls.GameLog;
 using ColorMC.Gui.UI.Controls.Main;
 using ColorMC.Gui.UI.Controls.NetFrp;
@@ -55,7 +54,6 @@ public static class WindowManager
     public static Dictionary<string, AddControl> AddWindows { get; } = [];
     public static Dictionary<string, ServerPackControl> ServerPackWindows { get; } = [];
     public static Dictionary<string, GameLogControl> GameLogWindows { get; } = [];
-    public static Dictionary<string, GameExportControl> GameExportWindows { get; } = [];
     public static Dictionary<string, GameCloudControl> GameCloudWindows { get; } = [];
 
     private static readonly WindowTransparencyLevel[] WindowTran =
@@ -495,20 +493,6 @@ public static class WindowManager
         }
     }
 
-    public static void ShowGameExport(GameSettingObj obj)
-    {
-        if (GameExportWindows.TryGetValue(obj.UUID, out var value))
-        {
-            value.Window.TopActivate();
-        }
-        else
-        {
-            var con = new GameExportControl(obj);
-            GameExportWindows.Add(obj.UUID, con);
-            AWindow(con);
-        }
-    }
-
     public static void ShowNetFrp()
     {
         if (NetFrpWindow != null)
@@ -558,10 +542,6 @@ public static class WindowManager
         if (GameCloudWindows.TryGetValue(obj.UUID, out var win2))
         {
             Dispatcher.UIThread.Post(win2.Window.Close);
-        }
-        if (GameExportWindows.TryGetValue(obj.UUID, out var win3))
-        {
-            Dispatcher.UIThread.Post(win3.Window.Close);
         }
         if (ServerPackWindows.TryGetValue(obj.UUID, out var win4))
         {
@@ -709,10 +689,6 @@ public static class WindowManager
             (item.GetVisualRoot() as Window)?.Close();
         }
         foreach (var item in GameLogWindows.Values)
-        {
-            (item.GetVisualRoot() as Window)?.Close();
-        }
-        foreach (var item in GameExportWindows.Values)
         {
             (item.GetVisualRoot() as Window)?.Close();
         }

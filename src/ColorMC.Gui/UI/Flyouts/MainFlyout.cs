@@ -56,10 +56,6 @@ public class MainFlyout
                 WindowManager.ShowGameCloud(obj.Obj);
             }),
             (App.Lang("MainWindow.Flyouts.Text10"), !run, obj.Rename),
-            (App.Lang("MainWindow.Flyouts.Text9"), !run, ()=>
-            {
-                WindowManager.ShowGameExport(obj.Obj);
-            }),
             (App.Lang("MainWindow.Flyouts.Text11"), !run, obj.DeleteGame),
             (App.Lang("MainWindow.Flyouts.Text12"), !run,  obj.Copy),
             (App.Lang("MainWindow.Flyouts.Text16"),

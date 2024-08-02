@@ -34,12 +34,6 @@ public partial class GameEditModel : MenuModel
                 [
                     new SubMenuItemModel()
                     {
-                        Name = App.Lang("GameEditWindow.Tab1.Text11"),
-                        Func = ExportGame,
-                        Hide = Phone
-                    },
-                    new SubMenuItemModel()
-                    {
                         Name = App.Lang("GameEditWindow.Tab1.Text7"),
                         Func = OpenGameLog
                     },
