@@ -330,62 +330,11 @@ public static class PathBinding
 
         switch (type)
         {
-            case FileType.Java:
-                var res = await SelectFile(top,
-                    App.Lang("PathBinding.Text26"),
-                    SystemInfo.Os == OsType.Windows ? EXE : null,
-                    App.Lang("PathBinding.Text27"),
-                    storage: JavaBinding.GetSuggestedStartLocation());
-                if (res?.Any() == true)
-                {
-                    var file = res[0].GetPath();
-                    if (file == null)
-                        return (null, null);
-                    if (SystemInfo.Os == OsType.Windows && file.EndsWith("java.exe"))
-                    {
-                        var file1 = file[..^4] + "w.exe";
-                        if (File.Exists(file1))
-                            return (file1, "javaw.exe");
-                    }
-
-                    return (file, res[0].Name);
-                }
-                break;
-            case FileType.JavaZip:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text28"),
-                    ZIP,
-                    App.Lang("PathBinding.Text29"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
             case FileType.Config:
-                res = await SelectFile(top,
+                var res = await SelectFile(top,
                     App.Lang("PathBinding.Text30"),
                     JSON,
                     App.Lang("PathBinding.Text31"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.AuthConfig:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text32"),
-                    JSON,
-                    App.Lang("PathBinding.Text33"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.ModPack:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text4"),
-                    MODPACK,
-                    App.Lang("PathBinding.Text5"));
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);
@@ -396,16 +345,6 @@ public static class PathBinding
                     App.Lang("PathBinding.Text34"),
                     PICFILE,
                     App.Lang("PathBinding.Text35"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.Music:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text11"),
-                    AUDIO,
-                    App.Lang("PathBinding.Text12"));
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);
@@ -426,16 +365,6 @@ public static class PathBinding
                     App.Lang("PathBinding.Text7"),
                     PICFILE,
                     App.Lang("PathBinding.Text8"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.Head:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text9"),
-                    HEADFILE,
-                    App.Lang("PathBinding.Text10"));
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);

@@ -15,7 +15,6 @@ public partial class SettingControl : MenuControl
     private Tab1Control _tab1;
     private Tab2Control _tab2;
     private Tab4Control _tab4;
-    private Tab5Control _tab5;
 
     private readonly int _needJava;
 
@@ -101,9 +100,6 @@ public partial class SettingControl : MenuControl
                 model.LoadArg();
                 _tab4 ??= new();
                 return _tab4;
-            case 3:
-                model.Load(_needJava);
-                return _tab5 ??= new();
             case 5:
                 return _tab1 ??= new();
             default:

@@ -151,7 +151,6 @@ public partial class SettingModel : MenuModel
     public override void Close()
     {
         FontList.Clear();
-        JavaList.Clear();
         InputClose();
         StopRead();
     }
