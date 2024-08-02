@@ -14,7 +14,6 @@ public partial class SettingControl : MenuControl
 {
     private Tab1Control _tab1;
     private Tab2Control _tab2;
-    private Tab3Control _tab3;
     private Tab4Control _tab4;
     private Tab5Control _tab5;
     private Tab8Control _tab8;
@@ -99,11 +98,6 @@ public partial class SettingControl : MenuControl
                 model.LoadUISetting();
                 _tab2 ??= new();
                 return _tab2;
-            case 1:
-                model.LoadHttpSetting();
-                model.TestGameCloudConnect();
-                _tab3 ??= new();
-                return _tab3;
             case 2:
                 model.LoadArg();
                 _tab4 ??= new();

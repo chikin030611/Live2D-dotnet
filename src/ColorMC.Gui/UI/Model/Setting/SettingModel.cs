@@ -152,7 +152,6 @@ public partial class SettingModel : MenuModel
     {
         FontList.Clear();
         JavaList.Clear();
-        _uuids.Clear();
         InputClose();
         StopRead();
     }

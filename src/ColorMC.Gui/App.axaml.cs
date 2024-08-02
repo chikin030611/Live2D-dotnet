@@ -95,7 +95,6 @@ public partial class App : Application
         }
 
         UpdateChecker.Init();
-        GameCloudUtils.Init(ColorMCGui.RunDir);
         ImageUtils.Init(ColorMCGui.RunDir);
         InputConfigUtils.Init(ColorMCGui.RunDir);
 
