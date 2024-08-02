@@ -16,7 +16,6 @@ public partial class SettingControl : MenuControl
     private Tab2Control _tab2;
     private Tab4Control _tab4;
     private Tab5Control _tab5;
-    private Tab8Control _tab8;
 
     private readonly int _needJava;
 
@@ -107,10 +106,6 @@ public partial class SettingControl : MenuControl
                 return _tab5 ??= new();
             case 5:
                 return _tab1 ??= new();
-            case 6:
-                model.LoadInput();
-                model.SetTab8Click();
-                return _tab8 ??= new();
             default:
                 throw new InvalidEnumArgumentException();
         }
