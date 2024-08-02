@@ -75,7 +75,6 @@ public static class BaseBinding
         {
             GameManager.AddGameLog(obj.UUID, d);
         };
-        ColorMCCore.OnDownload = WindowManager.ShowDownload;
         ColorMCCore.GameExit += GameExit;
         ColorMCCore.InstanceChange += InstanceChange;
         ColorMCCore.InstanceIconChange += InstanceIconChange;

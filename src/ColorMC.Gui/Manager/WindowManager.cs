@@ -13,7 +13,6 @@ using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI.Controls;
 using ColorMC.Gui.UI.Controls.Add;
-using ColorMC.Gui.UI.Controls.Download;
 using ColorMC.Gui.UI.Controls.Error;
 using ColorMC.Gui.UI.Controls.GameCloud;
 using ColorMC.Gui.UI.Controls.GameConfigEdit;
@@ -37,7 +36,6 @@ public static class WindowManager
     public static Window? LastWindow { get; set; }
 
     public static SingleControl? AllWindow { get; set; }
-    public static DownloadControl? DownloadWindow { get; set; }
     public static UsersControl? UserWindow { get; set; }
     public static MainControl? MainWindow { get; set; }
     public static AddGameControl? AddGameWindow { get; set; }
@@ -227,24 +225,6 @@ public static class WindowManager
         {
             AddGameWindow.AddFile(file, isDir);
         }
-    }
-
-    public static DownloadArg ShowDownload()
-    {
-        return Dispatcher.UIThread.Invoke(() =>
-        {
-            if (DownloadWindow != null)
-            {
-                DownloadWindow.Window.TopActivate();
-            }
-            else
-            {
-                DownloadWindow = new();
-                AWindow(DownloadWindow);
-            }
-
-            return DownloadWindow.Start();
-        });
     }
 
     public static void ShowUser(bool add = false, bool relogin = false, string? url = null)
@@ -655,7 +635,6 @@ public static class WindowManager
         (AddModPackWindow?.GetVisualRoot() as Window)?.Close();
         (AddGameWindow?.GetVisualRoot() as Window)?.Close();
         (UserWindow?.GetVisualRoot() as Window)?.Close();
-        (DownloadWindow?.GetVisualRoot() as Window)?.Close();
         foreach (var item in GameEditWindows.Values)
         {
             (item.GetVisualRoot() as Window)?.Close();
