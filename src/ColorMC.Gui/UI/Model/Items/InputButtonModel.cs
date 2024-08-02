@@ -13,7 +13,6 @@ public partial class InputButtonModel(SettingModel setting) : ObservableObject
     private byte _inputKey;
 
     public string Bind => Make();
-    public string Icon => IconConverter.GetInputKeyIcon(InputKey);
 
     public InputKeyObj Obj;
 

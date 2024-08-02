@@ -20,11 +20,6 @@
         DisableOpeningAnimation="True"
         Identifier="MainCon"
         OverlayBackground="Transparent">
-        <dialog:DialogHost.DataTemplates>
-            <DataTemplate DataType="model:MainModel">
-                <views2:GroupEditControl DataContext="{Binding}" />
-            </DataTemplate>
-        </dialog:DialogHost.DataTemplates>
         <Panel>
             <Panel Name="MainView">
                 <views2:Live2dControl

@@ -204,30 +204,7 @@ public partial class SettingModel
         ConfigBinding.SaveInput(Obj, ItemCycle);
     }
 
-    partial void OnItemCycleLeftChanged(byte value)
-    {
-        CycleLeftIcon = IconConverter.GetInputKeyIcon(ItemCycleLeft);
-
-        if (isInputConfigLoad || Obj == null)
-        {
-            return;
-        }
-
-        ConfigBinding.SetItemCycle(Obj, ItemCycleLeft, ItemCycleRight);
-    }
-
-    partial void OnItemCycleRightChanged(byte value)
-    {
-        CycleRightIcon = IconConverter.GetInputKeyIcon(ItemCycleRight);
-
-        if (isInputConfigLoad || Obj == null)
-        {
-            return;
-        }
-
-        ConfigBinding.SetItemCycle(Obj, ItemCycleLeft, ItemCycleRight);
-    }
-
+   
     partial void OnInputCursorAxisChanged(int value)
     {
         if (isInputConfigLoad || Obj == null)

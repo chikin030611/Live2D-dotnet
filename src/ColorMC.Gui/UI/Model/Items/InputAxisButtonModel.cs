@@ -19,8 +19,6 @@ public partial class InputAxisButtonModel(SettingModel setting)
     [ObservableProperty]
     private bool _backCancel;
 
-    public new string Icon => IconConverter.GetInputAxisIcon(InputKey);
-
     public string UUID;
 
     private bool _changeStart;

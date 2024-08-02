@@ -12,12 +12,6 @@
                 Width="30"
                 HorizontalAlignment="Center"
                 TextAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{x:Static icon:IconConverter.FileIconConverter}">
-                        <Binding Path="IsDirectory" />
-                        <Binding Path="IsExpanded" />
-                    </MultiBinding>
-                </TextBlock.Text>
             </TextBlock>
             <TextBlock Text="{Binding Name}" />
         </StackPanel>
