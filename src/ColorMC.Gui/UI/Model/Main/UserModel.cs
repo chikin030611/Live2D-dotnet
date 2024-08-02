@@ -65,7 +65,5 @@ public partial class MainModel
                 UserType = user.AuthType.GetName();
             }
         }
-
-        await UserBinding.LoadSkin();
     }
 }

@@ -29,13 +29,6 @@ public partial class SkinControl : BaseUserControl
 
     public override async Task<bool> OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (e.Key == Key.F5)
-        {
-            await (DataContext as SkinModel)!.Load();
-
-            return true;
-        }
-
         return false;
     }
 

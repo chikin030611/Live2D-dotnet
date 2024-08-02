@@ -120,46 +120,6 @@ public partial class SettingModel
 
     private bool _load = true;
 
-    partial void OnIsHead1Changed(bool value)
-    {
-        if (_load || !value)
-            return;
-
-        ConfigBinding.SetHeadType(HeadType.Head2D);
-    }
-
-    partial void OnIsHead2Changed(bool value)
-    {
-        if (_load || !value)
-            return;
-
-        ConfigBinding.SetHeadType(HeadType.Head3D_A);
-    }
-
-    partial void OnIsHead3Changed(bool value)
-    {
-        if (_load || !value)
-            return;
-
-        ConfigBinding.SetHeadType(HeadType.Head3D_B);
-    }
-
-    partial void OnHeadXChanged(int value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetHeadXY(value, HeadY);
-    }
-
-    partial void OnHeadYChanged(int value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetHeadXY(HeadX, value);
-    }
-
     partial void OnLowFpsChanged(bool value)
     {
         if (_load)

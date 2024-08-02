@@ -320,18 +320,6 @@ public partial class SkinModel(BaseModel model) : TopModel(model)
         OnPropertyChanged("Rotate");
     }
 
-    [RelayCommand]
-    public async Task Load()
-    {
-        await UserBinding.LoadSkin();
-    }
-
-    [RelayCommand]
-    public void Edit()
-    {
-        UserBinding.EditSkin();
-    }
-
     public void SkinLoadDone()
     {
         OnPropertyChanged("SkinLoadDone");

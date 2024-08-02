@@ -859,31 +859,4 @@ public static class ConfigBinding
     {
         InputConfigUtils.Remove(obj);
     }
-
-    /// <summary>
-    /// 设置头像角度
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    public static void SetHeadXY(int x, int y)
-    {
-        GuiConfigUtils.Config.Head ??= new();
-        GuiConfigUtils.Config.Head.X = x;
-        GuiConfigUtils.Config.Head.Y = y;
-        GuiConfigUtils.Save();
-
-        UserBinding.ReloadSkin();
-    }
-
-    /// <summary>
-    /// 设置头像角度
-    /// </summary>
-    public static void SetHeadType(HeadType type)
-    {
-        GuiConfigUtils.Config.Head ??= new();
-        GuiConfigUtils.Config.Head.Type = type;
-        GuiConfigUtils.Save();
-
-        UserBinding.ReloadSkin();
-    }
 }

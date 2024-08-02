@@ -7,7 +7,6 @@ using ColorMC.Core.Net.Apis;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Objs.Login;
 using ColorMC.Core.Utils;
-using ColorMC.Gui.Skin;
 using ColorMC.Gui.UI.Model.User;
 using SkiaSharp;
 
@@ -60,8 +59,6 @@ public partial class UserDisplayModel(UsersControlModel top, LoginObj Obj) : Sel
                 {
                     var file = AssetsPath.GetSkinFile(Obj);
                     var skin = SKBitmap.Decode(file);
-                    using var data = Skin2DHead.MakeHeadImage(skin);
-                    _img = new Bitmap(data);
                 }
             });
             return _img;

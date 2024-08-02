@@ -9,7 +9,6 @@ using ColorMC.Core.LaunchPath;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.Skin;
 using ColorMC.Gui.Utils;
 
 using SkiaSharp;
@@ -47,71 +46,6 @@ public static class ImageManager
             using var asset1 = AssetLoader.Open(new Uri("resm:ColorMC.Gui.Resource.Pic.load.png"));
             LoadIcon = new(asset1!);
         }
-    }
-
-    public static void LoadSkinHead(string? file, string? file1)
-    {
-        if (file == null || !File.Exists(file))
-        {
-            SetDefaultHead();
-        }
-        else
-        {
-            try
-            {
-                var old = SkinBitmap;
-                var old1 = HeadBitmap;
-                var config = GuiConfigUtils.Config.Head;
-                SkinBitmap = SKBitmap.Decode(file);
-                using var data = config.Type switch
-                {
-                    HeadType.Head2D => Skin2DHead.MakeHeadImage(SkinBitmap),
-                    HeadType.Head3D_A => Skin3DHeadA.MakeHeadImage(SkinBitmap),
-                    HeadType.Head3D_B => Skin3DHeadB.MakeHeadImage(SkinBitmap),
-                    _ => throw new IndexOutOfRangeException()
-                };
-                HeadBitmap = new Bitmap(data);
-                old?.Dispose();
-                old1?.Dispose();
-            }
-            catch (Exception e)
-            {
-                Logs.Error(string.Format(App.Lang("ImageManager.Error1"), file), e);
-            }
-        }
-        if (file1 != null || !File.Exists(file1))
-        {
-            try
-            {
-                CapeBitmap = SKBitmap.Decode(file1);
-            }
-            catch (Exception e)
-            {
-                Logs.Error(string.Format(App.Lang("ImageManager.Error2"), file), e);
-            }
-        }
-
-        OnSkinLoad();
-    }
-
-    public static void ReloadSkinHead()
-    {
-        if (SkinBitmap == null)
-        {
-            return;
-        }
-        var old = HeadBitmap;
-        var config = GuiConfigUtils.Config.Head;
-        using var data = config.Type switch
-        {
-            HeadType.Head2D => Skin2DHead.MakeHeadImage(SkinBitmap),
-            HeadType.Head3D_A => Skin3DHeadA.MakeHeadImage(SkinBitmap),
-            HeadType.Head3D_B => Skin3DHeadB.MakeHeadImage(SkinBitmap),
-            _ => throw new IndexOutOfRangeException()
-        };
-        HeadBitmap = new Bitmap(data);
-        old?.Dispose();
-        OnSkinLoad();
     }
 
     public static void SetDefaultHead()

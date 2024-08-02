@@ -276,15 +276,6 @@
                 <StackPanel>
                     <UniformGrid>
                         <Button
-                            Height="35"
-                            Margin="-2,0,0,0"
-                            HorizontalAlignment="Stretch"
-                            Classes="top"
-                            Command="{Binding Load}"
-                            Content="{setting:Localize Button.Refash}"
-                            ToolTip.Tip="{setting:Localize ToolTip.Text14}"
-                            ToolTip.VerticalOffset="-30" />
-                        <Button
                             Name="Button2"
                             Height="35"
                             Margin="0,0,-2,0"
@@ -292,15 +283,6 @@
                             Classes="top"
                             Content="{setting:Localize SkinWindow.Text1}"
                             ToolTip.Tip="{setting:Localize ToolTip.Text15}"
-                            ToolTip.VerticalOffset="-30" />
-                        <Button
-                            Height="35"
-                            Margin="-2,0,0,0"
-                            HorizontalAlignment="Stretch"
-                            Classes="top"
-                            Command="{Binding Edit}"
-                            Content="{setting:Localize SkinWindow.Text3}"
-                            ToolTip.Tip="{setting:Localize ToolTip.Text16}"
                             ToolTip.VerticalOffset="-30" />
                         <Button
                             Height="35"
