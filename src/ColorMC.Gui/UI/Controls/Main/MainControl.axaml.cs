@@ -170,14 +170,6 @@ public partial class MainControl : BaseUserControl
         return false;
     }
 
-    public void LoadDone()
-    {
-        Dispatcher.UIThread.Post(() =>
-        {
-            (DataContext as MainModel)!.LoadDone();
-        });
-    }
-
     public void LoadMain()
     {
         Dispatcher.UIThread.Post(() =>

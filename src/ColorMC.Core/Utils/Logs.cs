@@ -108,15 +108,6 @@ public static class Logs
         AddText(text);
     }
 
-    /// <summary>
-    /// 错误
-    /// </summary>
-    /// <param name="data"></param>
-    public static void Error(string data)
-    {
-        string text = $"[{DateTime.Now}][Error]{data}";
-        AddText(text);
-    }
 
     /// <summary>
     /// 错误

@@ -94,7 +94,6 @@ public partial class App : Application
             };
         }
 
-        UpdateChecker.Init();
         ImageUtils.Init(ColorMCGui.RunDir);
         InputConfigUtils.Init(ColorMCGui.RunDir);
 

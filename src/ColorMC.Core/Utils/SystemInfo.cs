@@ -10,10 +10,6 @@ namespace ColorMC.Core.Utils;
 public static class SystemInfo
 {
     /// <summary>
-    /// 当前语言
-    /// </summary>
-    public static CultureInfo CultureInfo { get; private set; } = CultureInfo.InstalledUICulture;
-    /// <summary>
     /// 系统类型
     /// </summary>
     public static OsType Os { get; private set; } = OsType.Windows;

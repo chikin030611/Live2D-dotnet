@@ -110,27 +110,6 @@ public partial class MainModel : TopModel
         }
     }
 
-    public async void LoadDone()
-    {
-        LoadMotd();
-
-        var config = GuiConfigUtils.Config;
-        var config1 = ConfigUtils.Config;
-        if (config.Live2D?.LowFps == true)
-        {
-            LowFps = true;
-        }
-        if (config1.Http?.CheckUpdate == true)
-        {
-            var data = await UpdateChecker.Check();
-            if (!data.Item1)
-            {
-                return;
-            }
-            HaveUpdate = true;
-        }
-    }
-
     public override void Close()
     {
     }
