@@ -12,7 +12,6 @@ namespace ColorMC.Gui.UI.Controls.Setting;
 
 public partial class SettingControl : MenuControl
 {
-    private Tab1Control _tab1;
     private Tab2Control _tab2;
 
     private readonly int _needJava;
@@ -95,8 +94,6 @@ public partial class SettingControl : MenuControl
                 model.LoadUISetting();
                 _tab2 ??= new();
                 return _tab2;
-            case 5:
-                return _tab1 ??= new();
             default:
                 throw new InvalidEnumArgumentException();
         }
