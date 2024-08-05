@@ -136,17 +136,6 @@ public partial class MainControl : BaseUserControl
 
         ChangeLive2DSize();
 
-        if (BaseBinding.NewStart)
-        {
-            MainView.Opacity = 0;
-            var con1 = new MainStartControl();
-            Start.Child = con1;
-            Start.IsVisible = true;
-            await con1.Start();
-            await App.CrossFade300.Start(Start, MainView, CancellationToken.None);
-            Start.IsVisible = false;
-        }
-
         if (ColorMCGui.IsCrash)
         {
             var model = (DataContext as MainModel)!;
