@@ -123,33 +123,6 @@ public record LangRes
 }
 
 /// <summary>
-/// 创建一个下载项目结果
-/// </summary>
-public record MakeDownloadItemRes
-{
-    public bool State;
-    public DownloadItemObj? Item;
-}
-
-/// <summary>
-/// 创建一些下载项目
-/// </summary>
-public record MakeDownloadItemsRes
-{
-    public bool State;
-    public ConcurrentBag<DownloadItemObj>? List;
-}
-
-/// <summary>
-/// 创建一些下载项目，附带项目名字
-/// </summary>
-public record MakeDownloadNameItemsRes
-{
-    public string Name;
-    public ConcurrentBag<DownloadItemObj>? List;
-}
-
-/// <summary>
 /// 消息结果
 /// </summary>
 public record MessageRes

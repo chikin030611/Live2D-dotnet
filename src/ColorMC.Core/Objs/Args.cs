@@ -23,10 +23,6 @@ public record DownloadArg
     /// 下载任务更新
     /// </summary>
     public ColorMCCore.DownloadTaskUpdate? UpdateTask;
-    /// <summary>
-    /// 下载项目更新
-    /// </summary>
-    public ColorMCCore.DownloadItemUpdate? UpdateItem;
 }
 
 /// <summary>
