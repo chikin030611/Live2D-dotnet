@@ -89,11 +89,6 @@ public static class ColorMCCore
     public delegate void PackState(CoreRunState state);
 
     /// <summary>
-    /// 显示下载窗口
-    /// </summary>
-    public static Func<DownloadArg>? OnDownload { get; set; }
-
-    /// <summary>
     /// 错误显示回调
     /// 标题 错误 关闭程序
     /// </summary>
@@ -205,14 +200,6 @@ public static class ColorMCCore
     public static void OnLanguageReload(LanguageType type)
     {
         LanguageReload?.Invoke(type);
-    }
-
-    /// <summary>
-    /// 游戏实例数量修改
-    /// </summary>
-    internal static void OnInstanceChange()
-    {
-        InstanceChange?.Invoke();
     }
 
 }

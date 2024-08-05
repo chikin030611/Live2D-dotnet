@@ -178,41 +178,6 @@ public static class PathHelper
     }
 
     /// <summary>
-    /// 删除文件夹
-    /// </summary>
-    public static async Task<bool> DeleteFilesAsync(DeleteFilesArg arg)
-    {
-        if (!Directory.Exists(arg.Local))
-        {
-            return true;
-        }
-
-        if (arg.Request != null)
-        {
-            var res = await arg.Request(string.Format(LanguageHelper.Get("Core.Info2"), arg.Local));
-            if (!res)
-            {
-                return false;
-            }
-        }
-
-        return await Task.Run(() =>
-        {
-            try
-            {
-                Directory.Delete(arg.Local, true);
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logs.Error(LanguageHelper.Get("Core.Game.Error10"), e);
-                return false;
-            }
-        });
-    }
-
-    /// <summary>
     /// 查找文件
     /// </summary>
     /// <param name="local">路径</param>
