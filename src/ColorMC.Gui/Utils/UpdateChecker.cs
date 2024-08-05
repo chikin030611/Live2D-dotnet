@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using ColorMC.Core;
-using ColorMC.Core.Downloader;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Net.Apis;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
@@ -54,134 +52,8 @@ public static class UpdateChecker
             return (false, false, null);
         }
 
-        try
-        {
-            var obj = await ColorMCAPI.GetUpdateIndex();
-            if (obj == null)
-            {
-                UpdateCheckFail();
-                return (false, false, null);
-            }
-
-            if (obj.TryGetValue("Version", out var temp)
-                && ColorMCCore.TopVersion != temp.ToString())
-            {
-                return (true, true, obj["Text"]?.ToString());
-            }
-            var data1 = await CheckOne();
-            if (data1.Item1 == true)
-            {
-                return (true, false, data1.Item2!);
-            }
-        }
-        catch (Exception e)
-        {
-            UpdateCheckFail();
-            Logs.Error(App.Lang("SettingWindow.Tab3.Error2"), e);
-        }
 
         return (false, false, null);
-    }
-
-    public static async void StartUpdate()
-    {
-        if (ColorMCGui.BaseSha1 == null)
-            return;
-
-        var list = new List<DownloadItemObj>()
-        {
-            new()
-            {
-                Name = "ColorMC.Core.dll",
-                SHA1 = WebSha1s[0],
-                Url = $"{ColorMCAPI.CheckUrl}ColorMC.Core.dll",
-                Local = $"{ColorMCGui.RunDir}dll/ColorMC.Core.dll",
-                Overwrite = true,
-                UseColorMCHead = true
-            },
-            new()
-            {
-                Name = "ColorMC.Core.pdb",
-                SHA1 = WebSha1s[1],
-                Url = $"{ColorMCAPI.CheckUrl}ColorMC.Core.pdb",
-                Local = $"{ColorMCGui.RunDir}dll/ColorMC.Core.pdb",
-                Overwrite = true,
-                UseColorMCHead = true
-            },
-            new()
-            {
-                Name = "ColorMC.Gui.dll",
-                SHA1 = WebSha1s[2],
-                Url = $"{ColorMCAPI.CheckUrl}ColorMC.Gui.dll",
-                Local = $"{ColorMCGui.RunDir}dll/ColorMC.Gui.dll",
-                Overwrite = true,
-                UseColorMCHead = true
-            },
-            new()
-            {
-                Name = "ColorMC.Gui.pdb",
-                SHA1 = WebSha1s[3],
-                Url = $"{ColorMCAPI.CheckUrl}ColorMC.Gui.pdb",
-                Local = $"{ColorMCGui.RunDir}dll/ColorMC.Gui.pdb",
-                Overwrite = true,
-                UseColorMCHead = true
-            }
-        };
-
-        var res = await DownloadManager.StartAsync(list);
-        if (res)
-        {
-            ColorMCGui.Reboot();
-        }
-        else
-        {
-            WindowManager.ShowError(App.Lang("UpdateChecker.Error1"), "");
-        }
-    }
-
-    public static async Task<(bool?, string?)> CheckOne()
-    {
-        if (ColorMCGui.BaseSha1 == null)
-        {
-            return (false, null);
-        }
-
-        try
-        {
-            var obj = await ColorMCAPI.GetUpdateSha1();
-            if (obj == null || obj.TryGetValue("res", out _))
-            {
-                WindowManager.ShowError(App.Lang("SettingWindow.Tab3.Error2"), "Json Error");
-                return (false, null);
-            }
-
-            WebSha1s[0] = obj["core.dll"]!.ToString();
-            WebSha1s[1] = obj["core.pdb"]!.ToString();
-            WebSha1s[2] = obj["gui.dll"]!.ToString();
-            WebSha1s[3] = obj["gui.pdb"]!.ToString();
-
-            Logs.Info($"ColorMC.Core.dll:{Sha1s[0]} Web:{WebSha1s[0]}");
-            Logs.Info($"ColorMC.Core.pdb:{Sha1s[1]} Web:{WebSha1s[1]}");
-            Logs.Info($"ColorMC.Gui.dll:{Sha1s[2]} Web:{WebSha1s[2]}");
-            Logs.Info($"ColorMC.Gui.pdb:{Sha1s[3]} Web:{WebSha1s[3]}");
-
-            for (int a = 0; a < 4; a++)
-            {
-                if (WebSha1s[a] != Sha1s[a])
-                {
-                    obj.TryGetValue("text", out var data1);
-                    return (true, data1?.ToString() ?? App.Lang("UpdateChecker.Info1"));
-                }
-            }
-
-            return (false, null);
-        }
-        catch (Exception e)
-        {
-            WindowManager.ShowError(App.Lang("SettingWindow.Tab3.Error2"), e);
-        }
-
-        return (null, null);
     }
 
     public static void UpdateCheckFail()

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ColorMC.Core.Config;
-using ColorMC.Core.Downloader;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Net;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
@@ -35,7 +33,6 @@ public static class ConfigBinding
         var res = ConfigUtils.Load(dir, true);
         if (res)
         {
-            WebClient.Init();
         }
 
         return res;
@@ -168,106 +165,6 @@ public static class ConfigBinding
     }
 
     /// <summary>
-    /// 设置下载源
-    /// </summary>
-    /// <param name="value"></param>
-    public static void SetDownloadSource(SourceLocal value)
-    {
-        if (DownloadManager.State != DownloadState.End)
-        {
-            return;
-        }
-
-        ConfigUtils.Config.Http ??= ConfigUtils.MakeHttpConfig();
-        ConfigUtils.Config.Http.Source = value;
-        ConfigUtils.Save();
-
-        WebClient.Init();
-    }
-
-    /// <summary>
-    /// 设置下载线程数
-    /// </summary>
-    /// <param name="value"></param>
-    public static void SetDownloadThread(int value)
-    {
-        if (DownloadManager.State != DownloadState.End)
-        {
-            return;
-        }
-
-        ConfigUtils.Config.Http ??= ConfigUtils.MakeHttpConfig();
-        ConfigUtils.Config.Http.DownloadThread = value;
-        ConfigUtils.Save();
-    }
-
-    /// <summary>
-    /// 设置代理
-    /// </summary>
-    /// <param name="ip"></param>
-    /// <param name="port"></param>
-    /// <param name="user"></param>
-    /// <param name="password"></param>
-    public static void SetDownloadProxy(string ip, ushort port, string user, string password)
-    {
-        if (DownloadManager.State != DownloadState.End)
-        {
-            return;
-        }
-
-        ConfigUtils.Config.Http ??= ConfigUtils.MakeHttpConfig();
-        ConfigUtils.Config.Http.ProxyIP = ip;
-        ConfigUtils.Config.Http.ProxyPort = port;
-        ConfigUtils.Config.Http.ProxyUser = user;
-        ConfigUtils.Config.Http.ProxyPassword = password;
-        ConfigUtils.Save();
-
-        WebClient.Init();
-    }
-
-    /// <summary>
-    /// 设置代理开关
-    /// </summary>
-    /// <param name="v1"></param>
-    /// <param name="v2"></param>
-    /// <param name="v3"></param>
-    public static void SetDownloadProxyEnable(bool v1, bool v2, bool v3)
-    {
-        if (DownloadManager.State != DownloadState.End)
-        {
-            return;
-        }
-
-        ConfigUtils.Config.Http ??= ConfigUtils.MakeHttpConfig();
-        ConfigUtils.Config.Http.LoginProxy = v1;
-        ConfigUtils.Config.Http.DownloadProxy = v2;
-        ConfigUtils.Config.Http.GameProxy = v3;
-        ConfigUtils.Save();
-
-        WebClient.Init();
-    }
-
-    /// <summary>
-    /// 设置下载验证
-    /// </summary>
-    /// <param name="v1"></param>
-    /// <param name="v2"></param>
-    /// <param name="v3"></param>
-    public static void SetDownloadCheck(bool v1, bool v2, bool v3)
-    {
-        if (DownloadManager.State != DownloadState.End)
-        {
-            return;
-        }
-
-        ConfigUtils.Config.Http ??= ConfigUtils.MakeHttpConfig();
-        ConfigUtils.Config.Http.CheckFile = v1;
-        ConfigUtils.Config.Http.AutoDownload = v2;
-        ConfigUtils.Config.Http.CheckUpdate = v3;
-        ConfigUtils.Save();
-    }
-
-    /// <summary>
     /// 设置GC
     /// </summary>
     /// <param name="gc"></param>
@@ -350,8 +247,6 @@ public static class ConfigBinding
     {
         ConfigUtils.Config.Window = obj;
         ConfigUtils.Save();
-
-        WebClient.Init();
     }
 
     /// <summary>

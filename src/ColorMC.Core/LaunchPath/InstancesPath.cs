@@ -1,6 +1,5 @@
 using ColorMC.Core.Config;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Net;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using Newtonsoft.Json;
@@ -1014,81 +1013,6 @@ public static class InstancesPath
                 PathHelper.CopyFile(item.FullName, info.FullName);
             }
         });
-    }
-
-    /// <summary>
-    /// 获取自定义加载器数据
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <returns></returns>
-    public static async Task<string?> GetGameLoaderInfo(this GameSettingObj obj)
-    {
-        var file = obj.GetGameLoaderFile();
-        if (File.Exists(file))
-        {
-            var res = await DownloadItemHelper.DecodeLoaderJarAsync(obj);
-            if (res == null)
-            {
-                return null;
-            }
-            var name = res.Name;
-
-            if (VersionPath.GetCustomLoaderObj(obj.UUID) == null)
-            {
-                return null;
-            }
-
-            return name;
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// 设置游戏实例自定义加载器
-    /// </summary>
-    /// <param name="obj">游戏实例</param>
-    /// <param name="path">自定义加载器路径</param>
-    /// <returns></returns>
-    public static async Task<MessageRes> SetGameLoader(this GameSettingObj obj, string path)
-    {
-        if (!File.Exists(path))
-        {
-            return new() { Message = LanguageHelper.Get("Core.Game.Error16") };
-        }
-
-        var list = await DownloadItemHelper.DecodeLoaderJarAsync(obj, path);
-
-        if (list == null)
-        {
-            return new() { Message = LanguageHelper.Get("Core.Game.Error17") };
-        }
-
-        var local = obj.GetGameLoaderFile();
-        PathHelper.Delete(local);
-
-        PathHelper.CopyFile(path, local);
-
-        return new() { State = true };
-    }
-
-    /// <summary>
-    /// 设置游戏实例图标
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="url">网址</param>
-    /// <returns></returns>
-    public static async Task<bool> SetGameIconFromUrl(this GameSettingObj obj, string url)
-    {
-        var data = await WebClient.GetBytesAsync(url);
-        if (data.Item1)
-        {
-            PathHelper.WriteBytes(obj.GetIconFile(), data.Item2!);
-            ColorMCCore.OnInstanceIconChange(obj);
-            return true;
-        }
-
-        return false;
     }
 
     /// <summary>

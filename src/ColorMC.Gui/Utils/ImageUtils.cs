@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Net;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
@@ -28,57 +27,6 @@ public static class ImageUtils
         Local = dir + "image/";
 
         Directory.CreateDirectory(Local);
-    }
-
-    /// <summary>
-    /// 加载图片
-    /// </summary>
-    /// <param name="url">网址</param>
-    /// <returns>位图</returns>
-    public static async Task<Bitmap?> Load(string url, bool zoom)
-    {
-        if (!Directory.Exists(Local))
-        {
-            Directory.CreateDirectory(Local);
-        }
-        var sha1 = HashHelper.GenSha256(url);
-        if (File.Exists(Local + sha1))
-        {
-            return new Bitmap(Local + sha1);
-        }
-        else
-        {
-            try
-            {
-                var data1 = await WebClient.GetStreamAsync(url);
-                if (data1.Item1)
-                {
-                    if (zoom)
-                    {
-                        using var image1 = SKBitmap.Decode(data1.Item2!);
-                        using var image2 = Resize(image1, 100, 100);
-                        using var data = image2.Encode(SKEncodedImageFormat.Png, 100);
-                        PathHelper.WriteBytes(Local + sha1, data.AsSpan().ToArray());
-                        return new Bitmap(Local + sha1);
-                    }
-                    else
-                    {
-                        using var stream1 = new MemoryStream();
-                        data1.Item2!.CopyTo(stream1);
-                        PathHelper.WriteBytes(Local + sha1, stream1.ToArray());
-                        return new Bitmap(Local + sha1);
-                    }
-                }
-
-                return null;
-            }
-            catch (Exception e)
-            {
-                Logs.Error(App.Lang("ImageUtils.Error2"), e);
-            }
-
-            return ImageManager.GameIcon;
-        }
     }
 
     /// <summary>
@@ -113,8 +61,6 @@ public static class ImageUtils
                 Stream? stream1 = null;
                 if (file.StartsWith("https://") || file.StartsWith("http://"))
                 {
-                    var res = await WebClient.DownloadClient.GetAsync(file);
-                    stream1 = res.Content.ReadAsStream();
                 }
                 else if (file.StartsWith("ColorMC.Gui"))
                 {

@@ -1,7 +1,4 @@
 using System.Collections.Concurrent;
-using ColorMC.Core.Game;
-using ColorMC.Core.Objs.Login;
-using ColorMC.Core.Objs.ServerPack;
 
 namespace ColorMC.Core.Objs;
 
@@ -18,10 +15,6 @@ public record LoginRes
     /// 登录结果
     /// </summary>
     public LoginState LoginState;
-    /// <summary>
-    /// 账户
-    /// </summary>
-    public LoginObj? Auth;
     /// <summary>
     /// 消息
     /// </summary>
@@ -60,10 +53,6 @@ public record OAuthGetTokenRes
     /// 登录结果
     /// </summary>
     public LoginState State;
-    /// <summary>
-    /// 信息
-    /// </summary>
-    public OAuthGetCodeObj? Obj;
 }
 
 /// <summary>
@@ -121,23 +110,7 @@ public record LegacyLoginRes
     /// 登录结果
     /// </summary>
     public LoginState State;
-    public LoginObj? Auth;
     public string? Message;
-}
-
-/// <summary>
-/// 获取服务器实例结果
-/// </summary>
-public record GetServerPackRes
-{
-    /// <summary>
-    /// 服务器实例
-    /// </summary>
-    public ServerPackObj? Pack;
-    /// <summary>
-    /// Sha1
-    /// </summary>
-    public string? Sha1;
 }
 
 /// <summary>
@@ -201,13 +174,4 @@ public record IntRes
 {
     public bool State;
     public int? Data;
-}
-
-/// <summary>
-/// 游戏启动结果
-/// </summary>
-public record GameLaunchRes
-{
-    public IGameHandel? Handel;
-    public Exception? Ex;
 }

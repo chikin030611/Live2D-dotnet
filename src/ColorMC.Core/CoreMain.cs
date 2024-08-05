@@ -1,13 +1,9 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using ColorMC.Core.Config;
-using ColorMC.Core.Downloader;
-using ColorMC.Core.Game;
 using ColorMC.Core.Helpers;
 using ColorMC.Core.LaunchPath;
-using ColorMC.Core.Net;
 using ColorMC.Core.Objs;
-using ColorMC.Core.Objs.Login;
 using ColorMC.Core.Utils;
 
 namespace ColorMC.Core;
@@ -65,12 +61,6 @@ public static class ColorMCCore
     /// Java解压
     /// </summary>
     public delegate void JavaUnzip();
-    /// <summary>
-    /// 登录失败是否继续运行
-    /// </summary>
-    /// <param name="obj">账户</param>
-    /// <returns>是否继续运行</returns>
-    public delegate Task<bool> LoginFailRun(LoginObj obj);
     /// <summary>
     /// OAuth登录
     /// </summary>
@@ -135,10 +125,6 @@ public static class ColorMCCore
     /// </summary>
     public static event Action<LanguageType>? LanguageReload;
     /// <summary>
-    /// 游戏退出事件
-    /// </summary>
-    public static event Action<GameSettingObj, LoginObj, int> GameExit;
-    /// <summary>
     /// 游戏实例数量修改事件
     /// </summary>
     public static event Action? InstanceChange;
@@ -146,10 +132,6 @@ public static class ColorMCCore
     /// 游戏实例图标修改事件
     /// </summary>
     public static event Action<GameSettingObj>? InstanceIconChange;
-    /// <summary>
-    /// 手机端启动
-    /// </summary>
-    public static Func<LoginObj, GameSettingObj, JavaInfo, List<string>, Dictionary<string, string>, IGameHandel> PhoneGameLaunch { internal get; set; }
     /// <summary>
     /// 手机端Jvm安装
     /// </summary>
@@ -190,11 +172,6 @@ public static class ColorMCCore
     internal static event Action? Stop;
 
     /// <summary>
-    /// 游戏窗口句柄
-    /// </summary>
-    internal static ConcurrentDictionary<string, IGameHandel> Games = [];
-
-    /// <summary>
     /// 启动器核心参数
     /// </summary>
     internal static CoreInitArg CoreArg;
@@ -216,9 +193,7 @@ public static class ColorMCCore
 
         LanguageHelper.Load(LanguageType.en_us);
         Logs.Init(BaseDir);
-        ToolPath.Init(BaseDir);
         ConfigUtils.Init(BaseDir);
-        WebClient.Init();
 
         Logs.Info(LanguageHelper.Get("Core.Info1"));
     }
@@ -230,11 +205,6 @@ public static class ColorMCCore
     {
         ConfigSave.Init();
         GameCount.Init(BaseDir);
-        JvmPath.Init(BaseDir);
-        LocalMaven.Init(BaseDir);
-        DownloadManager.Init(BaseDir);
-        AuthDatabase.Init();
-        MinecraftPath.Init(BaseDir);
 
         Logs.Info(LanguageHelper.Get("Core.Info3"));
     }
@@ -245,18 +215,6 @@ public static class ColorMCCore
     public static void Close()
     {
         Stop?.Invoke();
-    }
-
-    /// <summary>
-    /// 强制关闭游戏
-    /// </summary>
-    /// <param name="uuid"></param>
-    public static void KillGame(string uuid)
-    {
-        if (Games.TryGetValue(uuid, out var handel))
-        {
-            handel.Kill();
-        }
     }
 
     /// <summary>
@@ -288,31 +246,6 @@ public static class ColorMCCore
     public static void OnLanguageReload(LanguageType type)
     {
         LanguageReload?.Invoke(type);
-    }
-
-    /// <summary>
-    /// 游戏推出
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="obj1"></param>
-    /// <param name="code"></param>
-    public static void OnGameExit(GameSettingObj obj, LoginObj obj1, int code)
-    {
-        Games.TryRemove(obj.UUID, out _);
-        GameExit?.Invoke(obj, obj1, code);
-    }
-
-    /// <summary>
-    /// 添加游戏窗口句柄
-    /// </summary>
-    /// <param name="uuid"></param>
-    /// <param name="handel"></param>
-    internal static void AddGameHandel(string uuid, IGameHandel handel)
-    {
-        if (!Games.TryAdd(uuid, handel))
-        {
-            Games[uuid] = handel;
-        }
     }
 
     /// <summary>

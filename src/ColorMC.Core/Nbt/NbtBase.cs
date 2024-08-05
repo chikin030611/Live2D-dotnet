@@ -1,5 +1,4 @@
 using System.IO.Compression;
-using ColorMC.Core.Chunk;
 using ColorMC.Core.Helpers;
 
 namespace ColorMC.Core.Nbt;
@@ -216,14 +215,7 @@ public abstract class NbtBase
 
         NbtBase nbt;
 
-        if (chunk)
-        {
-            nbt = new ChunkNbt();
-        }
-        else
-        {
-            nbt = ById(type1);
-        }
+        nbt = ById(type1);
         nbt.ZipType = zip;
         await Task.Run(() =>
         {

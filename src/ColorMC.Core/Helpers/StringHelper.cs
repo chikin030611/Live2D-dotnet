@@ -200,34 +200,6 @@ public static partial class StringHelper
     }
 
     /// <summary>
-    /// 版本号排序
-    /// </summary>
-    /// <param name="list"></param>
-    public static void VersionSort(List<string> list)
-    {
-        var regex = VersionRegex();
-        var list1 = new List<VersionStrObj>();
-        foreach (var item in list)
-        {
-            var version = regex.Match(item.Replace("+build", ""));
-            var version1 = new Version(version.Groups[0].Value);
-            list1.Add(new()
-            {
-                Version = version1,
-                VersionStr = item
-            });
-        }
-
-        list1.Sort(VersionStrObjComparer.Instance);
-
-        list.Clear();
-        foreach (var item in list1)
-        {
-            list.Add(item.VersionStr);
-        }
-    }
-
-    /// <summary>
     /// 从Steam获取字符串
     /// </summary>
     /// <param name="stream"></param>

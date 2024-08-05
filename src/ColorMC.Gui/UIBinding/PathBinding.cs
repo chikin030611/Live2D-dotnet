@@ -9,15 +9,9 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ColorMC.Core;
-using ColorMC.Core.Downloader;
-using ColorMC.Core.Game;
 using ColorMC.Core.Helpers;
 using ColorMC.Core.LaunchPath;
-using ColorMC.Core.Net.Apis;
 using ColorMC.Core.Objs;
-using ColorMC.Core.Objs.CurseForge;
-using ColorMC.Core.Objs.Minecraft;
-using ColorMC.Core.Objs.Modrinth;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Utils;
@@ -116,41 +110,6 @@ public static class PathBinding
                 OpPath(obj.GetBasePath());
                 break;
         }
-    }
-
-    /// <summary>
-    /// 打开路径
-    /// </summary>
-    /// <param name="type">路径类型</param>
-    public static void OpPath(PathType type)
-    {
-        switch (type)
-        {
-            case PathType.BasePath:
-                OpPath(ColorMCCore.BaseDir);
-                break;
-            case PathType.RunPath:
-                OpPath(AppContext.BaseDirectory);
-                break;
-            case PathType.DownloadPath:
-                OpPath(DownloadManager.DownloadDir);
-                break;
-            case PathType.JavaPath:
-                OpPath(JvmPath.BaseDir + JvmPath.Name1);
-                break;
-            case PathType.PicPath:
-                OpPath(ImageUtils.Local);
-                break;
-        }
-    }
-
-    /// <summary>
-    /// 打开路径
-    /// </summary>
-    /// <param name="obj">世界存储</param>
-    public static void OpPath(WorldObj obj)
-    {
-        OpPath(obj.Local);
     }
 
     /// <summary>

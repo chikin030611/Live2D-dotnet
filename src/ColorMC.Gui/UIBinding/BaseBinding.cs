@@ -11,12 +11,10 @@ using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using ColorMC.Core;
-using ColorMC.Core.Downloader;
 using ColorMC.Core.Helpers;
 using ColorMC.Core.LaunchPath;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Objs.Login;
-using ColorMC.Core.Objs.ServerPack;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
@@ -38,10 +36,6 @@ public static class BaseBinding
     /// 是否为第一次启动
     /// </summary>
     public static bool NewStart => ColorMCCore.NewStart;
-    /// <summary>
-    /// 是否正在下载
-    /// </summary>
-    public static bool IsDownload => DownloadManager.State != DownloadState.End;
 
     public static bool SdlInit { get; private set; }
 
@@ -186,42 +180,6 @@ public static class BaseBinding
     public static List<FontFamily> GetFontList()
     {
         return [.. FontManager.Current.SystemFonts];
-    }
-
-    /// <summary>
-    /// 停止下载DownloadStop
-    /// </summary>
-    public static void DownloadStop()
-    {
-        DownloadManager.DownloadStop();
-    }
-
-    /// <summary>
-    /// 暂停下载
-    /// </summary>
-    public static void DownloadPause()
-    {
-        DownloadManager.DownloadPause();
-    }
-
-    /// <summary>
-    /// 继续下载
-    /// </summary>
-    public static void DownloadResume()
-    {
-        DownloadManager.DownloadResume();
-    }
-
-    /// <summary>
-    /// 转网址
-    /// </summary>
-    /// <param name="item">项目</param>
-    /// <param name="type">类型</param>
-    /// <param name="url">网址</param>
-    /// <returns>网址</returns>
-    public static string MakeUrl(ServerModItemObj item, FileType type, string url)
-    {
-        return UrlHelper.MakeUrl(item, type, url);
     }
 
     /// <summary>

@@ -1,7 +1,5 @@
 using ColorMC.Core.Helpers;
 using ColorMC.Core.Objs;
-using ColorMC.Core.Objs.CurseForge;
-using ColorMC.Core.Objs.Modrinth;
 
 namespace ColorMC.Gui.UIBinding;
 
@@ -117,30 +115,6 @@ public static class LanguageBinding
         [
             LanguageType.zh_cn.GetName(),
             LanguageType.en_us.GetName()
-        ];
-    }
-
-    public static string[] GetCurseForgeSortTypes()
-    {
-        return
-        [
-            CurseForgeSortField.Featured.GetName(),
-            CurseForgeSortField.Popularity.GetName(),
-            CurseForgeSortField.LastUpdated.GetName(),
-            CurseForgeSortField.Name.GetName(),
-            CurseForgeSortField.TotalDownloads.GetName()
-        ];
-    }
-
-    public static string[] GetModrinthSortTypes()
-    {
-        return
-        [
-            MSortingObj.Relevance.GetName(),
-            MSortingObj.Downloads.GetName(),
-            MSortingObj.Follows.GetName(),
-            MSortingObj.Newest.GetName(),
-            MSortingObj.Updated.GetName()
         ];
     }
 
