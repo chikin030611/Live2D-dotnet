@@ -121,30 +121,6 @@ public partial class SettingModel
         ConfigBinding.SetLive2D(value);
     }
 
-    async partial void OnEnableBGChanged(bool value)
-    {
-        if (_load)
-            return;
-
-        await SetPic();
-    }
-
-    partial void OnAmFadeChanged(bool value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetStyle(AmTime, AmFade);
-    }
-
-    partial void OnAmTimeChanged(int value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetStyle(AmTime, AmFade);
-    }
-
     partial void OnL2dWidthChanged(int value)
     {
         if (_load)
@@ -161,72 +137,6 @@ public partial class SettingModel
         ConfigBinding.SetLive2DSize(L2dWidth, L2dHeight, L2dPos);
     }
 
-    partial void OnMainColorChanged(Color value)
-    {
-        ColorChange();
-    }
-
-    partial void OnEnableWindowTranChanged(bool value)
-    {
-        SaveWindowSetting();
-    }
-
-    partial void OnEnableRGBChanged(bool value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetRgb(value);
-    }
-
-    partial void OnRgbV1Changed(int value)
-    {
-        if (_load)
-            return;
-
-        SetRgb();
-    }
-
-    partial void OnRgbV2Changed(int value)
-    {
-        if (_load)
-            return;
-
-        SetRgb();
-    }
-
-    partial void OnWindowModeChanged(bool value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetWindowMode(value);
-    }
-
-    partial void OnIsAutoColorChanged(bool value)
-    {
-        if (_load || !value)
-            return;
-
-        ConfigBinding.SetColorType(ColorType.Auto);
-    }
-
-    partial void OnIsLightColorChanged(bool value)
-    {
-        if (_load || !value)
-            return;
-
-        ConfigBinding.SetColorType(ColorType.Light);
-    }
-
-    partial void OnIsDarkColorChanged(bool value)
-    {
-        if (_load || !value)
-            return;
-
-        ConfigBinding.SetColorType(ColorType.Dark);
-    }
-
     async partial void OnEnablePicResizeChanged(bool value)
     {
         if (_load)
@@ -238,38 +148,6 @@ public partial class SettingModel
             await ConfigBinding.SetBackLimit(value, PicResize);
             Model.ProgressClose();
         }
-    }
-
-    //partial void OnIsDefaultFontChanged(bool value)
-    //{
-    //    if (value == true)
-    //    {
-    //        EnableFontList = false;
-    //    }
-    //    else
-    //    {
-    //        EnableFontList = true;
-    //    }
-
-    //    if (_load)
-    //        return;
-
-    //    ConfigBinding.SetFont(FontItem?.FontName, value);
-    //}
-
-    partial void OnLanguageChanged(LanguageType value)
-    {
-        if (_load)
-            return;
-
-        Model.Progress(App.Lang("SettingWindow.Tab2.Info1"));
-        ConfigBinding.SetLanguage(value);
-        Model.ProgressClose();
-    }
-
-    partial void OnWindowTranTypeChanged(int value)
-    {
-        SaveWindowSetting();
     }
 
     [RelayCommand] 
@@ -290,70 +168,6 @@ public partial class SettingModel
                 ColorMCGui.Reboot();
             }
         }
-    }
-
-
-    [RelayCommand]
-    public void ColorReset()
-    {
-        _load = true;
-        ConfigBinding.ResetColor();
-        MainColor = Color.Parse(ThemeManager.MainColorStr);
-        _load = false;
-        Model.Notify(App.Lang("SettingWindow.Tab2.Info4"));
-    }
-
-    [RelayCommand]
-    public async Task SetPicSize()
-    {
-        Model.Progress(App.Lang("SettingWindow.Tab2.Info2"));
-        await ConfigBinding.SetBackLimit(EnablePicResize, PicResize);
-        Model.ProgressClose();
-
-        Model.Notify(App.Lang("SettingWindow.Tab2.Info12"));
-    }
-
-    [RelayCommand]
-    public void SetPicTran()
-    {
-        ConfigBinding.SetBackTran(PicTran);
-        Model.Notify(App.Lang("SettingWindow.Tab2.Info12"));
-    }
-
-    [RelayCommand]
-    public void DeletePic()
-    {
-        Pic = "";
-
-        ConfigBinding.DeleteGuiImageConfig();
-    }
-
-    [RelayCommand]
-    public async Task OpenPic()
-    {
-        var file = await PathBinding.SelectFile(FileType.Pic);
-        if (file.Item1 != null)
-        {
-            Pic = file.Item1;
-
-            if (_load)
-                return;
-
-            await SetPic();
-        }
-    }
-
-    [RelayCommand]
-    public async Task SetPic()
-    {
-        if (_load)
-            return;
-
-        Model.Progress(App.Lang("SettingWindow.Tab2.Info2"));
-        await ConfigBinding.SetBackPic(EnableBG, Pic, PicEffect);
-        Model.ProgressClose();
-
-        Model.Notify(App.Lang("SettingWindow.Tab2.Info12"));
     }
 
     [RelayCommand]
@@ -404,66 +218,12 @@ public partial class SettingModel
         var config = GuiConfigUtils.Config;
         if (config is { } con)
         {
-            Pic = con.BackImage;
-            EnableBG = con.EnableBG;
-            PicEffect = con.BackEffect;
-            PicTran = con.BackTran;
-            RgbV1 = con.RGBS;
-            RgbV2 = con.RGBV;
-            PicResize = con.BackLimitValue;
-            WindowTranType = con.WindowTranType;
-
-            switch (con.ColorType)
-            {
-                case ColorType.Auto:
-                    IsAutoColor = true;
-                    break;
-                case ColorType.Light:
-                    IsLightColor = true;
-                    break;
-                case ColorType.Dark:
-                    IsDarkColor = true;
-                    break;
-            }
-            MainColor = Color.Parse(con.ColorMain);
-            EnableRGB = con.RGB;
-            IsDefaultFont = con.FontDefault;
-            EnableFontList = !IsDefaultFont;
-            WindowMode = con.WindowMode;
-            EnablePicResize = con.BackLimit;
-            EnableWindowTran = con.WindowTran;
-
-            AmTime = con.Style.AmTime;
-            AmFade = con.Style.AmFade;
-
             Live2DModel = con.Live2D.Model;
             L2dHeight = con.Live2D.Height;
             L2dWidth = con.Live2D.Width;
             EnableLive2D = con.Live2D.Enable;
             L2dPos = con.Live2D.Pos;
             LowFps = con.Live2D.LowFps;
-
-            switch (con.Head.Type)
-            {
-                case HeadType.Head2D:
-                    IsHead1 = true;
-                    IsHead2 = false;
-                    IsHead3 = false;
-                    break;
-                case HeadType.Head3D_A:
-                    IsHead1 = false;
-                    IsHead2 = true;
-                    IsHead3 = false;
-                    break;
-                case HeadType.Head3D_B:
-                    IsHead1 = false;
-                    IsHead2 = false;
-                    IsHead3 = true;
-                    break;
-            };
-
-            HeadX = con.Head.X;
-            HeadY = con.Head.Y;
         }
         var config1 = ConfigUtils.Config;
         if (config1 is { } con1)
@@ -490,28 +250,5 @@ public partial class SettingModel
         }
 
         _load = false;
-    }
-
-    private void ColorChange()
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetColor(MainColor.ToString());
-    }
-
-    private void SaveWindowSetting()
-    {
-        if (_load)
-            return;
-
-        Model.Progress(App.Lang("SettingWindow.Tab2.Info5"));
-        ConfigBinding.SetWindowTran(EnableWindowTran, WindowTranType);
-        Model.ProgressClose();
-    }
-
-    private void SetRgb()
-    {
-        ConfigBinding.SetRgb(RgbV1, RgbV2);
     }
 }
