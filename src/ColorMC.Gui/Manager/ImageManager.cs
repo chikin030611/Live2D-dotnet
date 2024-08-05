@@ -30,19 +30,6 @@ public static class ImageManager
 
     public static void Init()
     {
-        {
-            using var asset = AssetLoader.Open(new Uri("resm:ColorMC.Gui.Resource.Pic.game.png"));
-            GameIcon = new Bitmap(asset);
-        }
-        {
-            using var asset1 = AssetLoader.Open(new Uri(SystemInfo.Os == OsType.MacOS
-                ? "resm:ColorMC.Gui.macicon.ico" : "resm:ColorMC.Gui.icon.ico"));
-            Icon = new(asset1!);
-        }
-        {
-            using var asset1 = AssetLoader.Open(new Uri("resm:ColorMC.Gui.Resource.Pic.load.png"));
-            LoadIcon = new(asset1!);
-        }
     }
 
     public static void RemoveImage()
