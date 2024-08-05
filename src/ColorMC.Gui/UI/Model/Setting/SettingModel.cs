@@ -7,7 +7,6 @@ namespace ColorMC.Gui.UI.Model.Setting;
 
 public partial class SettingModel : MenuModel
 {
-    public bool Phone { get; } = false;
     public bool IsInputEnable { get; }
 
     private readonly string _name;
@@ -46,7 +45,6 @@ public partial class SettingModel : MenuModel
 
     public override void Close()
     {
-        FontList.Clear();
         InputClose();
         StopRead();
     }

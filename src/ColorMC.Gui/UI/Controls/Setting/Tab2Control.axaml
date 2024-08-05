@@ -13,102 +13,10 @@
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="0,0,10,15">
-            <Border
-                Margin="10,5,10,3"
-                Classes="t2"
-                IsVisible="{Binding Phone}">
-                <StackPanel Name="PhoneSetting" Margin="15">
-                    <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <svg:SvgControl
-                            Width="24"
-                            Height="24"
-                            Margin="0,0,5,0"
-                            Path="/Resource/Icon/Setting/svg22.svg" />
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="{setting:Localize SettingWindow.Tab2.Text43}" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
             
-            <Border Margin="10,5,10,3" Classes="t2">
-                <StackPanel Margin="15">
-                    <!--  语言  -->
-                    <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <svg:SvgControl
-                            Width="24"
-                            Height="24"
-                            Margin="0,0,5,0"
-                            Path="/Resource/Icon/Setting/svg2.svg" />
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="{setting:Localize SettingWindow.Tab2.Text47}" />
-                    </StackPanel>
-                    <WrapPanel Margin="0,0,0,-5" IsVisible="{Binding !MinMode}">
-                        <StackPanel Margin="0,0,5,5" Orientation="Horizontal">
-                            <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text1}" />
-                            <ComboBox
-                                Width="150"
-                                Margin="0,0,5,0"
-                                ItemsSource="{Binding LanguageList}"
-                                SelectedIndex="{Binding Language}" />
-                        </StackPanel>
-                        <WrapPanel Margin="0,0,0,5">
-                            <ToggleSwitch
-                                Margin="0,0,10,0"
-                                IsChecked="{Binding IsDefaultFont}"
-                                OffContent="{setting:Localize SettingWindow.Tab2.Text20}"
-                                OnContent="{setting:Localize SettingWindow.Tab2.Text20}" />
-                            <ComboBox
-                                MinWidth="200"
-                                IsEnabled="{Binding EnableFontList}"
-                                ItemsSource="{Binding FontList}"
-                                SelectedItem="{Binding FontItem}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate DataType="view:FontDisplayModel">
-                                        <StackPanel>
-                                            <TextBlock FontFamily="{Binding FontFamily}" Text="{Binding FontName}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </WrapPanel>
-                    </WrapPanel>
-                    <StackPanel IsVisible="{Binding MinMode}">
-                        <DockPanel Margin="0,0,0,5">
-                            <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text1}" />
-                            <ComboBox
-                                Margin="0,0,0,0"
-                                HorizontalAlignment="Stretch"
-                                ItemsSource="{Binding LanguageList}"
-                                SelectedIndex="{Binding Language}" />
-                        </DockPanel>
-                        <ToggleSwitch
-                            Margin="0,0,0,5"
-                            IsChecked="{Binding IsDefaultFont}"
-                            OffContent="{setting:Localize SettingWindow.Tab2.Text20}"
-                            OnContent="{setting:Localize SettingWindow.Tab2.Text20}" />
-                        <ComboBox
-                            Margin="0,0,0,0"
-                            HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding EnableFontList}"
-                            ItemsSource="{Binding FontList}"
-                            SelectedItem="{Binding FontItem}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate DataType="view:FontDisplayModel">
-                                    <StackPanel>
-                                        <TextBlock FontFamily="{Binding FontFamily}" Text="{Binding FontName}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                    <TextBlock
-                        Margin="0,5,0,0"
-                        Text="{setting:Localize SettingWindow.Tab2.Text21}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </Border>
             <Border
                 Margin="10,5,10,3"
-                Classes="t2"
-                IsVisible="{Binding !Phone}">
+                Classes="t2">
                 <StackPanel Margin="15">
                     <!--  Live2D人物  -->
                     <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
@@ -187,7 +95,6 @@
                                 <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text52}" />
                                 <ComboBox
                                     Width="150"
-                                    ItemsSource="{Binding PosList}"
                                     SelectedIndex="{Binding L2dPos}" />
                             </StackPanel>
                         </WrapPanel>
@@ -202,7 +109,6 @@
                                 <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text52}" />
                                 <ComboBox
                                     HorizontalAlignment="Stretch"
-                                    ItemsSource="{Binding PosList}"
                                     SelectedIndex="{Binding L2dPos}" />
                             </DockPanel>
                         </StackPanel>

@@ -19,14 +19,6 @@ namespace ColorMC.Gui.UI.Model.Setting;
 
 public partial class SettingModel
 {
-    public ObservableCollection<FontDisplayModel> FontList { get; init; } = [];
-    public string[] TranTypeList { get; init; } = LanguageBinding.GetWindowTranTypes();
-    public string[] LanguageList { get; init; } = LanguageBinding.GetLanguages();
-    public string[] PosList { get; init; } = LanguageBinding.GetPos();
-
-    [ObservableProperty]
-    private FontDisplayModel? _fontItem;
-
     [ObservableProperty]
     private Color _mainColor;
 
@@ -103,21 +95,6 @@ public partial class SettingModel
     [ObservableProperty]
     private string _live2DCoreState;
 
-    public string IconHead
-    {
-        get
-        {
-            var random = new Random();
-            var index = random.Next(200000);
-            if (index == 114514)
-            {
-                return $"/Resource/Icon/Setting/svg{28 + random.Next(6)}.svg";
-            }
-
-            return "/Resource/Icon/Setting/svg27.svg";
-        }
-    }
-
     private bool _load = true;
 
     partial void OnLowFpsChanged(bool value)
@@ -187,16 +164,6 @@ public partial class SettingModel
     partial void OnMainColorChanged(Color value)
     {
         ColorChange();
-    }
-
-    partial void OnFontItemChanged(FontDisplayModel? value)
-    {
-        if (_load || value == null)
-            return;
-
-        OnPropertyChanged("Hide");
-
-        ConfigBinding.SetFont(value.FontName, IsDefaultFont);
     }
 
     partial void OnEnableWindowTranChanged(bool value)
@@ -273,22 +240,22 @@ public partial class SettingModel
         }
     }
 
-    partial void OnIsDefaultFontChanged(bool value)
-    {
-        if (value == true)
-        {
-            EnableFontList = false;
-        }
-        else
-        {
-            EnableFontList = true;
-        }
+    //partial void OnIsDefaultFontChanged(bool value)
+    //{
+    //    if (value == true)
+    //    {
+    //        EnableFontList = false;
+    //    }
+    //    else
+    //    {
+    //        EnableFontList = true;
+    //    }
 
-        if (_load)
-            return;
+    //    if (_load)
+    //        return;
 
-        ConfigBinding.SetFont(FontItem?.FontName, value);
-    }
+    //    ConfigBinding.SetFont(FontItem?.FontName, value);
+    //}
 
     partial void OnLanguageChanged(LanguageType value)
     {
@@ -305,7 +272,7 @@ public partial class SettingModel
         SaveWindowSetting();
     }
 
-    [RelayCommand] // 
+    [RelayCommand] 
     public async Task InstallCore()
     {
         var file = await PathBinding.SelectFile(FileType.Live2DCore);
@@ -434,16 +401,6 @@ public partial class SettingModel
     {
         _load = true;
 
-        FontList.Clear();
-        BaseBinding.GetFontList().ForEach(item =>
-        {
-            FontList.Add(new()
-            {
-                FontName = item.Name,
-                FontFamily = item
-            });
-        });
-
         var config = GuiConfigUtils.Config;
         if (config is { } con)
         {
@@ -455,8 +412,6 @@ public partial class SettingModel
             RgbV2 = con.RGBV;
             PicResize = con.BackLimitValue;
             WindowTranType = con.WindowTranType;
-
-            FontItem = FontList.FirstOrDefault(a => a.FontName == con.FontName);
 
             switch (con.ColorType)
             {
