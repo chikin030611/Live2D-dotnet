@@ -14,16 +14,6 @@ namespace ColorMC.Gui.UIBinding;
 public static class ConfigBinding
 {
     /// <summary>
-    /// 加载账户数据库
-    /// </summary>
-    /// <param name="dir"></param>
-    /// <returns></returns>
-    public static bool LoadAuthDatabase(string dir)
-    {
-        return AuthDatabase.LoadData(dir);
-    }
-
-    /// <summary>
     /// 加载配置文件
     /// </summary>
     /// <param name="dir"></param>

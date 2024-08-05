@@ -44,24 +44,12 @@ public record DeleteFilesArg
     public ColorMCCore.Request? Request;
 }
 
-/// <summary>
-/// 创建游戏版本参数
-/// </summary>
-public record CreateGameArg
-{
-    public required GameSettingObj Game;
-    public ColorMCCore.Request? Request;
-    public ColorMCCore.GameOverwirte? Overwirte;
-}
-
-
 public abstract record UnpackGameZipArg
 {
     public string? Name;
     public string? Group;
     public ColorMCCore.ZipUpdate? Zip;
     public ColorMCCore.Request? Request;
-    public ColorMCCore.GameOverwirte? Overwirte;
     public ColorMCCore.PackUpdate? Update;
     public ColorMCCore.PackState? Update2;
 }

@@ -2,7 +2,6 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using ColorMC.Core.Config;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.LaunchPath;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 
@@ -68,12 +67,6 @@ public static class ColorMCCore
     /// <param name="code">登陆码</param>
     public delegate void LoginOAuthCode(string url, string code);
     /// <summary>
-    /// 游戏复写
-    /// </summary>
-    /// <param name="obj">游戏实例</param>
-    /// <returns>是否复写</returns>
-    public delegate Task<bool> GameOverwirte(GameSettingObj obj);
-    /// <summary>
     /// 整合包进度更新
     /// </summary>
     /// <param name="size">总进度</param>
@@ -99,12 +92,6 @@ public static class ColorMCCore
     /// </summary>
     /// <param name="state">状态</param>
     public delegate void PackState(CoreRunState state);
-    /// <summary>
-    /// 游戏启动信息更新
-    /// </summary>
-    /// <param name="obj">游戏实例</param>
-    /// <param name="state">当前状态</param>
-    public delegate void GameLaunch(GameSettingObj obj, LaunchState state);
 
     /// <summary>
     /// 显示下载窗口
@@ -117,10 +104,6 @@ public static class ColorMCCore
     /// </summary>
     public static event Action<string?, Exception?, bool>? Error;
     /// <summary>
-    /// 游戏日志回调
-    /// </summary>
-    public static event Action<GameSettingObj, string?>? GameLog;
-    /// <summary>
     /// 语言重载
     /// </summary>
     public static event Action<LanguageType>? LanguageReload;
@@ -128,10 +111,6 @@ public static class ColorMCCore
     /// 游戏实例数量修改事件
     /// </summary>
     public static event Action? InstanceChange;
-    /// <summary>
-    /// 游戏实例图标修改事件
-    /// </summary>
-    public static event Action<GameSettingObj>? InstanceIconChange;
     /// <summary>
     /// 手机端Jvm安装
     /// </summary>
@@ -148,10 +127,6 @@ public static class ColorMCCore
     /// 手机端获取运行路径
     /// </summary>
     public static Func<string> PhoneGetDataDir { internal get; set; }
-    /// <summary>
-    /// 手机端Jvm运行
-    /// </summary>
-    public static Func<GameSettingObj, JavaInfo, string, List<string>, Dictionary<string, string>, Process> PhoneJvmRun { internal get; set; }
     /// <summary>
     /// 手机端打开网页
     /// </summary>
@@ -204,7 +179,6 @@ public static class ColorMCCore
     public static void Init1()
     {
         ConfigSave.Init();
-        GameCount.Init(BaseDir);
 
         Logs.Info(LanguageHelper.Get("Core.Info3"));
     }
@@ -230,16 +204,6 @@ public static class ColorMCCore
     }
 
     /// <summary>
-    /// 游戏日志
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="text"></param>
-    public static void OnGameLog(GameSettingObj obj, string? text)
-    {
-        GameLog?.Invoke(obj, text);
-    }
-
-    /// <summary>
     /// 语言重载
     /// </summary>
     /// <param name="type"></param>
@@ -256,12 +220,4 @@ public static class ColorMCCore
         InstanceChange?.Invoke();
     }
 
-    /// <summary>
-    /// 游戏图标修改
-    /// </summary>
-    /// <param name="obj"></param>
-    internal static void OnInstanceIconChange(GameSettingObj obj)
-    {
-        InstanceIconChange?.Invoke(obj);
-    }
 }

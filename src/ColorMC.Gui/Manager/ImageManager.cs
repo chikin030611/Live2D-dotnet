@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using ColorMC.Core.LaunchPath;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
@@ -62,23 +61,6 @@ public static class ImageManager
         FuntionUtils.RunGC();
     }
 
-    public static Bitmap? GetGameIcon(GameSettingObj obj)
-    {
-        if (s_gameIcon.TryGetValue(obj.UUID, out var image))
-        {
-            return image;
-        }
-        var file = obj.GetIconFile();
-        if (File.Exists(file))
-        {
-            var icon = new Bitmap(file);
-            s_gameIcon.Add(obj.UUID, icon);
-
-            return icon;
-        }
-
-        return null;
-    }
 
     public static void OnPicUpdate()
     {

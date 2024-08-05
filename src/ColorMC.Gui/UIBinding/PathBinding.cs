@@ -10,7 +10,6 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using ColorMC.Core;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.LaunchPath;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
@@ -69,45 +68,6 @@ public static class PathBinding
                 break;
             case OsType.MacOS:
                 Process.Start("open", '"' + item + '"');
-                break;
-        }
-    }
-
-    /// <summary>
-    /// 打开路径
-    /// </summary>
-    /// <param name="obj">游戏实例</param>
-    /// <param name="type">路径类型</param>
-    public static void OpPath(GameSettingObj obj, PathType type)
-    {
-        switch (type)
-        {
-            case PathType.ShaderpacksPath:
-                OpPath(obj.GetShaderpacksPath());
-                break;
-            case PathType.ResourcepackPath:
-                OpPath(obj.GetResourcepacksPath());
-                break;
-            case PathType.WorldBackPath:
-                OpPath(obj.GetWorldBackupPath());
-                break;
-            case PathType.SavePath:
-                OpPath(obj.GetSavesPath());
-                break;
-            case PathType.GamePath:
-                OpPath(obj.GetGamePath());
-                break;
-            case PathType.SchematicsPath:
-                OpPath(obj.GetSchematicsPath());
-                break;
-            case PathType.ScreenshotsPath:
-                OpPath(obj.GetScreenshotsPath());
-                break;
-            case PathType.ModPath:
-                OpPath(obj.GetModsPath());
-                break;
-            case PathType.BasePath:
-                OpPath(obj.GetBasePath());
                 break;
         }
     }

@@ -12,9 +12,7 @@ using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using ColorMC.Core;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.LaunchPath;
 using ColorMC.Core.Objs;
-using ColorMC.Core.Objs.Login;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
@@ -44,16 +42,6 @@ public static class BaseBinding
     /// </summary>
     private static string s_launch;
 
-    /// <summary>
-    /// 是否处于添加游戏实例中
-    /// </summary>
-    public static bool IsAddGames
-    {
-        set
-        {
-            InstancesPath.DisableWatcher = value;
-        }
-    }
 
     /// <summary>
     /// 初始化
@@ -63,7 +51,6 @@ public static class BaseBinding
         ColorMCCore.Error += WindowManager.ShowError;
         ColorMCCore.LanguageReload += LanguageReload;
         ColorMCCore.InstanceChange += InstanceChange;
-        ColorMCCore.InstanceIconChange += InstanceIconChange;
 
         if (ColorMCGui.RunType == RunType.Program && SystemInfo.Os != OsType.Android)
         {
@@ -86,11 +73,6 @@ public static class BaseBinding
         {
             LongPressed.Released();
         }, handledEventsToo: true);
-    }
-
-    private static void InstanceIconChange(GameSettingObj obj)
-    {
-        WindowManager.MainWindow?.IconChange(obj.UUID);
     }
 
     private static void InstanceChange()
@@ -189,36 +171,6 @@ public static class BaseBinding
     public static string GetRunDir()
     {
         return ColorMCCore.BaseDir;
-    }
-
-    /// <summary>
-    /// 创建快捷方式
-    /// </summary>
-    /// <param name="obj"></param>
-    public static void CreateLaunch(GameSettingObj obj)
-    {
-#pragma warning disable CA1416 // 验证平台兼容性
-        if (SystemInfo.Os == OsType.Windows)
-        {
-            try
-            {
-                var shellType = Type.GetTypeFromProgID("WScript.Shell")!;
-                dynamic shell = Activator.CreateInstance(shellType)!;
-                var file = $"{ColorMCGui.RunDir}{obj.Name}.lnk";
-                var shortcut = shell.CreateShortcut(file);
-                var path = Environment.ProcessPath;
-                shortcut.TargetPath = path;
-                shortcut.Arguments = "-game " + obj.UUID;
-                shortcut.WorkingDirectory = ColorMCGui.RunDir;
-                shortcut.Save();
-                PathBinding.OpFile(file);
-            }
-            catch (Exception e)
-            {
-                Logs.Error(App.Lang("BaseBinding.Error5"), e);
-            }
-        }
-#pragma warning restore CA1416 // 验证平台兼容性
     }
 
     /// <summary>

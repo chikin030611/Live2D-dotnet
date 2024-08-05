@@ -150,15 +150,6 @@ public record MakeDownloadNameItemsRes
 }
 
 /// <summary>
-/// 游戏实例处理结果
-/// </summary>
-public record GameRes
-{
-    public bool State;
-    public GameSettingObj? Game;
-}
-
-/// <summary>
 /// 消息结果
 /// </summary>
 public record MessageRes
