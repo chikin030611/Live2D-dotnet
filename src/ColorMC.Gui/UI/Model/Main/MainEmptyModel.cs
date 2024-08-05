@@ -10,39 +10,10 @@ namespace ColorMC.Gui.UI.Model.Main;
 
 public partial class MainModel
 {
-    public string[] LanguageList { get; init; } = LanguageBinding.GetLanguages();
-
     [ObservableProperty]
     private LanguageType _language;
 
     private bool _emptyLoad = true;
 
-    [RelayCommand]
-    public void SetJava()
-    {
-        WindowManager.ShowSetting(SettingType.SetJava);
-    }
 
-    partial void OnLanguageChanged(LanguageType value)
-    {
-        if (_emptyLoad)
-        {
-            return;
-        }
-
-        Model.Progress(App.Lang("SettingWindow.Tab2.Info1"));
-        ConfigBinding.SetLanguage(value);
-        Model.ProgressClose();
-    }
-
-    public void LoadEmptyGame()
-    {
-        _emptyLoad = true;
-        var config = ConfigUtils.Config;
-        if (config != null)
-        {
-            Language = config.Language;
-        }
-        _emptyLoad = false;
-    }
 }

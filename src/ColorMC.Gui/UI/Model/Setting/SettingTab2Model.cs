@@ -137,19 +137,6 @@ public partial class SettingModel
         ConfigBinding.SetLive2DSize(L2dWidth, L2dHeight, L2dPos);
     }
 
-    async partial void OnEnablePicResizeChanged(bool value)
-    {
-        if (_load)
-            return;
-
-        if (value)
-        {
-            Model.Progress(App.Lang("SettingWindow.Tab2.Info2"));
-            await ConfigBinding.SetBackLimit(value, PicResize);
-            Model.ProgressClose();
-        }
-    }
-
     [RelayCommand] 
     public async Task InstallCore()
     {

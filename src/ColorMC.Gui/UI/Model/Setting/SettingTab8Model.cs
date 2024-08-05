@@ -26,8 +26,6 @@ public partial class SettingModel
 
     public ObservableCollection<InputAxisButtonModel> InputAxisList { get; init; } = [];
 
-    public string[] AxisType { get; init; } = LanguageBinding.GetAxisTypeName();
-
     [ObservableProperty]
     private InputButtonModel _inputItem;
 
