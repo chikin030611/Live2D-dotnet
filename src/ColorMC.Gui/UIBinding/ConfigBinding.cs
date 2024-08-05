@@ -544,7 +544,6 @@ public static class ConfigBinding
         GuiConfigUtils.Config.ServerCustom.LockLogins = list;
         GuiConfigUtils.Save();
 
-        UserBinding.OnUserEdit();
     }
 
     /// <summary>
