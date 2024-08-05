@@ -25,9 +25,6 @@ public partial class MainModel : TopModel
 
     private readonly Semaphore _semaphore = new(0, 2);
 
-    private bool _isplay = true;
-    private bool _isCancel;
-
     [ObservableProperty]
     private (string, ushort) _server;
 
@@ -56,11 +53,6 @@ public partial class MainModel : TopModel
 
     [ObservableProperty]
     private float _musicVolume;
-
-    private bool _isNewUpdate;
-    private string _updateStr;
-
-    private bool _isGetNewInfo;
 
     public MainModel(BaseModel model) : base(model)
     {
@@ -136,8 +128,6 @@ public partial class MainModel : TopModel
                 return;
             }
             HaveUpdate = true;
-            _isNewUpdate = data.Item2 || ColorMCGui.IsAot || ColorMCGui.IsMin;
-            _updateStr = data.Item3!;
         }
     }
 

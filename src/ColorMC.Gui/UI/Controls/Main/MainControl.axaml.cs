@@ -35,7 +35,6 @@ public partial class MainControl : BaseUserControl
         AddHandler(DragDrop.DropEvent, Drop);
 
         SizeChanged += MainControl_SizeChanged;
-        BaseBinding.LoadDone += LoadDone;
     }
 
 

@@ -45,8 +45,6 @@ public static class BaseBinding
 
     public static bool SdlInit { get; private set; }
 
-    public static event Action? LoadDone;
-
     /// <summary>
     /// 快捷启动
     /// </summary>

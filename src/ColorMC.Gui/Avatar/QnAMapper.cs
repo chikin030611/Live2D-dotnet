@@ -10,9 +10,8 @@ namespace ColorMC.Gui.AudioPlayer;
 
 public class QnAMapper
 {
-    string jsonFilePath;
-    string jsonString;
-    JsonDocument jsonDocument;
+    readonly string jsonString;
+    readonly JsonDocument jsonDocument;
 
     public QnAMapper()
     {
