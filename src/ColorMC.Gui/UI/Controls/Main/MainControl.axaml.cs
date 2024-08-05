@@ -193,13 +193,6 @@ public partial class MainControl : BaseUserControl
         });
     }
 
-    public void IsDelete()
-    {
-        Dispatcher.UIThread.Post(() =>
-        {
-        });
-    }
-
     public void ChangeModel()
     {
         (DataContext as MainModel)!.ChangeModel();
@@ -226,11 +219,6 @@ public partial class MainControl : BaseUserControl
         var model = (DataContext as MainModel)!;
 
         model.LowFps = config.LowFps;
-    }
-
-    public void ShowMessage(string message)
-    {
-        (DataContext as MainModel)!.ShowMessage(message);
     }
 
     public override void SetModel(BaseModel model)
