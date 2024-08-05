@@ -129,11 +129,7 @@ public static class Logs
     public static string Crash(string data, Exception e)
     {
         var date = DateTime.Now;
-        string text = $"Version:{ColorMCCore.Version}{Environment.NewLine}" +
-            $"System:{SystemInfo.System}{Environment.NewLine}" +
-            $"SystemName:{SystemInfo.SystemName}{Environment.NewLine}" +
-            $"{data}{Environment.NewLine}" +
-            $"{e}";
+        string text =$"{data}{Environment.NewLine}" + $"{e}";
 
         var file = $"{s_local}{date.Year}_{date.Month}_{date.Day}_" +
             $"{date.Hour}_{date.Minute}_{date.Second}_crash.log";

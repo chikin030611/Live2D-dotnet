@@ -190,7 +190,7 @@ public partial class BaseModel : ObservableObject
     public void NoWork()
     {
         _isWork = false;
-        if (SystemInfo.Os != OsType.Android && !_listBack.IsEmpty)
+        if (!_listBack.IsEmpty)
         {
             HeadBackEnable = true;
         }
@@ -238,7 +238,7 @@ public partial class BaseModel : ObservableObject
     public void PushBack(Action back)
     {
         _listBack.Push(back);
-        if (SystemInfo.Os != OsType.Android && !_listBack.IsEmpty)
+        if (!_listBack.IsEmpty)
         {
             HeadBackDisplay = true;
         }

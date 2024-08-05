@@ -300,14 +300,11 @@ public static class ConfigBinding
     /// <param name="value"></param>
     public static void SetWindowMode(bool value)
     {
-        if (SystemInfo.Os != OsType.Android)
-        {
-            GuiConfigUtils.Config.WindowMode = value;
+        GuiConfigUtils.Config.WindowMode = value;
 
-            GuiConfigUtils.Save();
+        GuiConfigUtils.Save();
 
-            ColorMCGui.Reboot();
-        }
+        ColorMCGui.Reboot();
     }
 
     /// <summary>
@@ -316,7 +313,7 @@ public static class ConfigBinding
     /// <returns>true为单窗口false为多窗口</returns>
     public static bool WindowMode()
     {
-        return GuiConfigUtils.Config.WindowMode || SystemInfo.Os == OsType.Android;
+        return GuiConfigUtils.Config.WindowMode;
     }
 
     /// <summary>

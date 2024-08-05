@@ -16,15 +16,7 @@ public partial class SettingModel : MenuModel
     {
         _name = ToString() ?? "SettingModel";
 
-        if (SystemInfo.Os == OsType.Android)
-        {
-            Phone = true;
-            _enableWindowMode = false;
-        }
-        else if (SystemInfo.Os is OsType.Windows)
-        {
-            IsInputEnable = true;
-        }
+        IsInputEnable = true;
 
         if (!BaseBinding.SdlInit)
         {

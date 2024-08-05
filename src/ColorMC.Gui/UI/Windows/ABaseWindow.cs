@@ -34,16 +34,13 @@ public abstract class ABaseWindow : Window
         if (e.Property == WindowStateProperty)
         {
             ICon.WindowStateChange(WindowState);
-            if (SystemInfo.Os == OsType.Windows)
+            if (WindowState == WindowState.Maximized)
             {
-                if (WindowState == WindowState.Maximized)
-                {
-                    Padding = new Thickness(8);
-                }
-                else
-                {
-                    Padding = new Thickness(0);
-                }
+                Padding = new Thickness(8);
+            }
+            else
+            {
+                Padding = new Thickness(0);
             }
         }
     }
@@ -54,25 +51,6 @@ public abstract class ABaseWindow : Window
         {
             e.Handled = true;
             return;
-        }
-
-        if (SystemInfo.Os == OsType.MacOS && e.KeyModifiers == KeyModifiers.Control)
-        {
-            switch (e.Key)
-            {
-                case Key.OemComma:
-                    WindowManager.ShowSetting(SettingType.Normal);
-                    break;
-                case Key.Q:
-                    App.Close();
-                    break;
-                case Key.M:
-                    WindowState = WindowState.Minimized;
-                    break;
-                case Key.W:
-                    Close();
-                    break;
-            }
         }
     }
 }

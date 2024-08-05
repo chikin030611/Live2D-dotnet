@@ -47,14 +47,10 @@ public static class LongPressed
 
     private static void Timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-        s_count++;
-        if (s_count >= 4 && SystemInfo.Os != OsType.Android)
+        Dispatcher.UIThread.Post(() =>
         {
-            Dispatcher.UIThread.Post(() =>
-            {
-                s_action?.Invoke();
-            });
-        }
+            s_action?.Invoke();
+        });
     }
 
     /// <summary>
@@ -62,10 +58,6 @@ public static class LongPressed
     /// </summary>
     public static void Released()
     {
-        if (s_count >= 1 && SystemInfo.Os == OsType.Android)
-        {
-            s_action?.Invoke();
-        }
         Cancel();
     }
 

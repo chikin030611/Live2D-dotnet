@@ -67,12 +67,7 @@ public static class ColorMCGui
 
         if (string.IsNullOrWhiteSpace(InputDir))
         {
-            RunDir = SystemInfo.Os switch
-            {
-                OsType.Linux => $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}/ColorMC/",
-                OsType.MacOS => "/Users/shared/ColorMC/",
-                _ => AppContext.BaseDirectory
-            };
+            RunDir = AppContext.BaseDirectory;
         }
         else
         {
@@ -92,8 +87,6 @@ public static class ColorMCGui
                 BaseBinding.SetLaunch(args[1]);
             }
         }
-
-        SystemInfo.Init();
 
         try
         {
@@ -124,50 +117,10 @@ public static class ColorMCGui
 
     public static void Reboot()
     {
-        if (SystemInfo.Os != OsType.Android)
-        {
-            IsClose = true;
-            Thread.Sleep(500);
-            Process.Start($"{(SystemInfo.Os == OsType.Windows ?
-                    "ColorMC.Launcher.exe" : "ColorMC.Launcher")}");
-            App.Close();
-        }
-    }
-
-    public static void StartPhone(string local)
-    {
-        SystemInfo.Init();
-
-        RunType = RunType.Phone;
-
-        RunDir = local;
-
-        Console.WriteLine($"RunDir:{RunDir}");
-
-        s_arg.Local = RunDir;
-        ColorMCCore.Init(s_arg);
-        GuiConfigUtils.Init(RunDir);
-    }
-
-    public static void SetRuntimeState(bool aot, bool min)
-    {
-        IsAot = aot;
-        IsMin = min;
-    }
-
-    public static void SetBaseSha1(string[] data)
-    {
-        BaseSha1 = data;
-    }
-
-    public static void SetInputDir(string dir)
-    {
-        InputDir = dir;
-    }
-
-    public static void SetCrash(bool crash)
-    {
-        IsCrash = crash;
+        IsClose = true;
+        Thread.Sleep(500);
+        Process.Start($"{("ColorMC.Launcher.exe")}");
+        App.Close();
     }
 
     public static AppBuilder BuildAvaloniaApp()
@@ -175,18 +128,12 @@ public static class ColorMCGui
         if (RunType == RunType.AppBuilder)
         {
             RunDir = AppContext.BaseDirectory;
-
-            SystemInfo.Init();
         }
 
         GuiConfigUtils.Init(RunDir);
 
         var config = GuiConfigUtils.Config.Render.Windows;
         var opt = new Win32PlatformOptions();
-        if (SystemInfo.IsArm)
-        {
-            opt.RenderingMode = [Win32RenderingMode.Wgl];
-        }
         if (config.ShouldRenderOnUIThread is { } value)
         {
             opt.ShouldRenderOnUIThread = value;
@@ -209,10 +156,6 @@ public static class ColorMCGui
         if (config1.OverlayPopups is { } value4)
         {
             opt1.OverlayPopups = value4;
-        }
-        if (SystemInfo.IsArm)
-        {
-            opt1.RenderingMode = [X11RenderingMode.Egl];
         }
         else if (config1.SoftwareRender == true)
         {

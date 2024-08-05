@@ -52,21 +52,18 @@ public static class BaseBinding
         ColorMCCore.LanguageReload += LanguageReload;
         ColorMCCore.InstanceChange += InstanceChange;
 
-        if (ColorMCGui.RunType == RunType.Program && SystemInfo.Os != OsType.Android)
+        try
         {
-            try
+            var sdl = Sdl.GetApi();
+            if (sdl.Init(Sdl.InitGamecontroller | Sdl.InitAudio) == 0)
             {
-                var sdl = Sdl.GetApi();
-                if (sdl.Init(Sdl.InitGamecontroller | Sdl.InitAudio) == 0)
-                {
-                    InputControl.Init(sdl);
-                    SdlInit = true;
-                }
+                InputControl.Init(sdl);
+                SdlInit = true;
             }
-            catch (Exception e)
-            {
-                Logs.Error(App.Lang("BaseBinding.Error1"), e);
-            }
+        }
+        catch (Exception e)
+        {
+            Logs.Error(App.Lang("BaseBinding.Error1"), e);
         }
 
         InputElement.PointerReleasedEvent.AddClassHandler<DataGridCell>((x, e) =>
@@ -126,32 +123,16 @@ public static class BaseBinding
     public static void OpUrl(string? url)
     {
         url = url?.Replace(" ", "%20");
-        switch (SystemInfo.Os)
+        var ps = Process.Start(new ProcessStartInfo()
         {
-            case OsType.Windows:
-                var ps = Process.Start(new ProcessStartInfo()
-                {
-                    FileName = "cmd",
-                    CreateNoWindow = true,
-                    RedirectStandardInput = true,
-                });
-                if (ps != null)
-                {
-                    ps.StandardInput.WriteLine($"start {url}");
-                    ps.Close();
-                }
-                break;
-            case OsType.Linux:
-                Process.Start("xdg-open",
-                    '"' + url + '"');
-                break;
-            case OsType.MacOS:
-                Process.Start("open", "-a Safari " +
-                    '"' + url + '"');
-                break;
-            case OsType.Android:
-                ColorMCCore.PhoneOpenUrl(url);
-                break;
+            FileName = "cmd",
+            CreateNoWindow = true,
+            RedirectStandardInput = true,
+        });
+        if (ps != null)
+        {
+            ps.StandardInput.WriteLine($"start {url}");
+            ps.Close();
         }
     }
 
@@ -203,22 +184,9 @@ public static class BaseBinding
         using var zip = new ZipFile(stream);
         string file = "";
         string file1 = Directory.GetCurrentDirectory();
-        switch (SystemInfo.Os)
-        {
-            case OsType.Windows:
-                file = "Core/dll/windows/" + (SystemInfo.Is64Bit ? "x86_64" : "x86") + "/Live2DCubismCore.dll";
-                file1 += "/Live2DCubismCore.dll";
-                break;
-            case OsType.MacOS:
-                file = "Core/dll/macos/libLive2DCubismCore.dylib";
-                file1 += "/Live2DCubismCore.dylib";
-                break;
-            case OsType.Linux:
-                file = SystemInfo.IsArm ? "Core/dll/linux/x86_64/libLive2DCubismCore.so"
-                    : "Core/dll/experimental/rpi/libLive2DCubismCore.so";
-                file1 += "/Live2DCubismCore.so";
-                break;
-        }
+        file = "Core/dll/windows/" + "x86_64" + "/Live2DCubismCore.dll";
+        file1 += "/Live2DCubismCore.dll";
+        
 
         file1 = Path.GetFullPath(file1);
 

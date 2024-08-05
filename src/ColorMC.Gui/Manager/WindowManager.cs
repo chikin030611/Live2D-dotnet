@@ -44,18 +44,9 @@ public static class WindowManager
     {
         if (ConfigBinding.WindowMode())
         {
-            if (SystemInfo.Os == OsType.Android)
-            {
-                AllWindow = new();
-                AllWindow.Model.HeadDisplay = false;
-                AllWindow.Opened();
-            }
-            else
-            {
-                var win = new SingleWindow();
-                AllWindow = win.Win;
-                win.Show();
-            }
+            var win = new SingleWindow();
+            AllWindow = win.Win;
+            win.Show();
 
             Dispatcher.UIThread.Post(() =>
             {
@@ -142,11 +133,6 @@ public static class WindowManager
         {
             if (newwindow)
             {
-                if (SystemInfo.Os == OsType.Android)
-                {
-                    return;
-                }
-
                 AMultiWindow win;
                 win = new MultiWindow(con);
                 con.SetBaseModel(win.Model);

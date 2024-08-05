@@ -67,11 +67,6 @@ public static class ImageUtils
                     var assm = Assembly.GetExecutingAssembly();
                     stream1 = assm.GetManifestResourceStream(file)!;
                 }
-                else if (SystemInfo.Os == OsType.Android)
-                {
-                    file = ColorMCGui.RunDir + "BG";
-                    stream1 = PathHelper.OpenRead(file);
-                }
                 else
                 {
                     stream1 = PathHelper.OpenRead(file);

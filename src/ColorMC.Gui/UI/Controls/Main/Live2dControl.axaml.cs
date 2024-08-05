@@ -21,12 +21,6 @@ public partial class Live2dControl : UserControl
     {
         InitializeComponent();
 
-        if (SystemInfo.Os == OsType.Android)
-        {
-            IsVisible = false;
-            return;
-        }
-
         _render = new();
 
         Live2D.Child = _render;

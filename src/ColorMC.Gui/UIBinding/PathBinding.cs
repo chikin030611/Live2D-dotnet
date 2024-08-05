@@ -58,18 +58,7 @@ public static class PathBinding
     private static void OpPath(string item)
     {
         item = Path.GetFullPath(item);
-        switch (SystemInfo.Os)
-        {
-            case OsType.Windows:
-                Process.Start("explorer", $"{item}");
-                break;
-            case OsType.Linux:
-                Process.Start("xdg-open", '"' + item + '"');
-                break;
-            case OsType.MacOS:
-                Process.Start("open", '"' + item + '"');
-                break;
-        }
+        Process.Start("explorer", $"{item}");
     }
 
     /// <summary>
@@ -78,29 +67,7 @@ public static class PathBinding
     /// <param name="item">文件</param>
     public static void OpFile(string item)
     {
-        switch (SystemInfo.Os)
-        {
-            case OsType.Windows:
-                Process.Start("explorer",
-                    $@"/select,{item}");
-                break;
-            case OsType.Linux:
-                try
-                {
-                    Process.Start("nautilus",
-                        '"' + item + '"');
-                }
-                catch
-                {
-                    Process.Start("dolphin",
-                        '"' + item + '"');
-                }
-                break;
-            case OsType.MacOS:
-                var file1 = new FileInfo(item);
-                Process.Start("open", '"' + file1.Directory?.FullName + '"');
-                break;
-        }
+        Process.Start("explorer", $@"/select,{item}");
     }
 
     /// <summary>
@@ -345,26 +312,11 @@ public static class PathBinding
     public static void OpenPicFile(string screenshot)
     {
         screenshot = Path.GetFullPath(screenshot);
-        switch (SystemInfo.Os)
-        {
-            case OsType.Windows:
-                {
-                    var proc = new Process();
-                    proc.StartInfo.WorkingDirectory = ColorMCCore.BaseDir;
-                    proc.StartInfo.FileName = "cmd.exe";
-                    proc.StartInfo.Arguments = $"/c start \"\" \"{screenshot}\"";
-                    proc.StartInfo.CreateNoWindow = true;
-                    proc.Start();
-                    break;
-                }
-            case OsType.Linux:
-                Process.Start("xdg-open",
-                    '"' + screenshot + '"');
-                break;
-            case OsType.MacOS:
-                Process.Start("open", "-a Preview " +
-                    '"' + screenshot + '"');
-                break;
-        }
+        var proc = new Process();
+        proc.StartInfo.WorkingDirectory = ColorMCCore.BaseDir;
+        proc.StartInfo.FileName = "cmd.exe";
+        proc.StartInfo.Arguments = $"/c start \"\" \"{screenshot}\"";
+        proc.StartInfo.CreateNoWindow = true;
+        proc.Start();
     }
 }

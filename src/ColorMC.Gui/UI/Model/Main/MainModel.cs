@@ -21,8 +21,6 @@ public partial class MainModel : TopModel
     public bool IsLaunch;
     public bool IsFirst = true;
 
-    public bool IsPhone { get; } = SystemInfo.Os == OsType.Android;
-
     private readonly Semaphore _semaphore = new(0, 2);
 
     [ObservableProperty]
