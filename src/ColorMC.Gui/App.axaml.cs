@@ -67,14 +67,7 @@ public partial class App : Application
 
         Life = ApplicationLifetime;
 
-        if (ConfigUtils.Config == null)
-        {
-            LoadLanguage(LanguageType.en_us);
-        }
-        else
-        {
-            LoadLanguage(ConfigUtils.Config.Language);
-        }
+        LoadLanguage(LanguageType.en_us);
 
         if (PlatformSettings is { } setting)
         {
@@ -118,11 +111,7 @@ public partial class App : Application
         {
             return;
         }
-        string name = type switch
-        {
-            LanguageType.en_us => "ColorMC.Gui.Resource.Language.gui_en-us.json",
-            _ => "ColorMC.Gui.Resource.Language.gui_zh-cn.json"
-        };
+        string name = "ColorMC.Gui.Resource.Language.gui_en-us.json";
         using var item = assm.GetManifestResourceStream(name)!;
         var reader = new StreamReader(item);
         s_language.Load(reader.ReadToEnd());
