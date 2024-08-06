@@ -52,18 +52,7 @@ public static class ThemeManager
 
     public static void Init()
     {
-        switch (GuiConfigUtils.Config.ColorType)
-        {
-            case ColorType.Auto:
-                NowTheme = App.ThisApp.PlatformSettings!.GetColorValues().ThemeVariant;
-                break;
-            case ColorType.Light:
-                NowTheme = PlatformThemeVariant.Light;
-                break;
-            case ColorType.Dark:
-                NowTheme = PlatformThemeVariant.Dark;
-                break;
-        }
+        NowTheme = App.ThisApp.PlatformSettings!.GetColorValues().ThemeVariant;
 
         if (NowTheme == PlatformThemeVariant.Light)
         {
@@ -82,7 +71,7 @@ public static class ThemeManager
 
     private static void LoadColor()
     {
-        s_theme.MainColor = Brush.Parse(GuiConfigUtils.Config.ColorMain);
+        s_theme.MainColor = Brush.Parse(ThemeManager.MainColorStr);
         var color = s_theme.MainColor.ToColor();
         var color1 = new Color(255, color.R, color.G, color.B);
 
@@ -103,36 +92,28 @@ public static class ThemeManager
 
     private static void LoadFont()
     {
-        if (!GuiConfigUtils.Config.FontDefault
-            && !string.IsNullOrWhiteSpace(GuiConfigUtils.Config.FontName)
-            && FontManager.Current.SystemFonts.Any(a => a.Name == GuiConfigUtils.Config.FontName)
-            && SkiaSharp.SKFontManager.Default.MatchFamily(GuiConfigUtils.Config.FontName) is { } font)
-        {
-            s_font = new(font.FamilyName);
-        }
-        else
-        {
+        //if (!GuiConfigUtils.Config.FontDefault
+        //    && !string.IsNullOrWhiteSpace(GuiConfigUtils.Config.FontName)
+        //    && FontManager.Current.SystemFonts.Any(a => a.Name == GuiConfigUtils.Config.FontName)
+        //    && SkiaSharp.SKFontManager.Default.MatchFamily(GuiConfigUtils.Config.FontName) is { } font)
+        //{
+        //    s_font = new(font.FamilyName);
+        //}
+        //else
+        //{
             s_font = new(ColorMCGui.Font);
-        }
+        //}
     }
 
     public static IBrush GetColor(string key)
     {
         if (key == "WindowBG")
         {
-            if (GuiConfigUtils.Config.WindowTran)
-            {
-                return Brushes.Transparent;
-            }
             return s_theme.WindowBG;
         }
         else if (key == "WindowTranColor")
         {
-            if (GuiConfigUtils.Config.WindowTran)
-            {
-                return s_theme.WindowTranColor;
-            }
-            else if (NowTheme == PlatformThemeVariant.Light)
+            if (NowTheme == PlatformThemeVariant.Light)
             {
                 return Brushes.White;
             }
@@ -155,11 +136,6 @@ public static class ThemeManager
         }
         else if (key == "MainGroupBorder")
         {
-            if (GuiConfigUtils.Config.WindowTran)
-            {
-                return s_theme.MainGroupBorder;
-            }
-
             return Brushes.Transparent;
         }
         else if (key == "MainGroupItemBG")

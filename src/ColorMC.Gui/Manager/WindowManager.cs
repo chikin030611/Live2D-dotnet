@@ -42,18 +42,6 @@ public static class WindowManager
 
     public static void Init()
     {
-        if (ConfigBinding.WindowMode())
-        {
-            var win = new SingleWindow();
-            AllWindow = win.Win;
-            win.Show();
-
-            Dispatcher.UIThread.Post(() =>
-            {
-                App.TopLevel ??= TopLevel.GetTopLevel(AllWindow);
-            });
-        }
-
         if (!ShowCustom())
         {
             ShowMain();
@@ -64,8 +52,6 @@ public static class WindowManager
     {
         if (con is SingleControl all)
             return all;
-        else if (GuiConfigUtils.Config.WindowMode)
-            return AllWindow!;
         else if (con is IBaseWindow win)
             return win;
         else if (con is BaseUserControl con1)
@@ -84,11 +70,7 @@ public static class WindowManager
 
         if (!test)
         {
-            var config = GuiConfigUtils.Config.ServerCustom;
-            if (config == null || config?.EnableUI == false)
-            {
-                return false;
-            }
+            return false;
         }
 
         try
@@ -129,29 +111,11 @@ public static class WindowManager
 
     public static void AWindow(BaseUserControl con, bool newwindow = false)
     {
-        if (ConfigBinding.WindowMode())
-        {
-            if (newwindow)
-            {
-                AMultiWindow win;
-                win = new MultiWindow(con);
-                con.SetBaseModel(win.Model);
-                win.Show();
-            }
-            else
-            {
-                con.SetBaseModel(AllWindow!.Model);
-                AllWindow.Add(con);
-            }
-        }
-        else
-        {
-            AMultiWindow win;
-            win = new MultiWindow(con);
-            App.TopLevel ??= win;
-            con.SetBaseModel(win.Model);
-            win.Show();
-        }
+        AMultiWindow win;
+        win = new MultiWindow(con);
+        App.TopLevel ??= win;
+        con.SetBaseModel(win.Model);
+        win.Show();
     }
 
     public static void ShowMain()
@@ -202,10 +166,6 @@ public static class WindowManager
 
     public static IBaseWindow? GetMainWindow()
     {
-        if (ConfigBinding.WindowMode())
-        {
-            return AllWindow;
-        }
         if (MainWindow == null)
         {
             if (CustomWindow == null)
@@ -225,14 +185,7 @@ public static class WindowManager
     {
         model.BgVisible = false;
 
-        if (GuiConfigUtils.Config.WindowTran)
-        {
-            model.Hints = [WindowTran[GuiConfigUtils.Config.WindowTranType]];
-        }
-        else
-        {
-            model.Hints = [WindowTransparencyLevel.None];
-        }
+        model.Hints = [WindowTransparencyLevel.None];
 
         model.Theme = ThemeManager.NowTheme ==
             PlatformThemeVariant.Light ? ThemeVariant.Light : ThemeVariant.Dark;
@@ -240,54 +193,32 @@ public static class WindowManager
 
     public static void Show()
     {
-        if (ConfigBinding.WindowMode())
+        if (MainWindow?.GetVisualRoot() is Window window)
         {
-            if (AllWindow?.GetVisualRoot() is Window window)
-            {
-                window.Show();
-                window.WindowState = WindowState.Normal;
-                window.Activate();
-            }
+            window.Show();
+            window.WindowState = WindowState.Normal;
+            window.Activate();
         }
-        else
+        else if (CustomWindow?.Window.GetVisualRoot() is Window window1)
         {
-            if (MainWindow?.GetVisualRoot() is Window window)
-            {
-                window.Show();
-                window.WindowState = WindowState.Normal;
-                window.Activate();
-            }
-            else if (CustomWindow?.Window.GetVisualRoot() is Window window1)
-            {
-                window1.Show();
-                window1.WindowState = WindowState.Normal;
-                window1.Activate();
-            }
+            window1.Show();
+            window1.WindowState = WindowState.Normal;
+            window1.Activate();
         }
     }
 
     public static void Hide()
     {
-        if (ConfigBinding.WindowMode())
+        if (MainWindow?.GetVisualRoot() is Window window)
         {
-            if (AllWindow?.GetVisualRoot() is Window window)
-            {
-                window.Hide();
-            }
+            window.Hide();
+            (CustomWindow?.Window.GetVisualRoot() as Window)?.Close();
         }
-        else
+        else if (CustomWindow?.Window.GetVisualRoot() is Window window1)
         {
-            if (MainWindow?.GetVisualRoot() is Window window)
-            {
-                window.Hide();
-                (CustomWindow?.Window.GetVisualRoot() as Window)?.Close();
-            }
-            else if (CustomWindow?.Window.GetVisualRoot() is Window window1)
-            {
-                window1.Hide();
-            }
-            CloseAllWindow();
+            window1.Hide();
         }
+        CloseAllWindow();
     }
 
     public static void CloseAllWindow()

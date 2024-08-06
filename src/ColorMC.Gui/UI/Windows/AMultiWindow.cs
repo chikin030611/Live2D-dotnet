@@ -175,15 +175,8 @@ public abstract class AMultiWindow : ABaseWindow, IBaseWindow
         }
         if (App.TopLevel == this)
         {
-            if (ConfigBinding.WindowMode())
-            {
-                App.TopLevel = GetTopLevel(WindowManager.AllWindow);
-            }
-            else
-            {
-                var win = WindowManager.GetMainWindow();
-                App.TopLevel = win as Window;
-            }
+            var win = WindowManager.GetMainWindow();
+            App.TopLevel = win as Window;
         }
 
         App.Clear();

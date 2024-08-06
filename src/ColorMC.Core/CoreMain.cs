@@ -158,7 +158,6 @@ public static class ColorMCCore
 
         LanguageHelper.Load(LanguageType.en_us);
         Logs.Init(BaseDir);
-        ConfigUtils.Init(BaseDir);
 
         Logs.Info(LanguageHelper.Get("Core.Info1"));
     }

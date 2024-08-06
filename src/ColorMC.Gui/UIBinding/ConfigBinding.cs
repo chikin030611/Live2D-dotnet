@@ -1,20 +1,10 @@
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Utils;
 
-
 namespace ColorMC.Gui.UIBinding;
 
 public static class ConfigBinding
 {
-    /// <summary>
-    /// 获取窗口模式
-    /// </summary>
-    /// <returns>true为单窗口false为多窗口</returns>
-    public static bool WindowMode()
-    {
-        return GuiConfigUtils.Config.WindowMode;
-    }
-
     /// <summary>
     /// 删除Live2D模型
     /// </summary>

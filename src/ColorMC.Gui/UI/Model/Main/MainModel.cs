@@ -47,7 +47,6 @@ public partial class MainModel : TopModel
 
     public MainModel(BaseModel model) : base(model)
     {
-        ShowHello();
     }
 
     [RelayCommand]
@@ -56,50 +55,6 @@ public partial class MainModel : TopModel
         WindowManager.ShowSetting(SettingType.Normal);
     }
 
-    [RelayCommand]
-    public void OpenNews()
-    {
-        NewsDisplay = true;
-        SideDisplay = false;
-        MotdDisplay = false;
-        HelloText = App.Lang("MainWindow.Text20");
-        Model.PushBack(NewBack);
-        OnPropertyChanged(SwitchView);
-    }
-
-    private void ShowHello()
-    {
-        HelloText = App.Lang("Hello.Text1");
-    }
-
-    private void NewBack()
-    {
-        NewsDisplay = false;
-        if (!MinMode)
-        {
-            SideDisplay = true;
-        }
-        LoadMotd();
-        ShowHello();
-        Model.PopBack();
-        OnPropertyChanged(SwitchView);
-    }
-
-    public void LoadMotd()
-    {
-        var config = GuiConfigUtils.Config.ServerCustom;
-        if (config != null && config?.Motd == true &&
-            !string.IsNullOrWhiteSpace(config?.IP))
-        {
-            MotdDisplay = true;
-
-            Server = (config.IP, config.Port);
-        }
-        else
-        {
-            MotdDisplay = false;
-        }
-    }
 
     public override void Close()
     {

@@ -3,7 +3,6 @@ using System.IO;
 using ColorMC.Core.Config;
 using ColorMC.Core.Helpers;
 using ColorMC.Core.Utils;
-using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
 
 using Newtonsoft.Json;
@@ -64,16 +63,6 @@ public static class GuiConfigUtils
 
             bool save = false;
 
-            if (Config.ServerCustom == null)
-            {
-                Config.ServerCustom = MakeServerCustomConfig();
-                save = true;
-            }
-            if (Config.ServerCustom.LockLogins == null)
-            {
-                Config.ServerCustom.LockLogins = [];
-                save = true;
-            }
             if (Config.Render == null
                 || Config.Render.Windows == null
                 || Config.Render.X11 == null)
@@ -84,21 +73,6 @@ public static class GuiConfigUtils
             if (Config.Live2D == null)
             {
                 Config.Live2D = MakeLive2DConfig();
-                save = true;
-            }
-            if (Config.Style == null)
-            {
-                Config.Style = MakeStyleSettingConfig();
-                save = true;
-            }
-            if (Config.Head == null)
-            {
-                Config.Head = MakeHeadSettingConfig();
-                save = true;
-            }
-            if (Config.Input == null)
-            {
-                Config.Input = new();
                 save = true;
             }
 
@@ -140,24 +114,6 @@ public static class GuiConfigUtils
         });
     }
 
-    public static HeadSetting MakeHeadSettingConfig()
-    {
-        return new()
-        {
-            Type = HeadType.Head3D_B,
-            X = 15,
-            Y = 65
-        };
-    }
-
-    public static StyleSetting MakeStyleSettingConfig()
-    {
-        return new()
-        {
-            AmTime = 500
-        };
-    }
-
     public static Live2DSetting MakeLive2DConfig()
     {
         return new()
@@ -188,30 +144,8 @@ public static class GuiConfigUtils
     {
         return new()
         {
-            ColorMain = ThemeManager.MainColorStr,
-            RGBS = 100,
-            RGBV = 100,
-            ServerCustom = MakeServerCustomConfig(),
-            FontDefault = true,
             Render = MakeRenderConfig(),
-            BackLimitValue = 50,
-            EnableBG = false,
-            BackImage = "",
             Live2D = MakeLive2DConfig(),
-            Style = MakeStyleSettingConfig(),
-            Head = MakeHeadSettingConfig(),
-            Input = new()
-        };
-    }
-
-    public static ServerCustomSetting MakeServerCustomConfig()
-    {
-        return new()
-        {
-            MotdColor = "White",
-            MotdBackColor = "Black",
-            Volume = 30,
-            LockLogins = []
         };
     }
 }

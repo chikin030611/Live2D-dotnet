@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Avalonia.Media;
 using ColorMC.Core.Config;
 using ColorMC.Core.Objs;
@@ -211,11 +208,6 @@ public partial class SettingModel
             EnableLive2D = con.Live2D.Enable;
             L2dPos = con.Live2D.Pos;
             LowFps = con.Live2D.LowFps;
-        }
-        var config1 = ConfigUtils.Config;
-        if (config1 is { } con1)
-        {
-            Language = con1.Language;
         }
 
         try

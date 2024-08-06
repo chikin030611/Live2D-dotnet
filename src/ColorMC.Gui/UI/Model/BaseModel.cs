@@ -110,10 +110,7 @@ public partial class BaseModel : ObservableObject
     {
         set
         {
-            if (!GuiConfigUtils.Config.WindowMode)
-            {
-                HeadCloseObservale.Notify(value);
-            }
+            HeadCloseObservale.Notify(value);
         }
     }
 

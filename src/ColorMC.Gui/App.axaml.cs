@@ -9,7 +9,6 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using ColorMC.Core;
-using ColorMC.Core.Config;
 using ColorMC.Core.Helpers;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
@@ -73,10 +72,7 @@ public partial class App : Application
         {
             setting.ColorValuesChanged += (object? sender, PlatformColorValues e) =>
             {
-                if (GuiConfigUtils.Config.ColorType == ColorType.Auto)
-                {
-                    ThemeManager.Init();
-                }
+                ThemeManager.Init();
             };
         }
 
