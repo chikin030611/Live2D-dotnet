@@ -24,44 +24,6 @@ namespace ColorMC.Gui.UIBinding;
 public static class PathBinding
 {
     /// <summary>
-    /// 提升权限
-    /// </summary>
-    /// <param name="path">文件</param>
-    public static void Chmod(string path)
-    {
-        try
-        {
-            using var p = new Process();
-            p.StartInfo.FileName = "sh";
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.CreateNoWindow = true;
-            p.Start();
-
-            p.StandardInput.WriteLine("chmod a+x " + path);
-
-            p.StandardInput.WriteLine("exit");
-            p.WaitForExit();
-        }
-        catch (Exception e)
-        {
-            Logs.Error("chmod error", e);
-        }
-    }
-
-    /// <summary>
-    /// 在资源管理器打开路径
-    /// </summary>
-    /// <param name="item">路径</param>
-    private static void OpPath(string item)
-    {
-        item = Path.GetFullPath(item);
-        Process.Start("explorer", $"{item}");
-    }
-
-    /// <summary>
     /// 在资源管理器打开文件
     /// </summary>
     /// <param name="item">文件</param>
@@ -70,73 +32,6 @@ public static class PathBinding
         Process.Start("explorer", $@"/select,{item}");
     }
 
-    /// <summary>
-    /// 选择路径
-    /// </summary>
-    /// <param name="window">窗口</param>
-    /// <param name="type">类型</param>
-    /// <returns>路径</returns>
-    public static async Task<string?> SelectPath(PathType type)
-    {
-        var top = App.TopLevel;
-        if (top == null)
-        {
-            return null;
-        }
-        switch (type)
-        {
-            case PathType.ServerPackPath:
-                var res = await top.StorageProvider.OpenFolderPickerAsync(new()
-                {
-                    Title = App.Lang("PathBinding.Text2")
-                });
-                if (res?.Any() == true)
-                {
-                    return res[0].GetPath();
-                }
-                break;
-            case PathType.GamePath:
-                res = await top.StorageProvider.OpenFolderPickerAsync(new()
-                {
-                    Title = App.Lang("PathBinding.Text6")
-                });
-                if (res?.Any() == true)
-                {
-                    return res[0].GetPath();
-                }
-                break;
-            case PathType.RunDir:
-                res = await top.StorageProvider.OpenFolderPickerAsync(new()
-                {
-                    Title = App.Lang("SettingWindow.Tab1.Info14")
-                });
-                if (res?.Any() == true)
-                {
-                    return res[0].GetPath();
-                }
-                break;
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// 保存文件
-    /// </summary>
-    /// <param name="window">窗口</param>
-    /// <param name="title">标题</param>
-    /// <param name="ext">后缀</param>
-    /// <param name="name">名字</param>
-    /// <returns>文件路径</returns>
-    private static Task<IStorageFile?> SaveFile(TopLevel window, string title, string ext, string name)
-    {
-        return window.StorageProvider.SaveFilePickerAsync(new()
-        {
-            Title = title,
-            DefaultExtension = ext,
-            SuggestedFileName = name
-        });
-    }
 
     /// <summary>
     /// 保存文件
@@ -289,34 +184,5 @@ public static class PathBinding
         }
 
         return (null, null);
-    }
-
-    public static async Task CopyBG(string pic)
-    {
-        try
-        {
-            using var stream = ColorMCCore.PhoneReadFile(pic);
-            if (stream == null)
-                return;
-            string file = ColorMCGui.RunDir + "BG";
-            PathHelper.Delete(file);
-            using var temp = File.Create(file);
-            await stream.CopyToAsync(temp);
-        }
-        catch (Exception e)
-        {
-            Logs.Error(App.Lang("PathBinding.Error1"), e);
-        }
-    }
-
-    public static void OpenPicFile(string screenshot)
-    {
-        screenshot = Path.GetFullPath(screenshot);
-        var proc = new Process();
-        proc.StartInfo.WorkingDirectory = ColorMCCore.BaseDir;
-        proc.StartInfo.FileName = "cmd.exe";
-        proc.StartInfo.Arguments = $"/c start \"\" \"{screenshot}\"";
-        proc.StartInfo.CreateNoWindow = true;
-        proc.Start();
     }
 }
