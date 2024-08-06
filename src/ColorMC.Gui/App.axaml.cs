@@ -95,7 +95,6 @@ public partial class App : Application
         }
 
         ImageUtils.Init(ColorMCGui.RunDir);
-        InputConfigUtils.Init(ColorMCGui.RunDir);
 
         LoadPageSlide();
 

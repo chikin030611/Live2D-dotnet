@@ -57,7 +57,6 @@ public static class BaseBinding
             var sdl = Sdl.GetApi();
             if (sdl.Init(Sdl.InitGamecontroller | Sdl.InitAudio) == 0)
             {
-                InputControl.Init(sdl);
                 SdlInit = true;
             }
         }
