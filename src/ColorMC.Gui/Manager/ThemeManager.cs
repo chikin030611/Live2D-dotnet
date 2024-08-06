@@ -77,9 +77,6 @@ public static class ThemeManager
         LoadColor();
         LoadFont();
 
-        RgbColor.Load();
-        ColorSel.Load();
-
         Reload();
     }
 
@@ -215,7 +212,7 @@ public static class ThemeManager
         }
         else if (key == "MainColor")
         {
-            return RgbColor.IsEnable() ? RgbColor.GetColor() : s_theme.MainColor;
+            return s_theme.MainColor;
         }
         else if (key == "FontColor")
         {
@@ -333,8 +330,6 @@ public static class ThemeManager
 
     public static void Remove()
     {
-        ColorSel.Remove();
-
         foreach (var item in s_colorList.Values)
         {
             foreach (var item1 in item.ToArray())
@@ -437,8 +432,6 @@ public static class ThemeManager
 
     static ThemeManager()
     {
-        RgbColor.ColorChanged += RgbColor_ColorChanged;
-
         s_light = new()
         {
             MainColor = Brush.Parse(MainColorStr),

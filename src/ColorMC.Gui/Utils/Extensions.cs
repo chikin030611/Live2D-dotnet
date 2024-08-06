@@ -7,18 +7,6 @@ using ColorMC.Gui.Manager;
 
 namespace ColorMC.Gui.Utils;
 
-public class ColorsExtension(string key) : MarkupExtension, IObservable<IBrush>
-{
-    public override object ProvideValue(IServiceProvider serviceProvider)
-    {
-        return this.ToBinding();
-    }
-
-    public IDisposable Subscribe(IObserver<IBrush> observer)
-    {
-        return ColorSel.Add(key, observer);
-    }
-}
 
 public class LocalizeExtension(string key) : MarkupExtension, IObservable<string>
 {

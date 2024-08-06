@@ -39,48 +39,6 @@ public static class UIUtils
     }
 
     /// <summary>
-    /// 转速度
-    /// </summary>
-    /// <param name="size"></param>
-    /// <returns></returns>
-    public static string MakeSpeedSize(long size)
-    {
-        if (size > 1000000)
-        {
-            return $"{(double)size / 1000000:#.000}Mb/s";
-        }
-        else if (size > 1000)
-        {
-            return $"{(double)size / 1000:#.000}Kb/s";
-        }
-        else
-        {
-            return $"{size}b/s";
-        }
-    }
-
-    /// <summary>
-    /// 转大小
-    /// </summary>
-    /// <param name="size"></param>
-    /// <returns></returns>
-    public static string MakeFileSize1(long size)
-    {
-        if (size > 1000000)
-        {
-            return $"{(double)size / 1000000:#.000}MB";
-        }
-        else if (size > 1000)
-        {
-            return $"{(double)size / 1000:#.000}KB";
-        }
-        else
-        {
-            return $"{size}";
-        }
-    }
-
-    /// <summary>
     /// 颜色转换
     /// </summary>
     /// <param name="brush"></param>
@@ -113,19 +71,5 @@ public static class UIUtils
         }
 
         return temp;
-    }
-
-    public static IBrush GetColor(string? color)
-    {
-        if (string.IsNullOrWhiteSpace(color))
-        {
-            return Brushes.White;
-        }
-        if (color.StartsWith('#'))
-        {
-            return Brush.Parse(color);
-        }
-
-        return Brush.Parse(color);
     }
 }
