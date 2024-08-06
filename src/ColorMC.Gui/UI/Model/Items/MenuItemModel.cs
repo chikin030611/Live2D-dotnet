@@ -29,16 +29,3 @@ public partial class MenuItemModel : ObservableObject
         IsCheck = true;
     }
 }
-
-public partial class SubMenuItemModel : ObservableObject
-{
-    public string Name { get; init; }
-    public Action Func { get; init; }
-    public bool Hide { get; init; }
-
-    [RelayCommand]
-    public void Select()
-    {
-        Func();
-    }
-}

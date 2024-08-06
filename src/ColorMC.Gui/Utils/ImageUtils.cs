@@ -4,9 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
-using ColorMC.Gui.Manager;
 using SkiaSharp;
 
 namespace ColorMC.Gui.Utils;
