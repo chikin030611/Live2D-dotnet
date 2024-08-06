@@ -29,20 +29,11 @@ public partial class SettingControl : MenuControl
 
     public override Task<bool> OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (DataContext is SettingModel model)
-        {
-            return Task.FromResult(model.InputKey(e.KeyModifiers, e.Key));
-        }
-
         return Task.FromResult(false);
     }
 
     public override void IPointerPressed(PointerPressedEventArgs e)
     {
-        if (DataContext is SettingModel model)
-        {
-            model.InputMouse(e.KeyModifiers, e.GetCurrentPoint(this).Properties);
-        }
     }
 
     public override void Closed()

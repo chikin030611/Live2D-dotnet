@@ -17,17 +17,6 @@ public partial class SettingModel : MenuModel
 
         IsInputEnable = true;
 
-        if (!BaseBinding.SdlInit)
-        {
-            InputInit = false;
-        }
-        else
-        {
-            InputInit = true;
-            StartRead();
-            ReloadInput();
-        }
-
         SetMenu(
         [
             new()
@@ -45,7 +34,5 @@ public partial class SettingModel : MenuModel
 
     public override void Close()
     {
-        InputClose();
-        StopRead();
     }
 }
