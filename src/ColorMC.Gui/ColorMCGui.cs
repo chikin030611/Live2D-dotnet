@@ -76,18 +76,6 @@ public static class ColorMCGui
 
         Console.WriteLine($"RunDir: {RunDir}");
 
-        if (args.Length > 0)
-        {
-            if (args[0] == "-game" && args.Length != 2)
-            {
-                return;
-            }
-            else
-            {
-                BaseBinding.SetLaunch(args[1]);
-            }
-        }
-
         try
         {
             if (CheckLock())

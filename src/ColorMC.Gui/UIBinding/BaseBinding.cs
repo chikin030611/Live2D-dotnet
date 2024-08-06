@@ -5,12 +5,9 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using ColorMC.Core;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
-using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI;
-using ColorMC.Gui.Utils;
 using ICSharpCode.SharpZipLib.Zip;
 using Silk.NET.SDL;
 
@@ -19,12 +16,6 @@ namespace ColorMC.Gui.UIBinding;
 public static class BaseBinding
 {
     public static bool SdlInit { get; private set; }
-
-    /// <summary>
-    /// 快捷启动
-    /// </summary>
-    private static string s_launch;
-
 
     /// <summary>
     /// 初始化
@@ -65,15 +56,6 @@ public static class BaseBinding
     public static string GetRunDir()
     {
         return ColorMCCore.BaseDir;
-    }
-
-    /// <summary>
-    /// 设置快捷启动
-    /// </summary>
-    /// <param name="uuid"></param>
-    public static void SetLaunch(string uuid)
-    {
-        s_launch = uuid;
     }
 
     /// <summary>
