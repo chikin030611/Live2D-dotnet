@@ -16,7 +16,6 @@ public abstract class ABaseWindow : Window
 
     protected void InitBaseWindow()
     {
-        Icon = ImageManager.Icon;
 
         AddHandler(KeyDownEvent, Window_KeyDown, RoutingStrategies.Tunnel);
 

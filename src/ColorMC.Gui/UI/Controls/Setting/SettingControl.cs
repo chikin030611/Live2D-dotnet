@@ -89,9 +89,4 @@ public partial class SettingControl : MenuControl
                 throw new InvalidEnumArgumentException();
         }
     }
-
-    public override Bitmap GetIcon()
-    {
-        return ImageManager.GameIcon;
-    }
 }

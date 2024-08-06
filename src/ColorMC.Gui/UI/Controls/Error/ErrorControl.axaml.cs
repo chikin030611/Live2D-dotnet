@@ -66,8 +66,4 @@ public partial class ErrorControl : BaseUserControl
         }
     }
 
-    public override Bitmap GetIcon()
-    {
-        return ImageManager.GameIcon;
-    }
 }

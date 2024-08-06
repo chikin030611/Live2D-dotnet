@@ -55,8 +55,6 @@ public partial class BaseModel : ObservableObject
     public string NotifyText;
 
     [ObservableProperty]
-    private Bitmap _icon = ImageManager.GameIcon;
-    [ObservableProperty]
     private Bitmap? _back;
 
     [ObservableProperty]
@@ -326,11 +324,6 @@ public partial class BaseModel : ObservableObject
     {
         NotifyText = data;
         OnPropertyChanged(InfoShow);
-    }
-
-    public void SetIcon(Bitmap image)
-    {
-        Icon = image;
     }
 
     public void InputClose()

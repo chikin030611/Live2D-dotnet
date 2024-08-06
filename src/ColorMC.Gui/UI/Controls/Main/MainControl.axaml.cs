@@ -228,10 +228,4 @@ public partial class MainControl : BaseUserControl
             }
         }
     }
-
-    public override Bitmap GetIcon()
-    {
-        return ImageManager.GameIcon;
-    }
-
 }

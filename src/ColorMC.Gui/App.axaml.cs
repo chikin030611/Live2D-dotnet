@@ -92,7 +92,6 @@ public partial class App : Application
         BaseBinding.Init();
 
         ThemeManager.Init();
-        ImageManager.Init();
 
         WindowManager.Init();
 
@@ -103,7 +102,6 @@ public partial class App : Application
                 ColorMCCore.Init1();
             });
         }
-        _ = ImageManager.LoadImage();
     }
 
     public static void Clear()

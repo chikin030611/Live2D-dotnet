@@ -30,13 +30,7 @@
                                 Classes="items"
                                 Command="{Binding Select}">
                                 <StackPanel Orientation="Horizontal">
-                                    <svg:SvgControl
-                                        Width="24"
-                                        Height="24"
-                                        Fill="{setting:Theme FontColor}"
-                                        Path="{Binding Icon}"
-                                        Stroke="{setting:Theme FontColor}" />
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Text}" />
+                                    <TextBlock Text="{Binding Text}" />
                                 </StackPanel>
                             </Button>
                         </ListBoxItem>

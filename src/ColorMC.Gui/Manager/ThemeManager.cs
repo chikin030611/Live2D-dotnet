@@ -120,11 +120,7 @@ public static class ThemeManager
     {
         if (key == "WindowBG")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.WindowBG.ToColor(), 0.75);
-            }
-            else if (GuiConfigUtils.Config.WindowTran)
+            if (GuiConfigUtils.Config.WindowTran)
             {
                 return Brushes.Transparent;
             }
@@ -147,10 +143,6 @@ public static class ThemeManager
         }
         else if (key == "WindowBase")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.WindowBG.ToColor(), 0.75);
-            }
             return Brushes.Transparent;
         }
         else if (key == "ItemBG")
@@ -159,15 +151,11 @@ public static class ThemeManager
         }
         else if (key == "MainGroupBG")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.MainGroupBG.ToColor(), 0.75);
-            }
             return s_theme.MainGroupBG;
         }
         else if (key == "MainGroupBorder")
         {
-            if (GuiConfigUtils.Config.WindowTran && ImageManager.BackBitmap == null)
+            if (GuiConfigUtils.Config.WindowTran)
             {
                 return s_theme.MainGroupBorder;
             }
@@ -176,10 +164,6 @@ public static class ThemeManager
         }
         else if (key == "MainGroupItemBG")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.MainGroupBG.ToColor(), 0.75);
-            }
             return Brushes.Transparent;
         }
         else if (key == "ProgressBarBG")
@@ -288,10 +272,10 @@ public static class ThemeManager
 
     private static Thickness GetThick(string key)
     {
-        if (key == "Border")
-        {
-            return GuiConfigUtils.Config.WindowTran && ImageManager.BackBitmap == null ? new(1) : new(0);
-        }
+        //if (key == "Border")
+        //{
+        //    return GuiConfigUtils.Config.WindowTran && ImageManager.BackBitmap == null ? new(1) : new(0);
+        //}
 
         return new(0);
     }

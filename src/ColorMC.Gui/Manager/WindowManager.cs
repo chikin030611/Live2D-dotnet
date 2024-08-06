@@ -223,23 +223,7 @@ public static class WindowManager
 
     public static void UpdateWindow(BaseModel model)
     {
-        model.Back = ImageManager.BackBitmap;
-        if (ImageManager.BackBitmap != null)
-        {
-            if (GuiConfigUtils.Config.BackTran != 0)
-            {
-                model.BgOpacity = (double)(100 - GuiConfigUtils.Config.BackTran) / 100;
-            }
-            else
-            {
-                model.BgOpacity = 1.0;
-            }
-            model.BgVisible = true;
-        }
-        else
-        {
-            model.BgVisible = false;
-        }
+        model.BgVisible = false;
 
         if (GuiConfigUtils.Config.WindowTran)
         {
