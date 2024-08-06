@@ -25,12 +25,8 @@ public partial class MainControl : BaseUserControl
     {
         InitializeComponent();
 
-        Title = "ColorMC";
+        Title = "Live2D.NET";
         UseName = ToString() ?? "MainControl";
-
-        AddHandler(DragDrop.DragEnterEvent, DragEnter);
-        AddHandler(DragDrop.DragLeaveEvent, DragLeave);
-        AddHandler(DragDrop.DropEvent, Drop);
 
         SizeChanged += MainControl_SizeChanged;
     }
@@ -45,76 +41,6 @@ public partial class MainControl : BaseUserControl
             model.Live2dHeight = (int)(Bounds.Height * ((float)config.Height / 100));
         }
     }
-
-    private void DragEnter(object? sender, DragEventArgs e)
-    {
-        if (e.Data.Contains(BaseBinding.DrapType))
-        {
-            return;
-        }
-        if (e.Data.Contains(DataFormats.Text))
-        {
-            Grid2.IsVisible = true;
-            Label1.Text = App.Lang("UserWindow.Text8");
-        }
-        else if (e.Data.Contains(DataFormats.Files))
-        {
-            var files = e.Data.GetFiles();
-            if (files == null || files.Count() > 1)
-                return;
-
-            var item = files.ToList()[0];
-            if (item == null)
-                return;
-            if (item is IStorageFolder forder && Directory.Exists(forder.GetPath()))
-            {
-                Grid2.IsVisible = true;
-                Label1.Text = App.Lang("AddGameWindow.Text2");
-            }
-            else if (item.Name.EndsWith(".zip") || item.Name.EndsWith(".mrpack"))
-            {
-                Grid2.IsVisible = true;
-                Label1.Text = App.Lang("MainWindow.Text25");
-            }
-        }
-    }
-
-    private void DragLeave(object? sender, DragEventArgs e)
-    {
-        Grid2.IsVisible = false;
-    }
-
-    private void Drop(object? sender, DragEventArgs e)
-    {
-        if (e.Data.Contains(BaseBinding.DrapType))
-        {
-            return;
-        }
-        Grid2.IsVisible = false;
-        if (e.Data.Contains(DataFormats.Text))
-        {
-            var str = e.Data.GetText();
-            if (str == null)
-            {
-                return;
-            }
-            else if (str.StartsWith("cloudkey:") || str.StartsWith("cloudKey:"))
-            {
-                BaseBinding.SetCloudKey(str);
-            }
-        }
-        else if (e.Data.Contains(DataFormats.Files))
-        {
-            var files = e.Data.GetFiles();
-            if (files == null || files.Count() > 1)
-                return;
-
-            var item = files.ToList()[0];
-            if (item == null)
-                return;
-        }
-    }
-
 
     public override void WindowStateChange(WindowState state)
     {

@@ -29,11 +29,7 @@
                     VerticalAlignment="{Binding L2dPos1}" />
                 <DockPanel Margin="10">
                     <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top">
-                        <Panel
-                            Name="HeadTop"
-                            Height="60"
-                            Margin="0,0,10,0"
-                            DockPanel.Dock="Top">
+                        
                             <StackPanel
                                 Name="Buttons"
                                 HorizontalAlignment="Right"
@@ -56,7 +52,6 @@
                                 </Button>
                             </StackPanel>
                             
-                        </Panel>
                     </DockPanel>
                     
                     <ScrollViewer Margin="0,10,0,0" VerticalAlignment="Top" />
@@ -73,7 +68,7 @@
                         Text="test" />
                 </Panel>
             </Panel>
-            <Decorator Name="Start" IsVisible="False" />
+            <Decorator Name="Start" IsVisible="True" />
         </Panel>
     </dialog:DialogHost>
 </UserControl>

@@ -1,15 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Media;
-using Avalonia.Platform.Storage;
-using Avalonia.Threading;
 using ColorMC.Core;
 using ColorMC.Core.Helpers;
 using ColorMC.Core.Objs;
@@ -17,7 +10,6 @@ using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI;
-using ColorMC.Gui.UI.Model.Items;
 using ColorMC.Gui.Utils;
 using ICSharpCode.SharpZipLib.Zip;
 using Silk.NET.SDL;
@@ -26,15 +18,6 @@ namespace ColorMC.Gui.UIBinding;
 
 public static class BaseBinding
 {
-    public const string DrapType = "Game";
-
-    public const string FrpVersion = "0.51.0-sakura-7.2";
-
-    /// <summary>
-    /// 是否为第一次启动
-    /// </summary>
-    public static bool NewStart => ColorMCCore.NewStart;
-
     public static bool SdlInit { get; private set; }
 
     /// <summary>
@@ -83,65 +66,8 @@ public static class BaseBinding
     private static void LanguageReload(LanguageType type)
     {
         App.LoadLanguage(type);
-        LangMananger.Reload();
 
         ColorMCGui.Reboot();
-    }
-
-
-    /// <summary>
-    /// 复制到剪贴板
-    /// </summary>
-    /// <param name="text">文本</param>
-    public static async Task CopyTextClipboard(string text)
-    {
-        if (App.TopLevel?.Clipboard is { } clipboard)
-        {
-            await clipboard.SetTextAsync(text);
-        }
-    }
-
-    /// <summary>
-    /// 复制到剪贴板
-    /// </summary>
-    /// <param name="file">文件列表</param>
-    public static async Task CopyFileClipboard(List<IStorageFile> file)
-    {
-        if (App.TopLevel?.Clipboard is { } clipboard)
-        {
-            var obj = new DataObject();
-            obj.Set(DataFormats.Files, file);
-            await clipboard.SetDataObjectAsync(obj);
-        }
-    }
-
-    /// <summary>
-    /// 在浏览器打开网址
-    /// </summary>
-    /// <param name="url">网址</param>
-    public static void OpUrl(string? url)
-    {
-        url = url?.Replace(" ", "%20");
-        var ps = Process.Start(new ProcessStartInfo()
-        {
-            FileName = "cmd",
-            CreateNoWindow = true,
-            RedirectStandardInput = true,
-        });
-        if (ps != null)
-        {
-            ps.StandardInput.WriteLine($"start {url}");
-            ps.Close();
-        }
-    }
-
-    /// <summary>
-    /// 获取字体列表
-    /// </summary>
-    /// <returns></returns>
-    public static List<FontFamily> GetFontList()
-    {
-        return [.. FontManager.Current.SystemFonts];
     }
 
     /// <summary>
@@ -152,7 +78,6 @@ public static class BaseBinding
     {
         return ColorMCCore.BaseDir;
     }
-
     /// <summary>
     /// 设置快捷启动
     /// </summary>
