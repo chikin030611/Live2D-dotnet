@@ -40,20 +40,6 @@
                                 </StackPanel>
                             </Button>
                         </ListBoxItem>
-                        <ItemsControl
-                            Margin="10,0,0,0"
-                            IsVisible="{Binding IsCheck}"
-                            ItemsSource="{Binding SubMenu}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="model1:SubMenuItemModel">
-                                    <Button
-                                        Classes="items1"
-                                        Command="{Binding Select}"
-                                        Content="{Binding Name}"
-                                        IsVisible="{Binding !Hide}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

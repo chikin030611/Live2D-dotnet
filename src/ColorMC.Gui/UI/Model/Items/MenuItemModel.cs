@@ -20,11 +20,6 @@ public partial class MenuItemModel : ObservableObject
 
     public int Index;
 
-    /// <summary>
-    /// 子项目
-    /// </summary>
-    public SubMenuItemModel[] SubMenu { get; init; }
-
     [ObservableProperty]
     private bool _isCheck;
 

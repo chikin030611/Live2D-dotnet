@@ -43,14 +43,4 @@ public partial class MainModel
     {
         OnPropertyChanged("ModelDelete");
     }
-
-    /// <summary>
-    /// 展示模型消息
-    /// </summary>
-    /// <param name="message"></param>
-    public void ShowMessage(string message)
-    {
-        Message = message;
-        OnPropertyChanged("ModelText");
-    }
 }

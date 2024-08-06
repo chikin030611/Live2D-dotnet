@@ -166,13 +166,6 @@ public partial class MainControl : BaseUserControl
         });
     }
 
-    public void MotdLoad()
-    {
-        Dispatcher.UIThread.Post(() =>
-        {
-            (DataContext as MainModel)!.LoadMotd();
-        });
-    }
 
     public void ChangeModel()
     {
@@ -225,30 +218,10 @@ public partial class MainControl : BaseUserControl
             {
                 if (model.MinMode)
                 {
-                    //HeadTop.Children.Remove(Buttons);
-                    //ContentTop.Children.Add(Buttons);
-                    //TopRight.IsVisible = false;
-
-                    //TopRight.Child = null;
-                    // ContentTop.Children.Add(HeadButton);
-                    //HeadButton.Margin = new(0, 0, 0, 10);
-
-                    // Right.Child = null;
-                    // ContentTop.Children.Add(RightSide);
                     model.SideDisplay = false;
                 }
                 else
                 {
-                    //ContentTop.Children.Remove(Buttons);
-                    //HeadTop.Children.Add(Buttons);
-                    //TopRight.IsVisible = true;
-
-                    // ContentTop.Children.Remove(HeadButton);
-                    //TopRight.Child = HeadButton;
-                    //HeadButton.Margin = new(0);
-
-                    // ContentTop.Children.Remove(RightSide);
-                    // Right.Child = RightSide;
                     if (!model.NewsDisplay)
                     {
                         model.SideDisplay = true;
@@ -263,11 +236,4 @@ public partial class MainControl : BaseUserControl
         return ImageManager.GameIcon;
     }
 
-    public void IconChange(string uuid)
-    {
-        if (DataContext is MainModel model)
-        {
-            //model.IconChange(uuid);
-        }
-    }
 }
