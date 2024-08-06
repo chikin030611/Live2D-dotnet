@@ -63,7 +63,7 @@ public static class BaseBinding
     /// </summary>
     /// <param name="local"></param>
     /// <returns></returns>
-    public static async Task<bool> SetLive2DCore(string local) //
+    public static async Task<bool> SetLive2DCore(string local)
     {
         using var stream = PathHelper.OpenRead(local);
         using var zip = new ZipFile(stream);
@@ -71,7 +71,6 @@ public static class BaseBinding
         string file1 = Directory.GetCurrentDirectory();
         file = "Core/dll/windows/" + "x86_64" + "/Live2DCubismCore.dll";
         file1 += "/Live2DCubismCore.dll";
-        
 
         file1 = Path.GetFullPath(file1);
 

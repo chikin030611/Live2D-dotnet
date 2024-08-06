@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using ColorMC.Core;
-using ColorMC.Core.Helpers;
 using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
-using ColorMC.Gui.Manager;
-using ColorMC.Gui.Utils;
-using ICSharpCode.SharpZipLib.Checksum;
-using ICSharpCode.SharpZipLib.Zip;
-using Newtonsoft.Json;
-using SkiaSharp;
 
 namespace ColorMC.Gui.UIBinding;
+
+public static class PathUtils
+{
+    /// <summary>
+    /// 文件转字符串
+    /// </summary>
+    /// <param name="file">文件</param>
+    /// <returns>路径字符串</returns>
+    public static string? GetPath(this IStorageFile file)
+    {
+        return file.Path.LocalPath;
+    }
+}
 
 public static class PathBinding
 {
@@ -84,16 +86,9 @@ public static class PathBinding
         });
     }
 
-    private static readonly string[] EXE = ["*.exe"];
     private static readonly string[] ZIP = ["*.zip", "*.tar.xz", "*.tar.gz"];
-    private static readonly string[] JSON = ["*.json"];
-    private static readonly string[] MODPACK = ["*.zip", "*.mrpack"];
-    private static readonly string[] PICFILE = ["*.png", "*.jpg", "*.bmp"];
-    private static readonly string[] AUDIO = ["*.mp3", "*.wav"];
     private static readonly string[] MODEL = ["*.model3.json"];
-    private static readonly string[] HEADFILE = ["*.png"];
     private static readonly string[] ZIPFILE = ["*.zip"];
-    private static readonly string[] JARFILE = ["*.jar"];
 
     /// <summary>
     /// 打开文件
@@ -111,41 +106,11 @@ public static class PathBinding
 
         switch (type)
         {
-            case FileType.Config:
-                var res = await SelectFile(top,
-                    App.Lang("PathBinding.Text30"),
-                    JSON,
-                    App.Lang("PathBinding.Text31"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.Pic:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text34"),
-                    PICFILE,
-                    App.Lang("PathBinding.Text35"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
             case FileType.Live2D:
-                res = await SelectFile(top,
+                var res = await SelectFile(top,
                     App.Lang("PathBinding.Text36"),
                     MODEL,
                     App.Lang("PathBinding.Text37"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.Icon:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text7"),
-                    PICFILE,
-                    App.Lang("PathBinding.Text8"));
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);
@@ -156,26 +121,6 @@ public static class PathBinding
                     App.Lang("PathBinding.Text38"),
                     ZIPFILE,
                     App.Lang("PathBinding.Text39"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.Loader:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text24"),
-                    JARFILE,
-                    App.Lang("PathBinding.Text25"));
-                if (res?.Any() == true)
-                {
-                    return (res[0].GetPath(), res[0].Name);
-                }
-                break;
-            case FileType.InputConfig:
-                res = await SelectFile(top,
-                    App.Lang("PathBinding.Text13"),
-                    JSON,
-                    App.Lang("PathBinding.Text14"));
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);

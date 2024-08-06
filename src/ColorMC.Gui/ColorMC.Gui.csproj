@@ -27,6 +27,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DebugType>portable</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Resource\Icon\Item\**" />
+    <Compile Remove="Resource\Icon\Item\**" />
+    <EmbeddedResource Remove="Resource\Icon\Item\**" />
+    <None Remove="Resource\Icon\Item\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove=".gitignore" />
@@ -36,41 +42,6 @@
     <None Remove="Resource\Icon\Head\max.svg" />
     <None Remove="Resource\Icon\Head\max1.svg" />
     <None Remove="Resource\Icon\Head\min.svg" />
-    <None Remove="Resource\Icon\Input\button_a.svg" />
-    <None Remove="Resource\Icon\Input\button_b.svg" />
-    <None Remove="Resource\Icon\Input\button_bottom.svg" />
-    <None Remove="Resource\Icon\Input\button_down.svg" />
-    <None Remove="Resource\Icon\Input\button_l.svg" />
-    <None Remove="Resource\Icon\Input\button_lb.svg" />
-    <None Remove="Resource\Icon\Input\button_left.svg" />
-    <None Remove="Resource\Icon\Input\button_lt.svg" />
-    <None Remove="Resource\Icon\Input\button_menu.svg" />
-    <None Remove="Resource\Icon\Input\button_menu1.svg" />
-    <None Remove="Resource\Icon\Input\button_r.svg" />
-    <None Remove="Resource\Icon\Input\button_rb.svg" />
-    <None Remove="Resource\Icon\Input\button_right.svg" />
-    <None Remove="Resource\Icon\Input\button_rt.svg" />
-    <None Remove="Resource\Icon\Input\button_up.svg" />
-    <None Remove="Resource\Icon\Input\button_x.svg" />
-    <None Remove="Resource\Icon\Input\button_xy.svg" />
-    <None Remove="Resource\Icon\Input\button_xz.svg" />
-    <None Remove="Resource\Icon\Input\button_y.svg" />
-    <None Remove="Resource\Icon\Input\cursor.svg" />
-    <None Remove="Resource\Icon\Item\clipboard.svg" />
-    <None Remove="Resource\Icon\Item\download.svg" />
-    <None Remove="Resource\Icon\Item\ping.svg" />
-    <None Remove="Resource\Icon\Item\web.svg" />
-    <None Remove="Resource\Icon\Main\svg1.svg" />
-    <None Remove="Resource\Icon\Main\svg2.svg" />
-    <None Remove="Resource\Icon\new.svg" />
-    <None Remove="Resource\Icon\Setting\svg2.svg" />
-    <None Remove="Resource\Icon\Setting\svg3.svg" />
-    <None Remove="Resource\Icon\Setting\svg4.svg" />
-    <None Remove="Resource\Icon\Setting\svg5.svg" />
-    <None Remove="Resource\Icon\Setting\svg6.svg" />
-    <None Remove="Resource\Icon\size.svg" />
-    <None Remove="Resource\Icon\upgrade.svg" />
-    <None Remove="Resource\Icon\user.svg" />
     <None Remove="Resource\Language\gui_en-us.json" />
   </ItemGroup>
   <ItemGroup>
@@ -79,38 +50,6 @@
     <AvaloniaResource Include="Resource\Icon\Head\max.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\max1.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\min.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_a.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_b.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_bottom.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_down.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_l.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_lb.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_left.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_lt.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_menu.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_menu1.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_r.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_rb.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_right.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_rt.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_up.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_x.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_xy.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_xz.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\button_y.svg" />
-    <AvaloniaResource Include="Resource\Icon\Input\cursor.svg" />
-    <AvaloniaResource Include="Resource\Icon\Item\clipboard.svg" />
-    <AvaloniaResource Include="Resource\Icon\Item\download.svg" />
-    <AvaloniaResource Include="Resource\Icon\Item\ping.svg" />
-    <AvaloniaResource Include="Resource\Icon\Item\web.svg" />
-    <AvaloniaResource Include="Resource\Icon\Main\svg1.svg" />
-    <AvaloniaResource Include="Resource\Icon\Main\svg2.svg" />
-    <AvaloniaResource Include="Resource\Icon\Item\join.svg" />
-    <AvaloniaResource Include="Resource\Icon\Setting\svg2.svg" />
-    <AvaloniaResource Include="Resource\Icon\Setting\svg3.svg" />
-    <AvaloniaResource Include="Resource\Icon\Setting\svg4.svg" />
-    <AvaloniaResource Include="Resource\Icon\Setting\svg5.svg" />
-    <AvaloniaResource Include="Resource\Icon\Setting\svg6.svg" />
     <EmbeddedResource Include="macicon.ico" />
     <EmbeddedResource Include="Resource\Language\gui_en-us.json" />
   </ItemGroup>
