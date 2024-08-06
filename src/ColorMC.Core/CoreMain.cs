@@ -137,23 +137,17 @@ public static class ColorMCCore
     internal static event Action? Stop;
 
     /// <summary>
-    /// 启动器核心参数
-    /// </summary>
-    internal static CoreInitArg CoreArg;
-
-    /// <summary>
     /// 初始化阶段1
     /// </summary>
     /// <param name="dir">运行的路径</param>
-    public static void Init(CoreInitArg arg)
+    public static void Init(String Local)
     {
-        if (string.IsNullOrWhiteSpace(arg.Local))
+        if (string.IsNullOrWhiteSpace(Local))
         {
             throw new Exception("Local is empty");
         }
-        CoreArg = arg;
 
-        BaseDir = arg.Local;
+        BaseDir = Local;
         Directory.CreateDirectory(BaseDir);
 
         LanguageHelper.Load(LanguageType.en_us);

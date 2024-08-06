@@ -97,7 +97,6 @@ public partial class App : Application
     {
         ThemeManager.Remove();
         LangMananger.Remove();
-        FuntionUtils.RunGC();
     }
 
     public static void LoadLanguage(LanguageType type)

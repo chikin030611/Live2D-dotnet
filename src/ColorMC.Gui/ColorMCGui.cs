@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Media;
 using ColorMC.Core;
 using ColorMC.Core.Objs;
@@ -21,23 +20,11 @@ namespace ColorMC.Gui;
 
 public static class ColorMCGui
 {
-    private static readonly CoreInitArg s_arg = new()
-    {
-        CurseForgeKey = "$2a$10$6L8AkVsaGMcZR36i8XvCr.O4INa2zvDwMhooYdLZU0bb/E78AsT0m",
-        OAuthKey = "aa0dd576-d717-4950-b257-a478d2c20968"
-    };
-
     public static string RunDir { get; private set; }
-    public static string[] BaseSha1 { get; private set; }
     public static string InputDir { get; private set; }
 
     public static RunType RunType { get; private set; } = RunType.AppBuilder;
 
-    public static Func<Control> PhoneGetSetting { get; set; }
-    public static Func<FrpType, string> PhoneGetFrp { get; set; }
-
-    public static bool IsAot { get; private set; }
-    public static bool IsMin { get; private set; }
     public static bool IsCrash { get; private set; }
     public static bool IsClose { get; private set; }
 
@@ -84,8 +71,7 @@ public static class ColorMCGui
             }
             StartLock();
 
-            s_arg.Local = RunDir;
-            ColorMCCore.Init(s_arg);
+            ColorMCCore.Init(RunDir);
 
             BuildAvaloniaApp()
                  .StartWithClassicDesktopLifetime(args);

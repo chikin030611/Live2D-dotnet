@@ -35,19 +35,6 @@ public static class LanguageHelper
     }
 
     /// <summary>
-    /// 切换语言文件
-    /// </summary>
-    public static void Change(LanguageType type)
-    {
-        if (s_nowType == type)
-            return;
-
-        s_nowType = type;
-        Load(type);
-        ColorMCCore.OnLanguageReload(type);
-    }
-
-    /// <summary>
     /// 取语言
     /// </summary>
     /// <param name="input"></param>
