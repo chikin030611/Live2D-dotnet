@@ -15,7 +15,6 @@ using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.UI.Animations;
 using ColorMC.Gui.UIBinding;
 using ColorMC.Gui.Utils;
 
@@ -36,12 +35,6 @@ public partial class App : Application
     }
 
     public static TopLevel? TopLevel { get; set; }
-
-    public static readonly SelfCrossFade CrossFade300 = new(TimeSpan.FromMilliseconds(300));
-    public static readonly SelfCrossFade CrossFade200 = new(TimeSpan.FromMilliseconds(200));
-    public static readonly SelfCrossFade CrossFade100 = new(TimeSpan.FromMilliseconds(100));
-    public static readonly SelfPageSlide PageSlide500 = new(TimeSpan.FromMilliseconds(500));
-    public static readonly SelfPageSlideSide SidePageSlide300 = new(TimeSpan.FromMilliseconds(300));
 
     public static event Action? OnClose;
 
@@ -96,8 +89,6 @@ public partial class App : Application
 
         ImageUtils.Init(ColorMCGui.RunDir);
 
-        LoadPageSlide();
-
         BaseBinding.Init();
 
         ThemeManager.Init();
@@ -113,12 +104,6 @@ public partial class App : Application
             });
         }
         _ = ImageManager.LoadImage();
-    }
-
-    public static void LoadPageSlide()
-    {
-        PageSlide500.Duration = TimeSpan.FromMilliseconds(GuiConfigUtils.Config.Style.AmTime);
-        PageSlide500.Fade = GuiConfigUtils.Config.Style.AmFade;
     }
 
     public static void Clear()

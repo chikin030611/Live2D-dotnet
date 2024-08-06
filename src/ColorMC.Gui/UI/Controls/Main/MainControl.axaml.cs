@@ -11,7 +11,6 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using ColorMC.Gui.Manager;
-using ColorMC.Gui.UI.Animations;
 using ColorMC.Gui.UI.Model;
 using ColorMC.Gui.UI.Model.Main;
 using ColorMC.Gui.UIBinding;
@@ -21,7 +20,6 @@ namespace ColorMC.Gui.UI.Controls.Main;
 
 public partial class MainControl : BaseUserControl
 {
-    public readonly SelfPageSlideSide SidePageSlide300 = new(TimeSpan.FromMilliseconds(300));
 
     public MainControl()
     {
