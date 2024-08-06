@@ -32,7 +32,6 @@ public static class BaseBinding
     public static void Init()
     {
         ColorMCCore.Error += WindowManager.ShowError;
-        ColorMCCore.LanguageReload += LanguageReload;
         ColorMCCore.InstanceChange += InstanceChange;
 
         try
@@ -60,17 +59,6 @@ public static class BaseBinding
     }
 
     /// <summary>
-    /// 语言重载
-    /// </summary>
-    /// <param name="type"></param>
-    private static void LanguageReload(LanguageType type)
-    {
-        App.LoadLanguage(type);
-
-        ColorMCGui.Reboot();
-    }
-
-    /// <summary>
     /// 获取基础运行路径
     /// </summary>
     /// <returns>路径</returns>
@@ -78,6 +66,7 @@ public static class BaseBinding
     {
         return ColorMCCore.BaseDir;
     }
+
     /// <summary>
     /// 设置快捷启动
     /// </summary>
@@ -85,16 +74,6 @@ public static class BaseBinding
     public static void SetLaunch(string uuid)
     {
         s_launch = uuid;
-    }
-
-    /// <summary>
-    /// 设置服务器密钥
-    /// </summary>
-    /// <param name="str"></param>
-    public static void SetCloudKey(string str)
-    {
-        GuiConfigUtils.Config.ServerKey = str[9..];
-        WindowManager.ShowSetting(SettingType.Net);
     }
 
     /// <summary>

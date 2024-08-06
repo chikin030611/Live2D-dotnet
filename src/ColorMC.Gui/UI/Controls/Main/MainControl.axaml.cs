@@ -85,9 +85,6 @@ public partial class MainControl : BaseUserControl
 
     public void LoadMain()
     {
-        Dispatcher.UIThread.Post(() =>
-        {
-        });
     }
 
 
@@ -132,11 +129,7 @@ public partial class MainControl : BaseUserControl
 
     private void Amodel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == MainModel.SwitchView)
-        {
-            // SwitchView();
-        }
-        else if (e.PropertyName == TopModel.MinModeName)
+        if (e.PropertyName == TopModel.MinModeName)
         {
             if (DataContext is MainModel model)
             {
