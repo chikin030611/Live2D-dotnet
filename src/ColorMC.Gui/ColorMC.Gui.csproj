@@ -42,7 +42,6 @@
     <None Remove="Resource\Icon\Head\max.svg" />
     <None Remove="Resource\Icon\Head\max1.svg" />
     <None Remove="Resource\Icon\Head\min.svg" />
-    <None Remove="Resource\Language\gui_en-us.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="icon.ico" />
@@ -51,7 +50,6 @@
     <AvaloniaResource Include="Resource\Icon\Head\max1.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\min.svg" />
     <EmbeddedResource Include="macicon.ico" />
-    <EmbeddedResource Include="Resource\Language\gui_en-us.json" />
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.

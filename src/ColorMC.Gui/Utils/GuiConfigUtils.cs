@@ -45,7 +45,7 @@ public static class GuiConfigUtils
             }
             catch (Exception e)
             {
-                Logs.Error(App.Lang("Config.Error2"), e);
+                Logs.Error("Error: Reading Configuration Files", e);
             }
 
             if (Config == null)
@@ -78,7 +78,7 @@ public static class GuiConfigUtils
 
             if (save)
             {
-                Logs.Info(LanguageHelper.Get("Core.Config.Info2"));
+                Logs.Info("Saving Configuration Files");
                 SaveNow();
             }
         }
@@ -97,7 +97,7 @@ public static class GuiConfigUtils
     /// </summary>
     public static void SaveNow()
     {
-        Logs.Info(LanguageHelper.Get("Core.Config.Info2"));
+        Logs.Info("Saving Configuration Files");
         File.WriteAllText(s_local, JsonConvert.SerializeObject(Config));
     }
 

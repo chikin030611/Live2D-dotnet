@@ -73,30 +73,16 @@ public static class ColorMCCore
     /// <param name="now">目前进度</param>
     public delegate void PackUpdate(int size, int now);
     /// <summary>
-    /// 下载器状态更新
-    /// </summary>
-    /// <param name="state">状态</param>
-    public delegate void DownloadUpdate(int thread, DownloadState state, int count);
-    /// <summary>
     /// 下载任务状态更新
     /// </summary>
     /// <param name="state">状态</param>
     public delegate void DownloadTaskUpdate(int all, int now);
-    /// <summary>
-    /// 压缩包导入状态改变
-    /// </summary>
-    /// <param name="state">状态</param>
-    public delegate void PackState(CoreRunState state);
 
     /// <summary>
     /// 错误显示回调
     /// 标题 错误 关闭程序
     /// </summary>
     public static event Action<string?, Exception?, bool>? Error;
-    /// <summary>
-    /// 语言重载
-    /// </summary>
-    public static event Action<LanguageType>? LanguageReload;
     /// <summary>
     /// 游戏实例数量修改事件
     /// </summary>
@@ -150,10 +136,9 @@ public static class ColorMCCore
         BaseDir = Local;
         Directory.CreateDirectory(BaseDir);
 
-        LanguageHelper.Load(LanguageType.en_us);
         Logs.Init(BaseDir);
 
-        Logs.Info(LanguageHelper.Get("Core.Info1"));
+        Logs.Info("ColorMC core is initializing");
     }
 
     /// <summary>
@@ -163,7 +148,7 @@ public static class ColorMCCore
     {
         ConfigSave.Init();
 
-        Logs.Info(LanguageHelper.Get("Core.Info3"));
+        Logs.Info("End of ColorMC core initialization");
     }
 
     /// <summary>
@@ -184,15 +169,6 @@ public static class ColorMCCore
     {
         Error?.Invoke(text, e, close);
         Logs.Error(text, e);
-    }
-
-    /// <summary>
-    /// 语言重载
-    /// </summary>
-    /// <param name="type"></param>
-    public static void OnLanguageReload(LanguageType type)
-    {
-        LanguageReload?.Invoke(type);
     }
 
 }

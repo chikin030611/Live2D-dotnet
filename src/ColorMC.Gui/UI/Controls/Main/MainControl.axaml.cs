@@ -63,7 +63,7 @@ public partial class MainControl : BaseUserControl
         if (ColorMCGui.IsCrash)
         {
             var model = (DataContext as MainModel)!;
-            model.Model.Show(App.Lang("MainWindow.Error2"));
+            model.Model.Show("Error running launcher update, back to old version");
         }
     }
 
@@ -72,7 +72,7 @@ public partial class MainControl : BaseUserControl
         var model = (DataContext as MainModel)!;
         if (model.IsLaunch)
         {
-            var res = await model.Model.ShowWait(App.Lang("MainWindow.Info34"));
+            var res = await model.Model.ShowWait("Game is running. Turn off launcher");
             if (res)
             {
                 return false;

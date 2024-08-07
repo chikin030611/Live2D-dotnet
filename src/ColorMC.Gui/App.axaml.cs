@@ -9,7 +9,6 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using ColorMC.Core;
-using ColorMC.Core.Helpers;
 using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
@@ -27,7 +26,7 @@ public partial class App : Application
 
         AppDomain.CurrentDomain.UnhandledException += (a, e) =>
         {
-            string temp = Lang("App.Error1");
+            string temp = "Thread Error";
             Logs.Error(temp, e.ExceptionObject as Exception);
             WindowManager.ShowError(temp, e.ExceptionObject as Exception);
         };
@@ -49,24 +48,11 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public static string Lang(string input)
-    {
-        var data = s_language.GetLanguage(input, out bool have);
-        if (have)
-        {
-            return data;
-        }
-
-        return LanguageHelper.Get(input);
-    }
-
     public override void OnFrameworkInitializationCompleted()
     {
         base.OnFrameworkInitializationCompleted();
 
         Life = ApplicationLifetime;
-
-        LoadLanguage(LanguageType.en_us);
 
         if (PlatformSettings is { } setting)
         {
@@ -75,8 +61,6 @@ public partial class App : Application
                 ThemeManager.Init();
             };
         }
-
-        ImageUtils.Init(ColorMCGui.RunDir);
 
         BaseBinding.Init();
 
@@ -96,20 +80,6 @@ public partial class App : Application
     public static void Clear()
     {
         ThemeManager.Remove();
-        LangMananger.Remove();
-    }
-
-    public static void LoadLanguage(LanguageType type)
-    {
-        var assm = Assembly.GetExecutingAssembly();
-        if (assm == null)
-        {
-            return;
-        }
-        string name = "ColorMC.Gui.Resource.Language.gui_en-us.json";
-        using var item = assm.GetManifestResourceStream(name)!;
-        var reader = new StreamReader(item);
-        s_language.Load(reader.ReadToEnd());
     }
 
     public static void Close()

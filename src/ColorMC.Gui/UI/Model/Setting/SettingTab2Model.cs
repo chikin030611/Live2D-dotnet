@@ -140,12 +140,12 @@ public partial class SettingModel
         var file = await PathBinding.SelectFile(FileType.Live2DCore);
         if (file.Item1 != null)
         {
-            Model.Progress(App.Lang("SettingWindow.Tab2.Info11"));
+            Model.Progress("Importing Live2DCore");
             var res = await BaseBinding.SetLive2DCore(file.Item1);
             Model.ProgressClose();
             if (!res)
             {
-                Model.Show(App.Lang("SettingWindow.Tab2.Error4"));
+                Model.Show("Live2DCore import failed");
             }
             else
             {
@@ -185,14 +185,14 @@ public partial class SettingModel
 
         if (string.IsNullOrWhiteSpace(Live2DModel))
         {
-            Model.Show(App.Lang("SettingWindow.Tab2.Error3"));
+            Model.Show("No Live2D Model");
             return;
         }
-        Model.Progress(App.Lang("SettingWindow.Tab2.Info2"));
+        Model.Progress("Setting up");
         ConfigBinding.SetLive2D(Live2DModel);
         Model.ProgressClose();
 
-        Model.Notify(App.Lang("SettingWindow.Tab2.Info12"));
+        Model.Notify("Applied");
     }
 
     public void LoadUISetting()
@@ -224,7 +224,7 @@ public partial class SettingModel
         }
         catch
         {
-            Live2DCoreState = App.Lang("SettingWindow.Tab2.Error2");
+            Live2DCoreState = "Initialization error";
             CoreInstall = false;
         }
 

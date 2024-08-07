@@ -44,10 +44,10 @@ public static class ColorMCGui
         {
             if (e.Exception.InnerException is DBusException)
             {
-                Logs.Error(App.Lang("App.Error1"), e.Exception);
+                Logs.Error("Thread Error", e.Exception);
                 return;
             }
-            Logs.Crash(App.Lang("App.Error1"), e.Exception);
+            Logs.Crash("Thread Error", e.Exception);
         };
 
         RunType = RunType.Program;

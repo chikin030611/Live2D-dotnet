@@ -17,7 +17,7 @@ public partial class SettingControl : MenuControl
 
     public SettingControl()
     {
-        Title = App.Lang("SettingWindow.Title");
+        Title = "Launcher Settings";
         UseName = ToString() ?? "SettingControl";
     }
 

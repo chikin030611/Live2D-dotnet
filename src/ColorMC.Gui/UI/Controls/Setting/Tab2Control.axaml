@@ -20,10 +20,10 @@
                 <StackPanel Margin="15">
                     <!--  Live2D人物  -->
                     <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="{setting:Localize SettingWindow.Tab2.Text29}" />
+                        <TextBlock FontSize="{setting:Style FontTitle}" Text="Live2D Personal Settings" />
                     </StackPanel>
                     <WrapPanel Margin="0,0,0,5">
-                        <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text30}" />
+                        <TextBlock Margin="0,0,5,0" Text="Live2DCubismCore Status" />
                         <TextBlock Text="{Binding Live2DCoreState}" />
                     </WrapPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
@@ -34,19 +34,19 @@
                             HorizontalAlignment="Right"
                             Classes="top"
                             Command="{Binding InstallCore}"
-                            Content="{setting:Localize SettingWindow.Tab2.Text49}"
+                            Content="Import Core"
                             IsEnabled="{Binding !CoreInstall}" />
                     </StackPanel>
                     <StackPanel IsEnabled="{Binding CoreInstall}">
                         <ToggleSwitch
                             IsChecked="{Binding EnableLive2D}"
-                            OffContent="{setting:Localize SettingWindow.Tab2.Text48}"
-                            OnContent="{setting:Localize SettingWindow.Tab2.Text48}" />
+                            OffContent="Show Live2D People Model"
+                            OnContent="Show Live2D People Model" />
                         <TextBox
                             Margin="0,5,0,0"
                             IsEnabled="{Binding EnableLive2D}"
                             Text="{Binding Live2DModel}"
-                            Watermark="{setting:Localize SettingWindow.Tab2.Text33}" />
+                            Watermark="Live2D Model" />
                         <WrapPanel
                             Margin="0,5,0,0"
                             HorizontalAlignment="Right"
@@ -57,7 +57,7 @@
                                 Margin="-2,-2,2,-2"
                                 Classes="top"
                                 Command="{Binding DeleteLive2D}"
-                                Content="{setting:Localize Button.Delete}"
+                                Content="Delete"
                                 DockPanel.Dock="Right" />
                             <Button
                                 Width="90"
@@ -65,7 +65,7 @@
                                 Margin="-2,-2,2,-2"
                                 Classes="top"
                                 Command="{Binding OpenLive2D}"
-                                Content="{setting:Localize Button.Select}"
+                                Content="Select File"
                                 DockPanel.Dock="Right" />
                             <Button
                                 Width="90"
@@ -73,7 +73,7 @@
                                 Margin="-2,-2,-3,-2"
                                 Classes="top"
                                 Command="{Binding SetLive2D}"
-                                Content="{setting:Localize SettingWindow.Tab2.Text61}"
+                                Content="Apply"
                                 DockPanel.Dock="Right" />
                         </WrapPanel>
                         <WrapPanel Margin="0,5,0,0" IsVisible="{Binding !MinMode}">
@@ -81,20 +81,20 @@
                                 Margin="0,0,20,0"
                                 VerticalAlignment="Center"
                                 IsChecked="{Binding LowFps}"
-                                OffContent="{setting:Localize SettingWindow.Tab2.Text53}"
-                                OnContent="{setting:Localize SettingWindow.Tab2.Text53}" />
+                                OffContent="Low Frame Mode"
+                                OnContent="Low Frame Mode" />
                         </WrapPanel>
                         <StackPanel IsVisible="{Binding MinMode}">
                             <ToggleSwitch
                                 Margin="0,0,20,0"
                                 VerticalAlignment="Center"
                                 IsChecked="{Binding LowFps}"
-                                OffContent="{setting:Localize SettingWindow.Tab2.Text53}"
-                                OnContent="{setting:Localize SettingWindow.Tab2.Text53}" />
+                                OffContent="Low Frame Mode"
+                                OnContent="Low Frame Mode" />
                         </StackPanel>
                         <WrapPanel IsEnabled="{Binding EnableLive2D}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{setting:Localize SettingWindow.Tab2.Text34}" />
+                                <TextBlock Text="Width" />
                                 <Slider
                                     Width="150"
                                     Height="40"
@@ -114,7 +114,7 @@
                                     Text="{Binding L2dWidth, StringFormat='{}{0}%'}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{setting:Localize SettingWindow.Tab2.Text35}" />
+                                <TextBlock Text="Height" />
                                 <Slider
                                     Width="150"
                                     Height="40"
@@ -132,7 +132,7 @@
                             </StackPanel>
                         </WrapPanel>
                     </StackPanel>
-                    <TextBlock Text="{setting:Localize SettingWindow.Tab2.Text32}" TextWrapping="Wrap" />
+                    <TextBlock Text="Live2D will not work until you download and place Live2DCubismCore in launcher root" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
         </StackPanel>

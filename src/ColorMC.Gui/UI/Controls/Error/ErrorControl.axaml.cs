@@ -28,7 +28,7 @@ public partial class ErrorControl : BaseUserControl
         _close = close;
         _type = true;
 
-        Title = data ?? App.Lang("ErrorWindow.Title");
+        Title = data ?? "Run Error";
     }
 
     public ErrorControl(string data, string e, bool close) : this()

@@ -138,7 +138,7 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         }
         if (!File.Exists(model))
         {
-            (DataContext as MainModel)!.Model.Show(App.Lang("Live2dControl.Error1"));
+            (DataContext as MainModel)!.Model.Show("Live2D model does not exist");
             return;
         }
         var info = new FileInfo(model);
@@ -148,7 +148,7 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         }
         catch (Exception e)
         {
-            string temp = App.Lang("Live2dControl.Error2");
+            string temp = "Live2D model loading failed";
             Logs.Error(temp, e);
             (DataContext as MainModel)!.Model.Show(temp);
         }
@@ -180,7 +180,7 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         catch (Exception e)
         {
             (DataContext as MainModel)!.ChangeModelDone();
-            Logs.Error(App.Lang("Live2dControl.Error3"), e);
+            Logs.Error("Live2D initialization failed", e);
         }
     }
 

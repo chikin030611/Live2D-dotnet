@@ -108,9 +108,9 @@ public static class PathBinding
         {
             case FileType.Live2D:
                 var res = await SelectFile(top,
-                    App.Lang("PathBinding.Text36"),
+                    "Select Live2D model json",
                     MODEL,
-                    App.Lang("PathBinding.Text37"));
+                    "Model json");
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);
@@ -118,9 +118,9 @@ public static class PathBinding
                 break;
             case FileType.Live2DCore:
                 res = await SelectFile(top,
-                    App.Lang("PathBinding.Text38"),
+                    "Select Live2DCore Compression",
                     ZIPFILE,
-                    App.Lang("PathBinding.Text39"));
+                    "Live2DCove Compression");
                 if (res?.Any() == true)
                 {
                     return (res[0].GetPath(), res[0].Name);

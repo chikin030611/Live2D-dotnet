@@ -98,7 +98,7 @@ public static class ConfigSave
             }
             catch (Exception e)
             {
-                Logs.Error(LanguageHelper.Get("Core.Config.Error2"), e);
+                Logs.Error("Error: Saving Configuration Files", e);
             }
         }
     }

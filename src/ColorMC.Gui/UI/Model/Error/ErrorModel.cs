@@ -23,7 +23,7 @@ public partial class ErrorModel : TopModel
 
         NeedClose = close;
 
-        Model.SetChoiseContent(_useName, App.Lang("ErrorWindow.Text1"), App.Lang("ErrorWindow.Text2"));
+        Model.SetChoiseContent(_useName, "Save Content", "Upload content");
         Model.SetChoiseCall(_useName, Save, Push);
     }
 
@@ -34,7 +34,7 @@ public partial class ErrorModel : TopModel
 
         NeedClose = close;
 
-        Model.SetChoiseContent(_useName, App.Lang("ErrorWindow.Text1"), App.Lang("ErrorWindow.Text2"));
+        Model.SetChoiseContent(_useName, "Save Content", "Upload content");
         Model.SetChoiseCall(_useName, Save, Push);
     }
 

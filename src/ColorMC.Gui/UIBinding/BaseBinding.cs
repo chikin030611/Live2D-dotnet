@@ -25,18 +25,7 @@ public static class BaseBinding
         ColorMCCore.Error += WindowManager.ShowError;
         ColorMCCore.InstanceChange += InstanceChange;
 
-        try
-        {
-            var sdl = Sdl.GetApi();
-            if (sdl.Init(Sdl.InitGamecontroller | Sdl.InitAudio) == 0)
-            {
-                SdlInit = true;
-            }
-        }
-        catch (Exception e)
-        {
-            Logs.Error(App.Lang("BaseBinding.Error1"), e);
-        }
+       
 
         InputElement.PointerReleasedEvent.AddClassHandler<DataGridCell>((x, e) =>
         {

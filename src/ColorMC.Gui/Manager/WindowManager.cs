@@ -42,10 +42,7 @@ public static class WindowManager
 
     public static void Init()
     {
-        if (!ShowCustom())
-        {
-            ShowMain();
-        }
+        ShowMain();
     }
 
     public static IBaseWindow FindRoot(object? con)
@@ -58,55 +55,6 @@ public static class WindowManager
             return con1.Window;
 
         return AllWindow!;
-    }
-
-    public static bool ShowCustom(bool test = false)
-    {
-        if (CustomWindow != null)
-        {
-            CustomWindow.Window.Window.TopActivate();
-            return true;
-        }
-
-        if (!test)
-        {
-            return false;
-        }
-
-        try
-        {
-            string file = BaseBinding.GetRunDir() + "ColorMC.CustomGui.dll";
-            if (!File.Exists(file))
-            {
-                return false;
-            }
-
-            var dll = new DllAssembly();
-
-            if (dll.IsLoad)
-            {
-                if (!test)
-                {
-                    CustomWindow = dll;
-                }
-                AWindow(dll.Window, test);
-                var path = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/ColorMC/custom";
-                if (!File.Exists(path))
-                {
-                    File.WriteAllText(path, "custom");
-                    CustomWindow?.Window.Window.Model.Show(App.Lang("WindowManager.Info1"));
-                }
-            }
-            return true;
-        }
-        catch (Exception e)
-        {
-            var data = App.Lang("WindowManager.Error1");
-            Logs.Error(data, e);
-            ShowError(data, e, true);
-        }
-
-        return false;
     }
 
     public static void AWindow(BaseUserControl con, bool newwindow = false)

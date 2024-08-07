@@ -22,7 +22,7 @@ public partial class SettingModel : MenuModel
             new()
             {
                 Icon = "/Resource/Icon/Setting/item1.svg",
-                Text = App.Lang("SettingWindow.Tabs.Text2")
+                Text = "Interface Settings"
             }
         ]);
     }
