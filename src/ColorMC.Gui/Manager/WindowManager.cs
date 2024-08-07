@@ -21,7 +21,6 @@ public static class WindowManager
 
     public static SingleControl? AllWindow { get; set; }
     public static MainControl? MainWindow { get; set; }
-    public static DllAssembly? CustomWindow { get; set; }
     public static SettingControl? SettingWindow { get; set; }
 
     private static readonly WindowTransparencyLevel[] WindowTran =
@@ -109,14 +108,7 @@ public static class WindowManager
     {
         if (MainWindow == null)
         {
-            if (CustomWindow == null)
-            {
-                return null;
-            }
-            else
-            {
-                return CustomWindow.Window.Window;
-            }
+            return null;
         }
 
         return MainWindow.Window;
@@ -140,12 +132,6 @@ public static class WindowManager
             window.WindowState = WindowState.Normal;
             window.Activate();
         }
-        else if (CustomWindow?.Window.GetVisualRoot() is Window window1)
-        {
-            window1.Show();
-            window1.WindowState = WindowState.Normal;
-            window1.Activate();
-        }
     }
 
     public static void Hide()
@@ -153,11 +139,6 @@ public static class WindowManager
         if (MainWindow?.GetVisualRoot() is Window window)
         {
             window.Hide();
-            (CustomWindow?.Window.GetVisualRoot() as Window)?.Close();
-        }
-        else if (CustomWindow?.Window.GetVisualRoot() is Window window1)
-        {
-            window1.Hide();
         }
         CloseAllWindow();
     }
