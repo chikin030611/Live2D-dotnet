@@ -2,9 +2,9 @@
 using Live2DDotNet.UI.Controls.Main;
 namespace Live2DDotNet.Avatar;
 
-public class QnAController
+public class QnaController(Live2dRender live2d)
 {
-    Live2dRender live2d;
+    Live2dRender live2d = live2d;
 
     public static readonly QnaObj[] QnaList = [
             new()
@@ -44,12 +44,7 @@ public class QnAController
             }
         ];
 
-    public QnAController(Live2dRender live2d)
-    {
-        this.live2d = live2d;
-    }
-
-    private string GetAudioPath(int id)
+    private static string GetAudioPath(int id)
     {
         string relativePath = @"..\..\..\..\Live2DDotNet\Resource\Audio";
         string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
