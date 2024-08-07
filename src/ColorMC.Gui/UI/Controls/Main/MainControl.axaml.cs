@@ -54,7 +54,7 @@ public partial class MainControl : BaseUserControl
         App.Close();
     }
 
-    public override async void Opened()
+    public override void Opened()
     {
         Window.SetTitle(Title);
 

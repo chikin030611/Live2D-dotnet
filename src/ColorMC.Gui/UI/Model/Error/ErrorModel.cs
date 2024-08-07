@@ -40,10 +40,10 @@ public partial class ErrorModel : TopModel
 
     public async void Save()
     {
-        await PathBinding.SaveFile(FileType.Text, new[] { Text.Text });
+        await PathBinding.SaveFile([Text.Text]);
     }
 
-    public async void Push()
+    public static void Push()
     {
     }
 

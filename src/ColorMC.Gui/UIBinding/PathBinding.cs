@@ -42,7 +42,7 @@ public static class PathBinding
     /// <param name="type">类型</param>
     /// <param name="arg">参数</param>
     /// <returns>结果</returns>
-    public static async Task<bool?> SaveFile(FileType type, object[]? arg)
+    public static async Task<bool?> SaveFile(object[]? arg)
     {
         var top = App.TopLevel;
         if (top == null)
@@ -86,7 +86,6 @@ public static class PathBinding
         });
     }
 
-    private static readonly string[] ZIP = ["*.zip", "*.tar.xz", "*.tar.gz"];
     private static readonly string[] MODEL = ["*.model3.json"];
     private static readonly string[] ZIPFILE = ["*.zip"];
 

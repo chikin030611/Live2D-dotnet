@@ -23,15 +23,6 @@ public static class WindowManager
     public static MainControl? MainWindow { get; set; }
     public static SettingControl? SettingWindow { get; set; }
 
-    private static readonly WindowTransparencyLevel[] WindowTran =
-    [
-        WindowTransparencyLevel.None,
-        WindowTransparencyLevel.Transparent,
-        WindowTransparencyLevel.Blur,
-        WindowTransparencyLevel.AcrylicBlur,
-        WindowTransparencyLevel.Mica
-    ];
-
     public static void Init()
     {
         ShowMain();
@@ -49,7 +40,7 @@ public static class WindowManager
         return AllWindow!;
     }
 
-    public static void AWindow(BaseUserControl con, bool newwindow = false)
+    public static void AWindow(BaseUserControl con)
     {
         AMultiWindow win;
         win = new MultiWindow(con);

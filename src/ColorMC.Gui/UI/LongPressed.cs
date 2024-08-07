@@ -14,7 +14,6 @@ public static class LongPressed
     private static readonly Timer t_timer;
 
     private static Action? s_action;
-    private static int s_count;
 
     static LongPressed()
     {
