@@ -1,21 +1,17 @@
-using System;
 using System.IO;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
 using ColorMC.Core;
 using ColorMC.Core.Helpers;
-using ColorMC.Core.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.UI;
 using ICSharpCode.SharpZipLib.Zip;
-using Silk.NET.SDL;
 
 namespace ColorMC.Gui.UIBinding;
 
 public static class BaseBinding
 {
-    public static bool SdlInit { get; private set; }
 
     /// <summary>
     /// 初始化
@@ -23,26 +19,11 @@ public static class BaseBinding
     public static void Init()
     {
         ColorMCCore.Error += WindowManager.ShowError;
-        ColorMCCore.InstanceChange += InstanceChange;
 
         InputElement.PointerReleasedEvent.AddClassHandler<DataGridCell>((x, e) =>
         {
             LongPressed.Released();
         }, handledEventsToo: true);
-    }
-
-    private static void InstanceChange()
-    {
-        WindowManager.MainWindow?.LoadMain();
-    }
-
-    /// <summary>
-    /// 获取基础运行路径
-    /// </summary>
-    /// <returns>路径</returns>
-    public static string GetRunDir()
-    {
-        return ColorMCCore.BaseDir;
     }
 
     /// <summary>

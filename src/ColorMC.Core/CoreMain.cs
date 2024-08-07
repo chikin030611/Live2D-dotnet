@@ -1,118 +1,22 @@
-using System.Collections.Concurrent;
 using System.Diagnostics;
 using ColorMC.Core.Config;
-using ColorMC.Core.Helpers;
-using ColorMC.Core.Objs;
 using ColorMC.Core.Utils;
 
 namespace ColorMC.Core;
 
 public static class ColorMCCore
 {
-    public const string TopVersion = "A27";
-    public const string DateVersion = "20240724";
-
-    /// <summary>
-    /// 版本号
-    /// </summary>
-    public const string Version = $"{TopVersion}.{DateVersion}";
-
     /// <summary>
     /// 运行路径
     /// </summary>
     public static string BaseDir { get; private set; }
 
     /// <summary>
-    /// 请求回调
-    /// </summary>
-    /// <param name="text">显示内容</param>
-    /// <returns>是否同意</returns>
-    public delegate Task<bool> Request(string text);
-    /// <summary>
-    /// 压缩包更新
-    /// </summary>
-    /// <param name="text">名字</param>
-    /// <param name="size">目前进度</param>
-    /// <param name="all">总进度</param>
-    public delegate void ZipUpdate(string text, int size, int all);
-    /// <summary>
-    /// 请求是否运行程序
-    /// </summary>
-    /// <param name="pre">是否为运行前启动</param>
-    /// <returns>是否同意</returns>
-    public delegate Task<bool> LaunchP(bool pre);
-    /// <summary>
-    /// 状态发生改变
-    /// </summary>
-    /// <param name="text">消息</param>
-    public delegate void UpdateState(string? text);
-    /// <summary>
-    /// 启动选择框
-    /// </summary>
-    /// <param name="text">消息</param>
-    /// <returns>是否确定</returns>
-    public delegate Task<bool> ChoiseCall(string? text);
-    /// <summary>
-    /// 没有Java
-    /// </summary>
-    public delegate void NoJava(int version);
-    /// <summary>
-    /// Java解压
-    /// </summary>
-    public delegate void JavaUnzip();
-    /// <summary>
-    /// OAuth登录
-    /// </summary>
-    /// <param name="url">网址</param>
-    /// <param name="code">登陆码</param>
-    public delegate void LoginOAuthCode(string url, string code);
-    /// <summary>
-    /// 整合包进度更新
-    /// </summary>
-    /// <param name="size">总进度</param>
-    /// <param name="now">目前进度</param>
-    public delegate void PackUpdate(int size, int now);
-    /// <summary>
-    /// 下载任务状态更新
-    /// </summary>
-    /// <param name="state">状态</param>
-    public delegate void DownloadTaskUpdate(int all, int now);
-
     /// <summary>
     /// 错误显示回调
     /// 标题 错误 关闭程序
     /// </summary>
     public static event Action<string?, Exception?, bool>? Error;
-    /// <summary>
-    /// 游戏实例数量修改事件
-    /// </summary>
-    public static event Action? InstanceChange;
-    /// <summary>
-    /// 手机端Jvm安装
-    /// </summary>
-    public static Action<Stream, string, ZipUpdate?> PhoneJvmInstall { internal get; set; }
-    /// <summary>
-    /// 手机端读Java信息
-    /// </summary>
-    public static Func<string, Process?> PhoneStartJvm { internal get; set; }
-    /// <summary>
-    /// 手机端读文件
-    /// </summary>
-    public static Func<string, Stream?> PhoneReadFile { get; set; }
-    /// <summary>
-    /// 手机端获取运行路径
-    /// </summary>
-    public static Func<string> PhoneGetDataDir { internal get; set; }
-    /// <summary>
-    /// 手机端打开网页
-    /// </summary>
-    public static Action<string?> PhoneOpenUrl { get; set; }
-    /// <summary>
-    /// 获取一个空闲端口
-    /// </summary>
-    public static Func<int> GetFreePort { get; set; }
-
-    /// <summary>
     /// 是否为新运行
     /// </summary>
     public static bool NewStart { get; internal set; }
