@@ -7,8 +7,6 @@ public class Live2DFlyout
 {
     public Live2DFlyout(Live2dRender live2d)
     {
-        QnAController controller = new QnAController(live2d);
-
         var flyoutItems = new List<(string, bool, Action)>
         {
             ("Play animation", true, () =>
@@ -37,15 +35,17 @@ public class Live2DFlyout
                     _ = new FlyoutsControl([.. list1], live2d);
                 }
             }),
-            ("Speak intro", true, () => controller.StartLive2dSpeaking(0))
         };
 
         // Add questions dynamically
-        QnAMapper qnAMapper = new QnAMapper();
-        int numberOfQuestions = qnAMapper.GetNumOfQuestions() - 1;
-        for (int i = 1; i <= numberOfQuestions; i++)
+        int numberOfQuestions = QnaController.QnaList.Length;
+        int startId = QnaController.QnaList[0].Id;
+        QnaController controller = new QnaController(live2d);
+        for (int i = startId; i < numberOfQuestions; i++)
         {
-            int questionNumber = i; // Capture the loop variable
+            int questionNumber = i;
+
+            // Add a new question to the flyout
             flyoutItems.Add(($"Question {questionNumber}", true, () => controller.StartLive2dSpeaking(questionNumber)));
         }
 
