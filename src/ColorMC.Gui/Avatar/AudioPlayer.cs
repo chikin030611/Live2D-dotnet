@@ -22,7 +22,6 @@ public static class AudioPlayer
         }
         catch (Exception ex)
         {
-            // Handle exceptions (e.g., file not found, format issues)
             Console.WriteLine($"Error playing audio: {ex.Message}");
         }
     }

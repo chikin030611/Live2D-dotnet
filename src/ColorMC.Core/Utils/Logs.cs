@@ -99,17 +99,6 @@ public static class Logs
     }
 
     /// <summary>
-    /// 警告
-    /// </summary>
-    /// <param name="data"></param>
-    public static void Warn(string data)
-    {
-        string text = $"[{DateTime.Now}][Warn]{data}";
-        AddText(text);
-    }
-
-
-    /// <summary>
     /// 错误
     /// </summary>
     /// <param name="data"></param>

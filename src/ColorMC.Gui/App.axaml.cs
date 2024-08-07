@@ -41,8 +41,6 @@ public partial class App : Application
 
     public static bool IsHide { get; private set; }
 
-    private static readonly Language s_language = new();
-
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);

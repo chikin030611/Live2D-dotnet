@@ -92,17 +92,7 @@ public static class ThemeManager
 
     private static void LoadFont()
     {
-        //if (!GuiConfigUtils.Config.FontDefault
-        //    && !string.IsNullOrWhiteSpace(GuiConfigUtils.Config.FontName)
-        //    && FontManager.Current.SystemFonts.Any(a => a.Name == GuiConfigUtils.Config.FontName)
-        //    && SkiaSharp.SKFontManager.Default.MatchFamily(GuiConfigUtils.Config.FontName) is { } font)
-        //{
-        //    s_font = new(font.FamilyName);
-        //}
-        //else
-        //{
-            s_font = new(ColorMCGui.Font);
-        //}
+        s_font = new(ColorMCGui.Font);
     }
 
     public static IBrush GetColor(string key)

@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI.Controls;
 using ColorMC.Gui.UI.Controls.Error;
 using ColorMC.Gui.UI.Controls.Main;
 using ColorMC.Gui.UI.Controls.Setting;
 using ColorMC.Gui.UI.Model;
-using ColorMC.Gui.UI.Model.Items;
 using ColorMC.Gui.UI.Windows;
-using ColorMC.Gui.UIBinding;
 using ColorMC.Gui.Utils;
 
 namespace ColorMC.Gui.Manager;
