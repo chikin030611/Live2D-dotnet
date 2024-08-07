@@ -60,16 +60,4 @@ public static class ConfigBinding
         WindowManager.MainWindow?.ChangeLive2DSize();
     }
 
-    /// <summary>
-    /// 设置启用Live2D低帧率
-    /// </summary>
-    /// <param name="value"></param>
-    public static void SetLive2DMode(bool value)
-    {
-        GuiConfigUtils.Config.Live2D ??= GuiConfigUtils.MakeLive2DConfig();
-        GuiConfigUtils.Config.Live2D.LowFps = value;
-        GuiConfigUtils.Save();
-
-        WindowManager.MainWindow?.ChangeLive2DMode();
-    }
 }

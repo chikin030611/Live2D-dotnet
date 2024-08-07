@@ -108,14 +108,6 @@ public partial class MainControl : BaseUserControl
         model.L2dPos1 = (VerticalAlignment)((config.Pos / 3) + 1);
     }
 
-    public void ChangeLive2DMode()
-    {
-        var config = GuiConfigUtils.Config.Live2D;
-        var model = (DataContext as MainModel)!;
-
-        model.LowFps = config.LowFps;
-    }
-
     public override void SetModel(BaseModel model)
     {
         var amodel = new MainModel(model);

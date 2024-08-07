@@ -20,8 +20,6 @@ public partial class SettingModel
     private bool _coreInstall;
     [ObservableProperty]
     private bool _enableLive2D;
-    [ObservableProperty]
-    private bool _lowFps;
 
     [ObservableProperty]
     private int _l2dWidth;
@@ -37,14 +35,6 @@ public partial class SettingModel
     private string _live2DCoreState;
 
     private bool _load = true;
-
-    partial void OnLowFpsChanged(bool value)
-    {
-        if (_load)
-            return;
-
-        ConfigBinding.SetLive2DMode(value);
-    }
 
     partial void OnL2dPosChanged(int value)
     {
@@ -151,7 +141,6 @@ public partial class SettingModel
             L2dWidth = con.Live2D.Width;
             EnableLive2D = con.Live2D.Enable;
             L2dPos = con.Live2D.Pos;
-            LowFps = con.Live2D.LowFps;
         }
 
         try

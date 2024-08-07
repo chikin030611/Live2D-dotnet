@@ -22,10 +22,6 @@ public record Live2DSetting
     /// 显示位置
     /// </summary>
     public int Pos { get; set; }
-    /// <summary>
-    /// 低帧率模式
-    /// </summary>
-    public bool LowFps { get; set; }
 }
 
 /// <summary>

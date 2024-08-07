@@ -17,7 +17,6 @@ public class FpsTimer
     private bool _pause = true;
     private bool _last;
 
-    public bool LowFps { get; set; }
     public Action<int>? FpsTick { private get; init; }
     public bool Pause
     {
@@ -65,20 +64,8 @@ public class FpsTimer
         {
             _top.RequestAnimationFrame((t) =>
             {
-                if (LowFps)
-                {
-                    _last = !_last;
-                    if (_last)
-                    {
-                        _render.RequestNextFrameRendering();
-                        NowFps++;
-                    }
-                }
-                else
-                {
-                    _render.RequestNextFrameRendering();
-                    NowFps++;
-                }
+                _render.RequestNextFrameRendering();
+                NowFps++;
                 Go();
             });
         }

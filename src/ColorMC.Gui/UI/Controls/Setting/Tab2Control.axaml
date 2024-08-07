@@ -76,22 +76,6 @@
                                 Content="Apply"
                                 DockPanel.Dock="Right" />
                         </WrapPanel>
-                        <WrapPanel Margin="0,5,0,0" IsVisible="{Binding !MinMode}">
-                            <ToggleSwitch
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                IsChecked="{Binding LowFps}"
-                                OffContent="Low Frame Mode"
-                                OnContent="Low Frame Mode" />
-                        </WrapPanel>
-                        <StackPanel IsVisible="{Binding MinMode}">
-                            <ToggleSwitch
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                IsChecked="{Binding LowFps}"
-                                OffContent="Low FPS Mode"
-                                OnContent="Low FPS Mode" />
-                        </StackPanel>
                         <WrapPanel IsEnabled="{Binding EnableLive2D}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Width" />
