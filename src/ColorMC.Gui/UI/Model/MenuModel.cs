@@ -35,16 +35,6 @@ public abstract partial class MenuModel(BaseModel model) : TopModel(model)
     [ObservableProperty]
     private bool _topSide;
 
-    partial void OnNowViewChanged(int oldValue, int newValue)
-    {
-        CloseSide();
-        if (oldValue != -1)
-        {
-            TabItems[oldValue].IsCheck = false;
-        }
-        TabItems[newValue].IsCheck = true;
-        Title = TabItems[newValue].Text;
-    }
 
     public override void WidthChange(int index, double width)
     {
@@ -82,23 +72,5 @@ public abstract partial class MenuModel(BaseModel model) : TopModel(model)
                 NowView = model.Index;
             }
         }
-    }
-
-    /// <summary>
-    /// 开启侧边栏
-    /// </summary>
-    [RelayCommand]
-    public void OpenSide()
-    {
-        OnPropertyChanged("SideOpen");
-    }
-
-    /// <summary>
-    /// 关闭侧边栏
-    /// </summary>
-    [RelayCommand]
-    public void CloseSide()
-    {
-        OnPropertyChanged("SideClose");
     }
 }

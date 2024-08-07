@@ -14,29 +14,6 @@
     mc:Ignorable="d">
     <Panel>
         <DockPanel Name="TopPanel">
-            <StackPanel
-                Name="StackPanel2"
-                Height="42"
-                Margin="10,0,0,5"
-                Background="Transparent"
-                DockPanel.Dock="Top"
-                Orientation="Horizontal">
-                <Button
-                    Width="42"
-                    Height="42"
-                    Margin="-3,0,10,0"
-                    Classes="top"
-                    Command="{Binding OpenSide}"
-                    CornerRadius="5"
-                    IsVisible="{Binding TopSide, FallbackValue=false}">
-                    <svg:SvgControl Path="/Resource/Icon/menu.svg" />
-                </Button>
-                <TextBlock
-                    VerticalAlignment="Center"
-                    FontSize="20"
-                    RenderOptions.TextRenderingMode="Antialias"
-                    Text="{Binding Title, FallbackValue=Title}" />
-            </StackPanel>
             <Panel Name="TabPanel" ClipToBounds="True">
                 <Decorator Name="Content1" />
                 <Decorator Name="Content2" />

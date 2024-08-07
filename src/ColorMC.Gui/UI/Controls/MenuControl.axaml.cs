@@ -27,7 +27,6 @@ public abstract partial class MenuControl : BaseUserControl
         DataContextChanged += MenuControl_DataContextChanged;
         SizeChanged += MenuControl_SizeChanged;
 
-        _control.SidePanel3.PointerPressed += SidePanel2_PointerPressed;
         _control.TabPanel.SizeChanged += TabPanel_SizeChanged;
 
         Content = _control;
@@ -39,12 +38,6 @@ public abstract partial class MenuControl : BaseUserControl
         {
             model.WidthChange(0, e.NewSize.Width);
         }
-    }
-
-    private void SidePanel2_PointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-        var model = (DataContext as MenuModel)!;
-        model.CloseSide();
     }
 
     protected abstract Control ViewChange(int old, int index);
