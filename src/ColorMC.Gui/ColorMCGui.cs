@@ -106,36 +106,8 @@ public static class ColorMCGui
 
         GuiConfigUtils.Init(RunDir);
 
-        var config = GuiConfigUtils.Config.Render.Windows;
         var opt = new Win32PlatformOptions();
-        if (config.ShouldRenderOnUIThread is { } value)
-        {
-            opt.ShouldRenderOnUIThread = value;
-        }
-        if (config.OverlayPopups is { } value1)
-        {
-            opt.OverlayPopups = value1;
-        }
-
-        var config1 = GuiConfigUtils.Config.Render.X11;
         var opt1 = new X11PlatformOptions();
-        if (config1.UseDBusMenu is { } value2)
-        {
-            opt1.UseDBusMenu = value2;
-        }
-        if (config1.UseDBusFilePicker is { } value3)
-        {
-            opt1.UseDBusFilePicker = value3;
-        }
-        if (config1.OverlayPopups is { } value4)
-        {
-            opt1.OverlayPopups = value4;
-        }
-        else if (config1.SoftwareRender == true)
-        {
-            opt1.RenderingMode = [X11RenderingMode.Software];
-        }
-
         var opt2 = new MacOSPlatformOptions()
         {
             DisableDefaultApplicationMenuItems = true,

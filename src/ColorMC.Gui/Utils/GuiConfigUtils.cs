@@ -63,13 +63,6 @@ public static class GuiConfigUtils
 
             bool save = false;
 
-            if (Config.Render == null
-                || Config.Render.Windows == null
-                || Config.Render.X11 == null)
-            {
-                Config.Render = MakeRenderConfig();
-                save = true;
-            }
             if (Config.Live2D == null)
             {
                 Config.Live2D = MakeLive2DConfig();
@@ -123,28 +116,10 @@ public static class GuiConfigUtils
         };
     }
 
-    public static RenderSetting MakeRenderConfig()
-    {
-        return new()
-        {
-            Windows = new()
-            {
-                ShouldRenderOnUIThread = null
-            },
-            X11 = new()
-            {
-                UseDBusMenu = null,
-                UseDBusFilePicker = null,
-                OverlayPopups = null
-            }
-        };
-    }
-
     public static GuiConfigObj MakeDefaultConfig()
     {
         return new()
         {
-            Render = MakeRenderConfig(),
             Live2D = MakeLive2DConfig(),
         };
     }
