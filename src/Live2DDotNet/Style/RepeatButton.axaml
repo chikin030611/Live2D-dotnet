@@ -1,0 +1,50 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:setting="clr-namespace:Live2DDotNet.Utils">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel>
+                <RepeatButton
+                    Width="80"
+                    Height="40"
+                    Content="123" />
+                <RepeatButton
+                    Width="80"
+                    Height="40"
+                    Content="123"
+                    IsEnabled="False" />
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="RepeatButton">
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderBrush" Value="#FFFFFFFF" />
+
+        <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="#FFFFFFFF" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.95)" />
+        </Style>
+        <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FFDDDDDD" />
+            <Setter Property="Foreground" Value="{setting:Theme FontColor}" />
+        </Style>
+        <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FFAAAAAA" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FF666666" />
+            <Setter Property="Foreground" Value="#FFCDCDCD" />
+        </Style>
+    </Style>
+
+
+</Styles>
