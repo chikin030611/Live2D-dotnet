@@ -1,12 +1,7 @@
-using System;
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Avalonia.Platform;
 using Avalonia.Threading;
 using Live2DDotNet.Objs;
 using Live2DDotNet.UIBinding;

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Immutable;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using Live2DDotNet.Utils;
-using Live2DDotNet;
 using Live2DDotNet.Objs;
 
 

@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using Live2DDotNet.Utils;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Live2DDotNet.Manager;
 using Live2DDotNet.Objs;

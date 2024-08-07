@@ -1,7 +1,3 @@
-using System;
-using System.IO;
-using Live2DDotNet.Helpers;
-
 using Newtonsoft.Json;
 using Live2DDotNet.Objs;
 using Live2DDotNet.Config;

@@ -1,9 +1,4 @@
-﻿using Live2DDotNet.Objs;
-using Live2DDotNet.Utils;
-using Live2DDotNet.UI.Model.Items;
-using Live2DDotNet.UIBinding;
-
-namespace Live2DDotNet.UI.Model.Setting;
+﻿namespace Live2DDotNet.UI.Model.Setting;
 
 public partial class SettingModel : MenuModel
 {

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Live2DDotNet.Utils;
 
 public class SelfPublisher<T> : IObservable<T>

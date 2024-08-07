@@ -1,6 +1,4 @@
-﻿using System;
-using AvaloniaEdit.Document;
-using Live2DDotNet.Objs;
+﻿using AvaloniaEdit.Document;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Live2DDotNet.UIBinding;
 

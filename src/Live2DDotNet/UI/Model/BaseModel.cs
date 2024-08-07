@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Concurrent;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
 using AvaloniaEdit.Utils;
-using Live2DDotNet.Objs;
-using Live2DDotNet.Manager;
 using Live2DDotNet.UI.Model.Dialog;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

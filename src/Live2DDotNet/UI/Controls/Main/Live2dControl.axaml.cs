@@ -1,14 +1,7 @@
-using System;
 using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using Live2DDotNet.UI.Model.Main;
-using Live2DDotNet;
-using Live2DDotNet.UI;
-using Live2DDotNet.UI.Controls.Main;
-
 namespace Live2DDotNet.UI.Controls.Main;
 
 public partial class Live2dControl : UserControl

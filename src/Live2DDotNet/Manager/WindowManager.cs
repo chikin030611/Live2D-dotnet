@@ -1,5 +1,4 @@
-﻿using System;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Platform;
 using Avalonia.Styling;
 using Avalonia.Threading;
@@ -8,12 +7,9 @@ using Live2DDotNet.UI.Controls.Error;
 using Live2DDotNet.UI.Controls.Main;
 using Live2DDotNet.UI.Model;
 using Live2DDotNet.UI.Windows;
-using Live2DDotNet.Utils;
-using Live2DDotNet;
 using Live2DDotNet.Objs;
 using Live2DDotNet.UI.Controls;
 using Live2DDotNet.UI.Controls.Setting;
-using Live2DDotNet.UI.Windows;
 
 namespace Live2DDotNet.Manager;
 

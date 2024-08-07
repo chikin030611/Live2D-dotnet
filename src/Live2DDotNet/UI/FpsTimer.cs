@@ -1,4 +1,3 @@
-using System;
 using System.Timers;
 using Avalonia.Controls;
 using Avalonia.OpenGL.Controls;

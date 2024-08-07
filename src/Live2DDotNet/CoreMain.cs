@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using Live2DDotNet.Config;
 using Live2DDotNet.Utils;
 

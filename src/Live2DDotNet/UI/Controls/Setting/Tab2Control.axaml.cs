@@ -1,6 +1,4 @@
 using Avalonia.Controls;
-using Live2DDotNet.Objs;
-using Live2DDotNet.Utils;
 
 namespace Live2DDotNet.UI.Controls.Setting;
 

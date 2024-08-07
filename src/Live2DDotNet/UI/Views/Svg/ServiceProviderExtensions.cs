@@ -1,4 +1,3 @@
-using System;
 using Avalonia.Markup.Xaml;
 
 namespace Live2DDotNet.UI.Views.Svg;

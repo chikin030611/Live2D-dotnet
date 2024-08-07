@@ -1,9 +1,6 @@
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Live2DDotNet.UI.Controls;
-using Live2DDotNet.UI.Controls.Setting;
 using Live2DDotNet.UI.Model;
 using Live2DDotNet.UI.Model.Setting;
 using Live2DDotNet.Manager;

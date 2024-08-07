@@ -1,8 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
-using Live2DDotNet.Manager;
 using Live2DDotNet.UI.Model;
-using Live2DDotNet.UIBinding;
 using Live2DDotNet.UI.Controls;
 
 namespace Live2DDotNet.UI.Windows;

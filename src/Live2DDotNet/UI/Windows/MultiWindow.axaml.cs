@@ -1,7 +1,5 @@
 using Avalonia.Controls;
 using Live2DDotNet.UI.Controls;
-using Live2DDotNet.UI.Controls;
-using Live2DDotNet.UI.Windows;
 
 namespace Live2DDotNet.UI.Windows;
 

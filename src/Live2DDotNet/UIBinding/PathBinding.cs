@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using Live2DDotNet;
 using Live2DDotNet.Objs;
 
 namespace Live2DDotNet.UIBinding;

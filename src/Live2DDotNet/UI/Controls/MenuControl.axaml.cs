@@ -1,12 +1,8 @@
-using System;
 using System.ComponentModel;
-using System.Threading;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Threading;
 using Live2DDotNet.UI.Model;
-using Live2DDotNet.UI.Controls;
 
 namespace Live2DDotNet.UI.Controls;
 

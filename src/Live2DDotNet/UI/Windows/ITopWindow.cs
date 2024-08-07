@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Input;
 
 namespace Live2DDotNet.UI.Windows;

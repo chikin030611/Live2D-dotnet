@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Media;
-using System.Collections.Generic;
-using Silk.NET.SDL;
-using Live2DCSharpSDK.App;
-using Live2DDotNet.Avatar;
+﻿using Live2DDotNet.Avatar;
 using Live2DDotNet.UI.Controls.Main;
 
 namespace Live2DDotNet.UI.Flyouts;

@@ -1,21 +1,9 @@
-using System;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Avalonia.Controls;
-using Avalonia.Input;
 using Avalonia.Layout;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform.Storage;
-using Avalonia.Threading;
 using Live2DDotNet.UI.Model;
 using Live2DDotNet.UI.Model.Main;
-using Live2DDotNet.UIBinding;
-using Live2DDotNet;
 using Live2DDotNet.Manager;
-using Live2DDotNet.UI.Controls;
 using Live2DDotNet.Utils;
 
 namespace Live2DDotNet.UI.Controls.Main;

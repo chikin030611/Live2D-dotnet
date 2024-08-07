@@ -1,7 +1,4 @@
 using System.Text;
-using System.IO;
-using Live2DDotNet.Objs;
-using Live2DDotNet.Utils;
 
 namespace Live2DDotNet.Helpers;
 

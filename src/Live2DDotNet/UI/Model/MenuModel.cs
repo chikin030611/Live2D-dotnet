@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Live2DDotNet.UI.Model.Items;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace Live2DDotNet.UI.Model;
 

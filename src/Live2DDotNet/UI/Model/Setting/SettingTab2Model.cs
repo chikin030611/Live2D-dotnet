@@ -1,12 +1,6 @@
-﻿using System.Threading.Tasks;
-using Avalonia.Media;
-using Live2DDotNet.Config;
-using Live2DDotNet.Manager;
-using Live2DDotNet.UI.Model.Items;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Live2DCSharpSDK.Framework.Core;
-using Live2DDotNet;
 using Live2DDotNet.Objs;
 using Live2DDotNet.UIBinding;
 using Live2DDotNet.Utils;

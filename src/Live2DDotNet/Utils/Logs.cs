@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Concurrent;
-using System.Threading;
-using System.IO;
 using Live2DDotNet.Helpers;
-using Live2DDotNet;
 
 namespace Live2DDotNet.Utils;
 

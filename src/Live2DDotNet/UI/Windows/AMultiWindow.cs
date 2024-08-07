@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
@@ -10,10 +9,7 @@ using Avalonia.Threading;
 using Live2DDotNet.UI.Controls;
 using Live2DDotNet.UI.Controls.Error;
 using Live2DDotNet.UI.Model;
-using Live2DDotNet.UIBinding;
-using Live2DDotNet;
 using Live2DDotNet.Manager;
-using Live2DDotNet.UI.Controls;
 
 namespace Live2DDotNet.UI.Windows;
 

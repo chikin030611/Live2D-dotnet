@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Threading;
 using Live2DDotNet.Helpers;
 using Live2DDotNet.Objs.Config;
 using Live2DDotNet.Utils;

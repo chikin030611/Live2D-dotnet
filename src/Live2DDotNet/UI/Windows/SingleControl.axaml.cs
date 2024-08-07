@@ -1,7 +1,4 @@
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Controls.Primitives;
@@ -10,10 +7,8 @@ using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using Live2DDotNet.UI.Controls.Main;
 using Live2DDotNet.UI.Model;
-using Live2DDotNet;
 using Live2DDotNet.Manager;
 using Live2DDotNet.UI.Controls;
-using Live2DDotNet.UI.Windows;
 
 namespace Live2DDotNet.UI.Windows;
 

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Avalonia.Controls;
 
 namespace Live2DDotNet.UI.Flyouts;

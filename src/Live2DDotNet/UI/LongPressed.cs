@@ -1,9 +1,5 @@
-using System;
 using System.Timers;
 using Avalonia.Threading;
-using Live2DDotNet.Objs;
-using Live2DDotNet.Utils;
-using Live2DDotNet;
 
 namespace Live2DDotNet.UI;
 
@@ -12,7 +8,7 @@ namespace Live2DDotNet.UI;
 /// </summary>
 public static class LongPressed
 {
-    private static readonly Timer t_timer;
+    private static readonly System.Timers.Timer t_timer;
 
     private static Action? s_action;
 

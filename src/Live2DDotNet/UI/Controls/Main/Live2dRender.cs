@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
+﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -9,14 +6,11 @@ using Avalonia.OpenGL;
 using Avalonia.OpenGL.Controls;
 using Avalonia.Rendering;
 using Avalonia.Threading;
-using Live2DDotNet.Objs;
 using Live2DDotNet.UI.Flyouts;
 using Live2DDotNet.UI.Model.Main;
 using Live2DCSharpSDK.App;
 using Live2DCSharpSDK.Framework.Motion;
-using Live2DDotNet.UI;
 using Live2DDotNet.Utils;
-using Live2DDotNet.UI;
 
 namespace Live2DDotNet.UI.Controls.Main;
 

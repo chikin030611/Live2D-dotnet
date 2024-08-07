@@ -14,6 +14,7 @@
     <Company></Company>
     <Product></Product>
     <Title>Live2D.NET</Title>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
