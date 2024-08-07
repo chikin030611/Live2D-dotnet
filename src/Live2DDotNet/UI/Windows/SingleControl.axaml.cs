@@ -1,0 +1,235 @@
+using System.ComponentModel;
+using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
+using Avalonia.Media.Imaging;
+using Avalonia.Threading;
+using Live2DDotNet.UI.Controls.Main;
+using Live2DDotNet.UI.Model;
+using Live2DDotNet.Manager;
+using Live2DDotNet.UI.Controls;
+
+namespace Live2DDotNet.UI.Windows;
+
+public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
+{
+    private BaseUserControl _baseControl;
+    private BaseUserControl _nowControl;
+
+    private readonly List<Control> controls = [];
+
+    public IBaseWindow Window => this;
+
+    public BaseUserControl ICon => _nowControl;
+
+    public BaseModel Model => (DataContext as BaseModel)!;
+
+    private WindowNotificationManager windowNotification;
+
+    public SingleControl()
+    {
+        InitializeComponent();
+
+        DataContext = new BaseModel("AllControl");
+
+        PointerPressed += AllControl_PointerPressed;
+        PointerReleased += AllControl_PointerReleased;
+
+        PicUpdate();
+    }
+
+    public Task<bool> OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        return ICon.OnKeyDown(sender, e);
+    }
+
+    private void AllControl_PointerReleased(object? sender, PointerReleasedEventArgs e)
+    {
+        ICon.IPointerReleased(e);
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+
+        var level = TopLevel.GetTopLevel(this);
+        windowNotification = new WindowNotificationManager(level)
+        {
+            Position = NotificationPosition.TopRight,
+            MaxItems = 3,
+            Margin = new(0, 30, 0, 0)
+        };
+    }
+
+    private void Model_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == BaseModel.InfoShow)
+        {
+            windowNotification.Show(Model.NotifyText);
+        }
+    }
+
+    private void AllControl_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsXButton1Pressed)
+        {
+            Model.BackClick();
+        }
+
+        ICon.IPointerPressed(e);
+    }
+
+    public void Closed()
+    {
+        Controls.Child = null;
+    }
+
+    public void Opened()
+    {
+        PicUpdate();
+    }
+
+    public void Add(BaseUserControl con)
+    {
+        if (_baseControl == null)
+        {
+            _baseControl = con;
+            var con1 = (_baseControl as Control)!;
+            Controls.Child = con1;
+            Dispatcher.UIThread.Post(() =>
+            {
+                _baseControl.Opened();
+            });
+        }
+        else
+        {
+            var con1 = Controls.Child;
+            var con2 = (con as Control)!;
+            Controls.Child = null;
+            if (con1 is { } con3)
+            {
+                controls.Add(con3);
+            }
+            Controls.Child = con2;
+
+            Model.PushBack(Back);
+            con.Opened();
+        }
+
+        _nowControl = con;
+        SetTitle(_nowControl.Title);
+    }
+
+    public void Active(BaseUserControl con)
+    {
+        var con1 = (con as Control)!;
+
+        controls.Remove(con1);
+        var con2 = Controls.Child;
+        controls.Add(con2!);
+        Controls.Child = con1;
+
+        _nowControl = con;
+        SetTitle(_nowControl.Title);
+    }
+
+    public async void Close(BaseUserControl con)
+    {
+        var res = await con.Closing();
+        if (res)
+        {
+            return;
+        }
+
+        var con1 = Controls.Child;
+        var con2 = (con as Control)!;
+        if (con1 == con2)
+        {
+            Controls.Child = null;
+        }
+        controls.Remove(con2);
+        if (Controls.Child == null)
+        {
+            if (controls.Count > 0)
+            {
+                con1 = controls.Last();
+                controls.Remove(con1);
+                _nowControl = (con1 as BaseUserControl)!;
+            }
+            else
+            {
+                con1 = _baseControl;
+                _nowControl = _baseControl;
+            }
+            Controls.Child = con1;
+        }
+
+        SetTitle(_nowControl.Title);
+
+        ((con as UserControl)?.DataContext as TopModel)?.Close();
+        con.Closed();
+
+        Model.PopBack();
+
+        App.Clear();
+    }
+
+    private void Back()
+    {
+        if (_nowControl == null)
+        {
+            return;
+        }
+
+        else
+        {
+            Close(_nowControl);
+        }
+    }
+
+    private void PicUpdate()
+    {
+        WindowManager.UpdateWindow(Model);
+    }
+
+    public void SetTitle(string data)
+    {
+        if (VisualRoot is SingleWindow win)
+        {
+            win.Title = data;
+        }
+
+        Model.Title = data;
+    }
+
+    public async Task<bool> Closing()
+    {
+        if (_nowControl is MainControl)
+            return false;
+        if (_nowControl is not BaseUserControl now)
+            return false;
+
+        return await now.Closing();
+    }
+
+    public void SetIcon(Bitmap icon)
+    {
+    }
+
+    public void Hide()
+    {
+        (VisualRoot as Window)?.Hide();
+    }
+
+    public void WindowStateChange(WindowState windowState)
+    {
+        ICon.WindowStateChange(windowState);
+        Head.WindowStateChange(windowState);
+    }
+
+    public void SetSize(int width, int height)
+    {
+
+    }
+}

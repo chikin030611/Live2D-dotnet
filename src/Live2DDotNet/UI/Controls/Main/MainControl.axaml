@@ -1,0 +1,77 @@
+<UserControl
+    x:Class="Live2DDotNet.UI.Controls.Main.MainControl"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialog="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:Live2DDotNet.UI.Model.Main"
+    xmlns:setting="clr-namespace:Live2DDotNet.Utils"
+    xmlns:svg="clr-namespace:Live2DDotNet.UI.Views.Svg"
+    xmlns:views="clr-namespace:Live2DDotNet.UI.Controls"
+    xmlns:views1="clr-namespace:Live2DDotNet.UI.Controls.Items"
+    xmlns:views2="clr-namespace:Live2DDotNet.UI.Controls.Main"
+    d:DesignWidth="800"
+    x:DataType="model:MainModel"
+    DragDrop.AllowDrop="True"
+    mc:Ignorable="d">
+    <dialog:DialogHost
+        Background="{setting:Theme ButtonBG}"
+        DisableOpeningAnimation="True"
+        Identifier="MainCon"
+        OverlayBackground="Transparent">
+        <Panel>
+            <Panel Name="MainView">
+                <views2:Live2dControl
+                    Width="{Binding Live2dWidth}"
+                    Height="{Binding Live2dHeight}"
+                    HorizontalAlignment="{Binding L2dPos}"
+                    VerticalAlignment="{Binding L2dPos1}" />
+                <DockPanel Margin="10">
+                    <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top">
+                        <Panel
+                            Name="HeadTop"
+                            Height="60"
+                            Margin="0,0,10,0"
+                            DockPanel.Dock="Top">
+                            <StackPanel
+                                Name="Buttons"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Orientation="Horizontal">
+								<StackPanel.Styles>
+									<Style Selector="Button">
+										<Setter Property="Background" Value="Transparent" />
+										<Setter Property="BorderThickness" Value="0" />
+									</Style>
+								</StackPanel.Styles>
+                                <Button
+                                    Width="35"
+                                    Height="35"
+                                    Command="{Binding ShowSetting}"
+                                    CornerRadius="5">
+                                    <svg:SvgControl Path="/Resource/Icon/setting.svg" />
+                                </Button>
+                            </StackPanel>
+                            
+                        </Panel>
+                    </DockPanel>
+                    
+                    <ScrollViewer Margin="0,10,0,0" VerticalAlignment="Top" />
+                </DockPanel>
+                <Panel
+                    Name="Grid2"
+                    Margin="20,10,20,20"
+                    Background="{setting:Theme TopGridColor}"
+                    IsVisible="False">
+                    <TextBlock
+                        Name="Label1"
+                        HorizontalAlignment="Center"
+                        FontSize="30"
+                        Text="test" />
+                </Panel>
+            </Panel>
+            <Decorator Name="Start" IsVisible="False" />
+        </Panel>
+    </dialog:DialogHost>
+</UserControl>

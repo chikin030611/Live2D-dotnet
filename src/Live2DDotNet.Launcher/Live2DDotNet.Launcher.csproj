@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<TrimMode>link</TrimMode>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Platforms>AnyCPU</Platforms>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+		<IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Remove=".gitignore" />
+		<None Remove="Resources\MiSans-Regular.ttf" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\MiSans-Regular.ttf" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Live2DDotNet\Live2DDotNet.csproj" />
+	</ItemGroup>
+
+</Project>

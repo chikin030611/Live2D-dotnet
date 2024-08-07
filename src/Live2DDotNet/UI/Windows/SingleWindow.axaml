@@ -1,0 +1,32 @@
+<Window
+    x:Class="Live2DDotNet.UI.Windows.SingleWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:Live2DDotNet.UI.Model"
+    xmlns:setting="clr-namespace:Live2DDotNet.Utils"
+    xmlns:views1="clr-namespace:Live2DDotNet.UI.Windows"
+    Title="{Binding Title}"
+    Width="760"
+    Height="450"
+    MinWidth="335"
+    MinHeight="450"
+    d:DesignHeight="450"
+    d:DesignWidth="760"
+    x:DataType="model:BaseModel"
+    Background="Transparent"
+    ExtendClientAreaChromeHints="NoChrome"
+    ExtendClientAreaTitleBarHeightHint="-1"
+    ExtendClientAreaToDecorationsHint="True"
+    FontFamily="{setting:Font}"
+    RequestedThemeVariant="{Binding Theme}"
+    TransparencyBackgroundFallback="Transparent"
+    TransparencyLevelHint="{Binding Hints}"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <model:BaseModel />
+    </Design.DataContext>
+
+    <views1:SingleControl Name="Win" />
+</Window>

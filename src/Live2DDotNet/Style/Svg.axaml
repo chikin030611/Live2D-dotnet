@@ -1,0 +1,16 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:setting="clr-namespace:Live2DDotNet.Utils"
+    xmlns:svg="clr-namespace:Live2DDotNet.UI.Views.Svg">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <svg:SvgControl Classes="t1" />
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="svg|SvgControl">
+        <Setter Property="Fill" Value="{setting:Theme FontColor}" />
+        <Setter Property="Stroke" Value="{setting:Theme FontColor}" />
+    </Style>
+</Styles>
