@@ -20,7 +20,7 @@
                 <StackPanel Margin="15">
                     <!--  Live2D人物  -->
                     <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="Live2D Personal Settings" />
+                        <TextBlock FontSize="{setting:Style FontTitle}" Text="Live2D Settings" />
                     </StackPanel>
                     <WrapPanel Margin="0,0,0,5">
                         <TextBlock Margin="0,0,5,0" Text="Live2DCubismCore Status" />
@@ -40,8 +40,8 @@
                     <StackPanel IsEnabled="{Binding CoreInstall}">
                         <ToggleSwitch
                             IsChecked="{Binding EnableLive2D}"
-                            OffContent="Show Live2D People Model"
-                            OnContent="Show Live2D People Model" />
+                            OffContent="Show Live2D Avatar Model"
+                            OnContent="Show Live2D Avatar Model" />
                         <TextBox
                             Margin="0,5,0,0"
                             IsEnabled="{Binding EnableLive2D}"
@@ -89,8 +89,8 @@
                                 Margin="0,0,20,0"
                                 VerticalAlignment="Center"
                                 IsChecked="{Binding LowFps}"
-                                OffContent="Low Frame Mode"
-                                OnContent="Low Frame Mode" />
+                                OffContent="Low FPS Mode"
+                                OnContent="Low FPS Mode" />
                         </StackPanel>
                         <WrapPanel IsEnabled="{Binding EnableLive2D}">
                             <StackPanel Orientation="Horizontal">

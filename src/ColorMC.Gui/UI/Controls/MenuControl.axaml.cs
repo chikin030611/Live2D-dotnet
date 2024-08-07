@@ -17,14 +17,12 @@ public abstract partial class MenuControl : BaseUserControl
     private bool _switch1 = false;
 
     private readonly BaseMenuControl _control;
-    private readonly MenuSideControl _sideControl;
 
     private int _now = -1;
 
     public MenuControl()
     {
         _control = new();
-        _sideControl = new();
 
         DataContextChanged += MenuControl_DataContextChanged;
         SizeChanged += MenuControl_SizeChanged;
@@ -58,14 +56,11 @@ public abstract partial class MenuControl : BaseUserControl
         {
             model.TopSide = false;
             _control.SidePanel2.Child = null;
-            _control.SidePanel1.Child = _sideControl;
             _control.TopPanel.Margin = new Thickness(0);
         }
         else
         {
             model.TopSide = true;
-            _control.SidePanel1.Child = null;
-            _control.SidePanel2.Child = _sideControl;
             _control.TopPanel.Margin = new Thickness(10, 0, 0, 0);
         }
     }
