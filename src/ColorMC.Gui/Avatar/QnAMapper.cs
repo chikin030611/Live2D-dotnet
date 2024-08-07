@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Linq;
 
-namespace ColorMC.Gui.AudioPlayer;
+namespace ColorMC.Gui.Avatar;
 
 public class QnAMapper
 {
@@ -24,7 +24,7 @@ public class QnAMapper
             // Parse the JSON string
             jsonDocument = JsonDocument.Parse(jsonString);
 
-        } 
+        }
         catch (Exception e)
         {
             throw new Exception($"Error reading JSON file: {e.Message}");

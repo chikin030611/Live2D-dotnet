@@ -1,6 +1,6 @@
 using Avalonia.Controls;
-using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
+using ColorMC.Gui.Objs;
+using ColorMC.Gui.Utils;
 
 namespace ColorMC.Gui.UI.Controls.Setting;
 

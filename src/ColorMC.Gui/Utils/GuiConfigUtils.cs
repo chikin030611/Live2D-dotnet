@@ -1,8 +1,8 @@
 using System;
 using System.IO;
-using ColorMC.Core.Config;
-using ColorMC.Core.Helpers;
-using ColorMC.Core.Utils;
+using ColorMC.Gui.Config;
+using ColorMC.Gui.Helpers;
+using ColorMC.Gui.Utils;
 using ColorMC.Gui.Objs;
 
 using Newtonsoft.Json;

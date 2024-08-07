@@ -1,8 +1,9 @@
-using System.Diagnostics;
-using ColorMC.Core.Config;
-using ColorMC.Core.Utils;
+using System;
+using System.IO;
+using ColorMC.Gui.Config;
+using ColorMC.Gui.Utils;
 
-namespace ColorMC.Core;
+namespace ColorMC.Gui;
 
 public static class ColorMCCore
 {

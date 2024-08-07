@@ -4,9 +4,8 @@ using System.Media;
 using System.Collections.Generic;
 using ColorMC.Gui.UI.Controls.Main;
 using Silk.NET.SDL;
-using ColorMC.Gui.AudioPlayer;
-using Live2DCSharpSDK.App;
 using ColorMC.Gui.Avatar;
+using Live2DCSharpSDK.App;
 
 namespace ColorMC.Gui.UI.Flyouts;
 

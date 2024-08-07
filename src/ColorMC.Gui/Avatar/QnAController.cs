@@ -1,5 +1,4 @@
-﻿using ColorMC.Gui.AudioPlayer;
-using ColorMC.Gui.UI.Controls.Main;
+﻿using ColorMC.Gui.UI.Controls.Main;
 namespace ColorMC.Gui.Avatar;
 
 public class QnAController
@@ -16,7 +15,7 @@ public class QnAController
         QnAMapper qnAMapper = new QnAMapper();
         string path = qnAMapper.GetAudioFilePath(qnum);
 
-        AudioPlayer.AudioPlayer.PlayAudio(path);
+        AudioPlayer.PlayAudio(path);
         live2d.StartSpeaking(path);
     }
 }

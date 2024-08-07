@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Concurrent;
-using ColorMC.Core.Helpers;
-using ColorMC.Core.Objs.Config;
-using ColorMC.Core.Utils;
+using System.Collections.Generic;
+using System.Threading;
+using ColorMC.Gui.Helpers;
+using ColorMC.Gui.Objs.Config;
+using ColorMC.Gui.Utils;
 using Newtonsoft.Json;
 
-namespace ColorMC.Core.Config;
+namespace ColorMC.Gui.Config;
 
 /// <summary>
 /// 配置文件保存

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ColorMC.Gui.AudioPlayer;
+namespace ColorMC.Gui.Avatar;
 
 public static class AudioPlayer
 {

@@ -1,8 +1,9 @@
 using System.Text;
-using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
+using System.IO;
+using ColorMC.Gui.Objs;
+using ColorMC.Gui.Utils;
 
-namespace ColorMC.Core.Helpers;
+namespace ColorMC.Gui.Helpers;
 
 /// <summary>
 /// 文件与路径处理

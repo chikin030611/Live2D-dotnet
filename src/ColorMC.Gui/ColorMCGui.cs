@@ -8,12 +8,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Media;
-using ColorMC.Core;
-using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
 using ColorMC.Gui.Objs;
-using ColorMC.Gui.UIBinding;
 using ColorMC.Gui.Utils;
+using ColorMC.Gui.UIBinding;
 using Tmds.DBus.Protocol;
 
 namespace ColorMC.Gui;

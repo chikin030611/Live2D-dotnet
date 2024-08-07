@@ -3,8 +3,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
+using ColorMC.Gui.Objs;
+using ColorMC.Gui.Utils;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
 

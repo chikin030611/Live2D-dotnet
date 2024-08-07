@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using ColorMC.Core.Objs;
+using ColorMC.Gui.Objs;
 
 namespace ColorMC.Gui.UIBinding;
 

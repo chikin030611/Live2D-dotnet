@@ -165,8 +165,8 @@ public static class Program
                 _isError = true;
                 File.Delete($"{_loadDir}/ColorMC.Gui.dll");
                 File.Delete($"{_loadDir}/ColorMC.Gui.pdb");
-                File.Delete($"{_loadDir}/ColorMC.Core.dll");
-                File.Delete($"{_loadDir}/ColorMC.Core.pdb");
+                File.Delete($"{_loadDir}/ColorMC.Gui.dll");
+                File.Delete($"{_loadDir}/ColorMC.Gui.pdb");
 
                 GuiLoad.Run(args, _isError);
             }
@@ -194,8 +194,8 @@ public static class Program
 #if !AOT
     private static bool NotHaveDll()
     {
-        return File.Exists($"{_loadDir}/ColorMC.Core.dll")
-            && File.Exists($"{_loadDir}/ColorMC.Core.pdb")
+        return File.Exists($"{_loadDir}/ColorMC.Gui.dll")
+            && File.Exists($"{_loadDir}/ColorMC.Gui.pdb")
             && File.Exists($"{_loadDir}/ColorMC.Gui.dll")
             && File.Exists($"{_loadDir}/ColorMC.Gui.pdb");
     }
@@ -212,8 +212,8 @@ public static class Program
             {
                 var context = new AssemblyLoadContext("ColorMC", true);
                 {
-                    using var file = File.OpenRead($"{_loadDir}/ColorMC.Core.dll");
-                    using var file1 = File.OpenRead($"{_loadDir}/ColorMC.Core.pdb");
+                    using var file = File.OpenRead($"{_loadDir}/ColorMC.Gui.dll");
+                    using var file1 = File.OpenRead($"{_loadDir}/ColorMC.Gui.pdb");
                     context.LoadFromStream(file, file1);
                 }
                 {
@@ -223,10 +223,10 @@ public static class Program
                 }
 
                 var item = context.Assemblies
-                                    .Where(x => x.GetName().Name == "ColorMC.Core")
+                                    .Where(x => x.GetName().Name == "ColorMC.Gui")
                                     .ToList()[0];
 
-                var mis = item.GetTypes().Where(x => x.FullName == "ColorMC.Core.ColorMCCore").ToList()[0];
+                var mis = item.GetTypes().Where(x => x.FullName == "ColorMC.Gui.ColorMCCore").ToList()[0];
 
                 var temp = mis.GetField("Version");
                 var version = temp?.GetValue(null) as string;
@@ -237,8 +237,8 @@ public static class Program
 
                     File.Delete($"{_loadDir}/ColorMC.Gui.dll");
                     File.Delete($"{_loadDir}/ColorMC.Gui.pdb");
-                    File.Delete($"{_loadDir}/ColorMC.Core.dll");
-                    File.Delete($"{_loadDir}/ColorMC.Core.pdb");
+                    File.Delete($"{_loadDir}/ColorMC.Gui.dll");
+                    File.Delete($"{_loadDir}/ColorMC.Gui.pdb");
 
                     return;
                 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using AvaloniaEdit.Document;
-using ColorMC.Core.Objs;
+using ColorMC.Gui.Objs;
 using ColorMC.Gui.UIBinding;
 using CommunityToolkit.Mvvm.ComponentModel;
 

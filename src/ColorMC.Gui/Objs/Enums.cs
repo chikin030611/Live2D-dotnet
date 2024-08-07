@@ -37,3 +37,11 @@ public enum RunType
     /// </summary>
     Phone
 }
+
+/// <summary>
+/// 文件类型
+/// </summary>
+public enum FileType
+{
+    Text, Live2D, Live2DCore
+}
