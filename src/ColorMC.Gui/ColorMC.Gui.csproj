@@ -36,20 +36,16 @@
 
   <ItemGroup>
     <None Remove=".gitignore" />
-    <None Remove="icon.ico" />
-    <None Remove="macicon.ico" />
     <None Remove="Resource\Icon\Head\close.svg" />
     <None Remove="Resource\Icon\Head\max.svg" />
     <None Remove="Resource\Icon\Head\max1.svg" />
     <None Remove="Resource\Icon\Head\min.svg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="icon.ico" />
     <AvaloniaResource Include="Resource\Icon\Head\close.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\max.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\max1.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\min.svg" />
-    <EmbeddedResource Include="macicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.

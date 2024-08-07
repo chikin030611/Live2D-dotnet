@@ -25,8 +25,6 @@ public static class BaseBinding
         ColorMCCore.Error += WindowManager.ShowError;
         ColorMCCore.InstanceChange += InstanceChange;
 
-       
-
         InputElement.PointerReleasedEvent.AddClassHandler<DataGridCell>((x, e) =>
         {
             LongPressed.Released();

@@ -34,7 +34,6 @@ public static class PathBinding
         Process.Start("explorer", $@"/select,{item}");
     }
 
-
     /// <summary>
     /// 保存文件
     /// </summary>
