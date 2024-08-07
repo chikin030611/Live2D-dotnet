@@ -18,7 +18,7 @@ public class Live2DFlyout
 
         var flyoutItems = new List<(string, bool, Action)>
         {
-            (App.Lang("Live2dControl.Flyouts.Text1"), true, () =>
+            ("Play animation", true, () =>
             {
                 var list = live2d.GetMotions();
                 if (list.Count != 0)
@@ -31,7 +31,7 @@ public class Live2DFlyout
                     _ = new FlyoutsControl([.. list1], live2d);
                 }
             }),
-            (App.Lang("Live2dControl.Flyouts.Text2"), true, () =>
+            ("Toggle Emote", true, () =>
             {
                 var list = live2d.GetExpressions();
                 if (list.Count != 0)

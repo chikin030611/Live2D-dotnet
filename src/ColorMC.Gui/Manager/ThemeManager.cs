@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Media;
+using Avalonia.Media.Immutable;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using ColorMC.Gui.Objs;
@@ -52,18 +53,7 @@ public static class ThemeManager
 
     public static void Init()
     {
-        switch (GuiConfigUtils.Config.ColorType)
-        {
-            case ColorType.Auto:
-                NowTheme = App.ThisApp.PlatformSettings!.GetColorValues().ThemeVariant;
-                break;
-            case ColorType.Light:
-                NowTheme = PlatformThemeVariant.Light;
-                break;
-            case ColorType.Dark:
-                NowTheme = PlatformThemeVariant.Dark;
-                break;
-        }
+        NowTheme = App.ThisApp.PlatformSettings!.GetColorValues().ThemeVariant;
 
         if (NowTheme == PlatformThemeVariant.Light)
         {
@@ -77,15 +67,22 @@ public static class ThemeManager
         LoadColor();
         LoadFont();
 
-        RgbColor.Load();
-        ColorSel.Load();
-
         Reload();
+    }
+
+    public static Color ToColor(this IBrush brush)
+    {
+        if (brush is ImmutableSolidColorBrush brush1)
+        {
+            return brush1.Color;
+        }
+
+        return new(255, 255, 255, 255);
     }
 
     private static void LoadColor()
     {
-        s_theme.MainColor = Brush.Parse(GuiConfigUtils.Config.ColorMain);
+        s_theme.MainColor = Brush.Parse(ThemeManager.MainColorStr);
         var color = s_theme.MainColor.ToColor();
         var color1 = new Color(255, color.R, color.G, color.B);
 
@@ -106,40 +103,18 @@ public static class ThemeManager
 
     private static void LoadFont()
     {
-        if (!GuiConfigUtils.Config.FontDefault
-            && !string.IsNullOrWhiteSpace(GuiConfigUtils.Config.FontName)
-            && FontManager.Current.SystemFonts.Any(a => a.Name == GuiConfigUtils.Config.FontName)
-            && SkiaSharp.SKFontManager.Default.MatchFamily(GuiConfigUtils.Config.FontName) is { } font)
-        {
-            s_font = new(font.FamilyName);
-        }
-        else
-        {
-            s_font = new(ColorMCGui.Font);
-        }
+        s_font = new(ColorMCGui.Font);
     }
 
     public static IBrush GetColor(string key)
     {
         if (key == "WindowBG")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.WindowBG.ToColor(), 0.75);
-            }
-            else if (GuiConfigUtils.Config.WindowTran)
-            {
-                return Brushes.Transparent;
-            }
             return s_theme.WindowBG;
         }
         else if (key == "WindowTranColor")
         {
-            if (GuiConfigUtils.Config.WindowTran)
-            {
-                return s_theme.WindowTranColor;
-            }
-            else if (NowTheme == PlatformThemeVariant.Light)
+            if (NowTheme == PlatformThemeVariant.Light)
             {
                 return Brushes.White;
             }
@@ -150,10 +125,6 @@ public static class ThemeManager
         }
         else if (key == "WindowBase")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.WindowBG.ToColor(), 0.75);
-            }
             return Brushes.Transparent;
         }
         else if (key == "ItemBG")
@@ -162,27 +133,14 @@ public static class ThemeManager
         }
         else if (key == "MainGroupBG")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.MainGroupBG.ToColor(), 0.75);
-            }
             return s_theme.MainGroupBG;
         }
         else if (key == "MainGroupBorder")
         {
-            if (GuiConfigUtils.Config.WindowTran && ImageManager.BackBitmap == null)
-            {
-                return s_theme.MainGroupBorder;
-            }
-
             return Brushes.Transparent;
         }
         else if (key == "MainGroupItemBG")
         {
-            if (ImageManager.BackBitmap != null)
-            {
-                return new SolidColorBrush(s_theme.MainGroupBG.ToColor(), 0.75);
-            }
             return Brushes.Transparent;
         }
         else if (key == "ProgressBarBG")
@@ -215,7 +173,7 @@ public static class ThemeManager
         }
         else if (key == "MainColor")
         {
-            return RgbColor.IsEnable() ? RgbColor.GetColor() : s_theme.MainColor;
+            return s_theme.MainColor;
         }
         else if (key == "FontColor")
         {
@@ -291,10 +249,10 @@ public static class ThemeManager
 
     private static Thickness GetThick(string key)
     {
-        if (key == "Border")
-        {
-            return GuiConfigUtils.Config.WindowTran && ImageManager.BackBitmap == null ? new(1) : new(0);
-        }
+        //if (key == "Border")
+        //{
+        //    return GuiConfigUtils.Config.WindowTran && ImageManager.BackBitmap == null ? new(1) : new(0);
+        //}
 
         return new(0);
     }
@@ -333,8 +291,6 @@ public static class ThemeManager
 
     public static void Remove()
     {
-        ColorSel.Remove();
-
         foreach (var item in s_colorList.Values)
         {
             foreach (var item1 in item.ToArray())
@@ -437,8 +393,6 @@ public static class ThemeManager
 
     static ThemeManager()
     {
-        RgbColor.ColorChanged += RgbColor_ColorChanged;
-
         s_light = new()
         {
             MainColor = Brush.Parse(MainColorStr),

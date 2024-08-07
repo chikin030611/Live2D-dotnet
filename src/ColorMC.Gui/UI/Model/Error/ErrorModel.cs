@@ -23,7 +23,7 @@ public partial class ErrorModel : TopModel
 
         NeedClose = close;
 
-        Model.SetChoiseContent(_useName, App.Lang("ErrorWindow.Text1"), App.Lang("ErrorWindow.Text2"));
+        Model.SetChoiseContent(_useName, "Save Content", "Upload content");
         Model.SetChoiseCall(_useName, Save, Push);
     }
 
@@ -34,43 +34,17 @@ public partial class ErrorModel : TopModel
 
         NeedClose = close;
 
-        Model.SetChoiseContent(_useName, App.Lang("ErrorWindow.Text1"), App.Lang("ErrorWindow.Text2"));
+        Model.SetChoiseContent(_useName, "Save Content", "Upload content");
         Model.SetChoiseCall(_useName, Save, Push);
     }
 
     public async void Save()
     {
-        await PathBinding.SaveFile(FileType.Text, new[] { Text.Text });
+        await PathBinding.SaveFile([Text.Text]);
     }
 
-    public async void Push()
+    public static void Push()
     {
-        if (string.IsNullOrWhiteSpace(Text.Text))
-        {
-            Model.Show(App.Lang("GameLogWindow.Error2"));
-            return;
-        }
-        var res = await Model.ShowWait(App.Lang("GameLogWindow.Info4"));
-        if (!res)
-        {
-            return;
-        }
-
-        Model.Progress(App.Lang("GameLogWindow.Info6"));
-        var url = await WebBinding.Push(Text.Text);
-        Model.ProgressClose();
-        if (url == null)
-        {
-            Model.Show(App.Lang("GameLogWindow.Error1"));
-            return;
-        }
-        else
-        {
-            Model.ShowReadInfoOne(string.Format(App.Lang("GameLogWindow.Info5"), url), null);
-
-            await BaseBinding.CopyTextClipboard(url);
-            Model.Notify(App.Lang("GameLogWindow.Info7"));
-        }
     }
 
     public override void Close()

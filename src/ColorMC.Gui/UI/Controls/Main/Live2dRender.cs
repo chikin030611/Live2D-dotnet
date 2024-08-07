@@ -44,10 +44,6 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
 
     public Live2dRender()
     {
-        if (SystemInfo.Os == OsType.Android)
-        {
-            return;
-        }
         DataContextChanged += Live2dRender_DataContextChanged;
 
         PointerPressed += Live2dTop_PointerPressed;
@@ -142,7 +138,7 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         }
         if (!File.Exists(model))
         {
-            (DataContext as MainModel)!.Model.Show(App.Lang("Live2dControl.Error1"));
+            (DataContext as MainModel)!.Model.Show("Live2D model does not exist");
             return;
         }
         var info = new FileInfo(model);
@@ -152,7 +148,7 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         }
         catch (Exception e)
         {
-            string temp = App.Lang("Live2dControl.Error2");
+            string temp = "Live2D model loading failed";
             Logs.Error(temp, e);
             (DataContext as MainModel)!.Model.Show(temp);
         }
@@ -167,11 +163,6 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
 
     protected override unsafe void OnOpenGlInit(GlInterface gl)
     {
-        if (SystemInfo.Os == OsType.Android)
-        {
-            return;
-        }
-
         if (_first)
             return;
         _first = true;
@@ -189,17 +180,12 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         catch (Exception e)
         {
             (DataContext as MainModel)!.ChangeModelDone();
-            Logs.Error(App.Lang("Live2dControl.Error3"), e);
+            Logs.Error("Live2D initialization failed", e);
         }
     }
 
     protected override void OnOpenGlDeinit(GlInterface GL)
     {
-        if (SystemInfo.Os == OsType.Android)
-        {
-            return;
-        }
-
         _lapp?.Dispose();
         _lapp = null!;
         _init = false;
@@ -208,11 +194,6 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
 
     protected override void OnOpenGlRender(GlInterface gl, int fb)
     {
-        if (SystemInfo.Os == OsType.Android)
-        {
-            return;
-        }
-
         if (!_init)
             return;
         var model = (DataContext as MainModel)!;
@@ -221,16 +202,6 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
             _change = false;
             ChangeModel();
             model.ChangeModelDone();
-            var random = new Random();
-            var index = random.Next(1000);
-            if (index == 666)
-            {
-                model.ShowMessage("Ciallo～(∠·ω< )⌒★");
-            }
-            else
-            {
-                model.ShowMessage(App.Lang("Live2dControl.Text1"));
-            }
         }
         if (_delete)
         {

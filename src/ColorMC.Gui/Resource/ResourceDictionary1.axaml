@@ -12,29 +12,9 @@
                 Width="30"
                 HorizontalAlignment="Center"
                 TextAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{x:Static icon:IconConverter.FileIconConverter}">
-                        <Binding Path="IsDirectory" />
-                        <Binding Path="IsExpanded" />
-                    </MultiBinding>
-                </TextBlock.Text>
             </TextBlock>
             <TextBlock Text="{Binding Name}" />
         </StackPanel>
     </DataTemplate>
-    <DataTemplate x:Key="NbtCell" DataType="vm:NbtNodeModel">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock
-                Width="30"
-                HorizontalAlignment="Center"
-                TextAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding Converter="{x:Static icon:IconConverter.NbtIconConverter}">
-                        <Binding Path="NbtType" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock Text="{Binding Name}" />
-        </StackPanel>
-    </DataTemplate>
+    
 </ResourceDictionary>

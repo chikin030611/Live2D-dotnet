@@ -27,7 +27,6 @@ public abstract class BaseUserControl : UserControl, ITopWindow
     public IBaseWindow Window => WindowManager.FindRoot(VisualRoot);
     public string Title { get; protected set; }
     public string UseName { get; protected set; }
-    public abstract Bitmap GetIcon();
     public void SetBaseModel(BaseModel model)
     {
         SetModel(model);

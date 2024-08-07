@@ -13,126 +13,20 @@
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="0,0,10,15">
-            <Border
-                Margin="10,5,10,3"
-                Classes="t2"
-                IsVisible="{Binding Phone}">
-                <StackPanel Name="PhoneSetting" Margin="15">
-                    <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <svg:SvgControl
-                            Width="24"
-                            Height="24"
-                            Margin="0,0,5,0"
-                            Path="/Resource/Icon/Setting/svg22.svg" />
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="{setting:Localize SettingWindow.Tab2.Text43}" />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
             
-            <Border Margin="10,5,10,3" Classes="t2">
-                <StackPanel Margin="15">
-                    <!--  语言  -->
-                    <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <svg:SvgControl
-                            Width="24"
-                            Height="24"
-                            Margin="0,0,5,0"
-                            Path="/Resource/Icon/Setting/svg2.svg" />
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="{setting:Localize SettingWindow.Tab2.Text47}" />
-                    </StackPanel>
-                    <WrapPanel Margin="0,0,0,-5" IsVisible="{Binding !MinMode}">
-                        <StackPanel Margin="0,0,5,5" Orientation="Horizontal">
-                            <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text1}" />
-                            <ComboBox
-                                Width="150"
-                                Margin="0,0,5,0"
-                                ItemsSource="{Binding LanguageList}"
-                                SelectedIndex="{Binding Language}" />
-                        </StackPanel>
-                        <WrapPanel Margin="0,0,0,5">
-                            <ToggleSwitch
-                                Margin="0,0,10,0"
-                                IsChecked="{Binding IsDefaultFont}"
-                                OffContent="{setting:Localize SettingWindow.Tab2.Text20}"
-                                OnContent="{setting:Localize SettingWindow.Tab2.Text20}" />
-                            <ComboBox
-                                MinWidth="200"
-                                IsEnabled="{Binding EnableFontList}"
-                                ItemsSource="{Binding FontList}"
-                                SelectedItem="{Binding FontItem}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate DataType="view:FontDisplayModel">
-                                        <StackPanel>
-                                            <TextBlock FontFamily="{Binding FontFamily}" Text="{Binding FontName}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </WrapPanel>
-                    </WrapPanel>
-                    <StackPanel IsVisible="{Binding MinMode}">
-                        <DockPanel Margin="0,0,0,5">
-                            <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text1}" />
-                            <ComboBox
-                                Margin="0,0,0,0"
-                                HorizontalAlignment="Stretch"
-                                ItemsSource="{Binding LanguageList}"
-                                SelectedIndex="{Binding Language}" />
-                        </DockPanel>
-                        <ToggleSwitch
-                            Margin="0,0,0,5"
-                            IsChecked="{Binding IsDefaultFont}"
-                            OffContent="{setting:Localize SettingWindow.Tab2.Text20}"
-                            OnContent="{setting:Localize SettingWindow.Tab2.Text20}" />
-                        <ComboBox
-                            Margin="0,0,0,0"
-                            HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding EnableFontList}"
-                            ItemsSource="{Binding FontList}"
-                            SelectedItem="{Binding FontItem}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate DataType="view:FontDisplayModel">
-                                    <StackPanel>
-                                        <TextBlock FontFamily="{Binding FontFamily}" Text="{Binding FontName}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                    <TextBlock
-                        Margin="0,5,0,0"
-                        Text="{setting:Localize SettingWindow.Tab2.Text21}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </Border>
             <Border
                 Margin="10,5,10,3"
-                Classes="t2"
-                IsVisible="{Binding !Phone}">
+                Classes="t2">
                 <StackPanel Margin="15">
                     <!--  Live2D人物  -->
                     <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                        <svg:SvgControl
-                            Width="24"
-                            Height="24"
-                            Margin="0,0,5,0"
-                            Path="/Resource/Icon/Setting/svg6.svg" />
-                        <TextBlock FontSize="{setting:Style FontTitle}" Text="{setting:Localize SettingWindow.Tab2.Text29}" />
+                        <TextBlock FontSize="{setting:Style FontTitle}" Text="Live2D Settings" />
                     </StackPanel>
                     <WrapPanel Margin="0,0,0,5">
-                        <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text30}" />
+                        <TextBlock Margin="0,0,5,0" Text="Live2DCubismCore Status" />
                         <TextBlock Text="{Binding Live2DCoreState}" />
                     </WrapPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <Button
-                            Width="90"
-                            Height="35"
-                            Margin="-2,-2,3,-2"
-                            HorizontalAlignment="Right"
-                            Classes="top"
-                            Command="{Binding DownloadCore}"
-                            Content="{setting:Localize SettingWindow.Tab2.Text31}"
-                            IsEnabled="{Binding !CoreInstall}" />
                         <Button
                             Width="90"
                             Height="35"
@@ -140,19 +34,19 @@
                             HorizontalAlignment="Right"
                             Classes="top"
                             Command="{Binding InstallCore}"
-                            Content="{setting:Localize SettingWindow.Tab2.Text49}"
+                            Content="Import Core"
                             IsEnabled="{Binding !CoreInstall}" />
                     </StackPanel>
                     <StackPanel IsEnabled="{Binding CoreInstall}">
                         <ToggleSwitch
                             IsChecked="{Binding EnableLive2D}"
-                            OffContent="{setting:Localize SettingWindow.Tab2.Text48}"
-                            OnContent="{setting:Localize SettingWindow.Tab2.Text48}" />
+                            OffContent="Show Live2D Avatar Model"
+                            OnContent="Show Live2D Avatar Model" />
                         <TextBox
                             Margin="0,5,0,0"
                             IsEnabled="{Binding EnableLive2D}"
                             Text="{Binding Live2DModel}"
-                            Watermark="{setting:Localize SettingWindow.Tab2.Text33}" />
+                            Watermark="Live2D Model" />
                         <WrapPanel
                             Margin="0,5,0,0"
                             HorizontalAlignment="Right"
@@ -163,7 +57,7 @@
                                 Margin="-2,-2,2,-2"
                                 Classes="top"
                                 Command="{Binding DeleteLive2D}"
-                                Content="{setting:Localize Button.Delete}"
+                                Content="Delete"
                                 DockPanel.Dock="Right" />
                             <Button
                                 Width="90"
@@ -171,7 +65,7 @@
                                 Margin="-2,-2,2,-2"
                                 Classes="top"
                                 Command="{Binding OpenLive2D}"
-                                Content="{setting:Localize Button.Select}"
+                                Content="Select File"
                                 DockPanel.Dock="Right" />
                             <Button
                                 Width="90"
@@ -179,45 +73,12 @@
                                 Margin="-2,-2,-3,-2"
                                 Classes="top"
                                 Command="{Binding SetLive2D}"
-                                Content="{setting:Localize SettingWindow.Tab2.Text61}"
+                                Content="Apply"
                                 DockPanel.Dock="Right" />
                         </WrapPanel>
-                        <WrapPanel Margin="0,5,0,0" IsVisible="{Binding !MinMode}">
-                            <ToggleSwitch
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                IsChecked="{Binding LowFps}"
-                                OffContent="{setting:Localize SettingWindow.Tab2.Text53}"
-                                OnContent="{setting:Localize SettingWindow.Tab2.Text53}" />
-                            <StackPanel
-                                Margin="0,0,10,0"
-                                IsEnabled="{Binding EnableLive2D}"
-                                Orientation="Horizontal">
-                                <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text52}" />
-                                <ComboBox
-                                    Width="150"
-                                    ItemsSource="{Binding PosList}"
-                                    SelectedIndex="{Binding L2dPos}" />
-                            </StackPanel>
-                        </WrapPanel>
-                        <StackPanel IsVisible="{Binding MinMode}">
-                            <ToggleSwitch
-                                Margin="0,0,20,0"
-                                VerticalAlignment="Center"
-                                IsChecked="{Binding LowFps}"
-                                OffContent="{setting:Localize SettingWindow.Tab2.Text53}"
-                                OnContent="{setting:Localize SettingWindow.Tab2.Text53}" />
-                            <DockPanel IsEnabled="{Binding EnableLive2D}">
-                                <TextBlock Margin="0,0,5,0" Text="{setting:Localize SettingWindow.Tab2.Text52}" />
-                                <ComboBox
-                                    HorizontalAlignment="Stretch"
-                                    ItemsSource="{Binding PosList}"
-                                    SelectedIndex="{Binding L2dPos}" />
-                            </DockPanel>
-                        </StackPanel>
                         <WrapPanel IsEnabled="{Binding EnableLive2D}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{setting:Localize SettingWindow.Tab2.Text34}" />
+                                <TextBlock Text="Width" />
                                 <Slider
                                     Width="150"
                                     Height="40"
@@ -237,7 +98,7 @@
                                     Text="{Binding L2dWidth, StringFormat='{}{0}%'}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{setting:Localize SettingWindow.Tab2.Text35}" />
+                                <TextBlock Text="Height" />
                                 <Slider
                                     Width="150"
                                     Height="40"
@@ -255,7 +116,7 @@
                             </StackPanel>
                         </WrapPanel>
                     </StackPanel>
-                    <TextBlock Text="{setting:Localize SettingWindow.Tab2.Text32}" TextWrapping="Wrap" />
+                    <TextBlock Text="Live2D will not work until you download and place Live2DCubismCore in launcher root" TextWrapping="Wrap" />
                 </StackPanel>
             </Border>
         </StackPanel>

@@ -15,11 +15,7 @@ public interface IBaseWindow
     public void SetIcon(Bitmap icon);
     public void Close()
     {
-        if (ConfigBinding.WindowMode())
-        {
-            WindowManager.AllWindow?.Close(ICon);
-        }
-        else if (this is Window window)
+        if (this is Window window)
         {
             window.Close();
         }
@@ -27,11 +23,7 @@ public interface IBaseWindow
 
     virtual public void Show()
     {
-        if (ConfigBinding.WindowMode())
-        {
-            WindowManager.AllWindow?.Add(ICon);
-        }
-        else if (this is Window window)
+        if (this is Window window)
         {
             window.Show();
         }
@@ -39,11 +31,7 @@ public interface IBaseWindow
 
     virtual public void TopActivate()
     {
-        if (ConfigBinding.WindowMode())
-        {
-            WindowManager.AllWindow?.Active(ICon);
-        }
-        else if (this is Window window)
+        if (this is Window window)
         {
             if (window.WindowState == WindowState.Minimized)
             {
@@ -56,11 +44,7 @@ public interface IBaseWindow
 
     virtual public void Hide()
     {
-        if (ConfigBinding.WindowMode())
-        {
-            WindowManager.AllWindow?.Hide();
-        }
-        else if (this is Window window)
+        if (this is Window window)
         {
             window.Hide();
         }

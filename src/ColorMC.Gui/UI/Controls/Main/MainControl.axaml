@@ -20,14 +20,6 @@
         DisableOpeningAnimation="True"
         Identifier="MainCon"
         OverlayBackground="Transparent">
-        <dialog:DialogHost.DataTemplates>
-            <DataTemplate DataType="model:MainModel">
-                <views2:GroupEditControl DataContext="{Binding}" />
-            </DataTemplate>
-            <DataTemplate DataType="model:JoystickSettingModel">
-                <views2:JoystickSettingControl DataContext="{Binding}" />
-            </DataTemplate>
-        </dialog:DialogHost.DataTemplates>
         <Panel>
             <Panel Name="MainView">
                 <views2:Live2dControl
@@ -57,9 +49,7 @@
                                     Width="35"
                                     Height="35"
                                     Command="{Binding ShowSetting}"
-                                    CornerRadius="5"
-                                    ToolTip.Tip="{setting:Localize ToolTip.Text13}"
-                                    ToolTip.VerticalOffset="-30">
+                                    CornerRadius="5">
                                     <svg:SvgControl Path="/Resource/Icon/setting.svg" />
                                 </Button>
                             </StackPanel>

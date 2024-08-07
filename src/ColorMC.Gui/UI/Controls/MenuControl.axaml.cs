@@ -17,19 +17,16 @@ public abstract partial class MenuControl : BaseUserControl
     private bool _switch1 = false;
 
     private readonly BaseMenuControl _control;
-    private readonly MenuSideControl _sideControl;
 
     private int _now = -1;
 
     public MenuControl()
     {
         _control = new();
-        _sideControl = new();
 
         DataContextChanged += MenuControl_DataContextChanged;
         SizeChanged += MenuControl_SizeChanged;
 
-        _control.SidePanel3.PointerPressed += SidePanel2_PointerPressed;
         _control.TabPanel.SizeChanged += TabPanel_SizeChanged;
 
         Content = _control;
@@ -43,12 +40,6 @@ public abstract partial class MenuControl : BaseUserControl
         }
     }
 
-    private void SidePanel2_PointerPressed(object? sender, PointerPressedEventArgs e)
-    {
-        var model = (DataContext as MenuModel)!;
-        model.CloseSide();
-    }
-
     protected abstract Control ViewChange(int old, int index);
 
     private void MenuControl_SizeChanged(object? sender, SizeChangedEventArgs e)
@@ -58,14 +49,11 @@ public abstract partial class MenuControl : BaseUserControl
         {
             model.TopSide = false;
             _control.SidePanel2.Child = null;
-            _control.SidePanel1.Child = _sideControl;
             _control.TopPanel.Margin = new Thickness(0);
         }
         else
         {
             model.TopSide = true;
-            _control.SidePanel1.Child = null;
-            _control.SidePanel2.Child = _sideControl;
             _control.TopPanel.Margin = new Thickness(10, 0, 0, 0);
         }
     }
@@ -81,7 +69,6 @@ public abstract partial class MenuControl : BaseUserControl
             _control.SidePanel3.IsVisible = true;
             Dispatcher.UIThread.Post(() =>
             {
-                App.SidePageSlide300.Start(null, _control.SidePanel2, _cancel1.Token);
             });
         }
         else if (e.PropertyName == MenuModel.SideClose)
@@ -89,7 +76,6 @@ public abstract partial class MenuControl : BaseUserControl
             _cancel1.Cancel();
             _cancel1.Dispose();
             _cancel1 = new();
-            App.SidePageSlide300.Start(_control.SidePanel2, null, _cancel1.Token);
             _control.SidePanel3.IsVisible = false;
         }
 
@@ -142,12 +128,10 @@ public partial class BaseMenuControl : UserControl
         if (!dir)
         {
             Content2.Child = control;
-            _ = App.PageSlide500.Start(Content1, Content2, dir1, token);
         }
         else
         {
             Content1.Child = control;
-            _ = App.PageSlide500.Start(Content2, Content1, dir1, token);
         }
     }
 }

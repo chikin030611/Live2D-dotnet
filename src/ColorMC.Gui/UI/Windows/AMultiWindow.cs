@@ -50,8 +50,6 @@ public abstract class AMultiWindow : ABaseWindow, IBaseWindow
         PointerReleased += SelfBaseWindow_PointerReleased;
         PointerPressed += SelfBaseWindow_PointerPressed;
 
-        ImageManager.PicUpdate += PicUpdate;
-
         if (con is ErrorControl)
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -167,8 +165,6 @@ public abstract class AMultiWindow : ABaseWindow, IBaseWindow
 
     private void UserWindow_Closed(object? sender, EventArgs e)
     {
-        ImageManager.PicUpdate -= PicUpdate;
-
         ((ICon as UserControl)?.DataContext as TopModel)?.Close();
         DataContext = null;
         ICon.Closed();
@@ -179,15 +175,8 @@ public abstract class AMultiWindow : ABaseWindow, IBaseWindow
         }
         if (App.TopLevel == this)
         {
-            if (ConfigBinding.WindowMode())
-            {
-                App.TopLevel = GetTopLevel(WindowManager.AllWindow);
-            }
-            else
-            {
-                var win = WindowManager.GetMainWindow();
-                App.TopLevel = win as Window;
-            }
+            var win = WindowManager.GetMainWindow();
+            App.TopLevel = win as Window;
         }
 
         App.Clear();
@@ -209,7 +198,6 @@ public abstract class AMultiWindow : ABaseWindow, IBaseWindow
 
     public void SetIcon(Bitmap icon)
     {
-        Model.SetIcon(icon);
     }
 
     public void SetSize(int width, int height)

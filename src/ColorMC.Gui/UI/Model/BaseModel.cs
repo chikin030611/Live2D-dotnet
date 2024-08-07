@@ -55,8 +55,6 @@ public partial class BaseModel : ObservableObject
     public string NotifyText;
 
     [ObservableProperty]
-    private Bitmap _icon = ImageManager.GameIcon;
-    [ObservableProperty]
     private Bitmap? _back;
 
     [ObservableProperty]
@@ -112,10 +110,7 @@ public partial class BaseModel : ObservableObject
     {
         set
         {
-            if (!GuiConfigUtils.Config.WindowMode)
-            {
-                HeadCloseObservale.Notify(value);
-            }
+            HeadCloseObservale.Notify(value);
         }
     }
 
@@ -190,7 +185,7 @@ public partial class BaseModel : ObservableObject
     public void NoWork()
     {
         _isWork = false;
-        if (SystemInfo.Os != OsType.Android && !_listBack.IsEmpty)
+        if (!_listBack.IsEmpty)
         {
             HeadBackEnable = true;
         }
@@ -238,7 +233,7 @@ public partial class BaseModel : ObservableObject
     public void PushBack(Action back)
     {
         _listBack.Push(back);
-        if (SystemInfo.Os != OsType.Android && !_listBack.IsEmpty)
+        if (!_listBack.IsEmpty)
         {
             HeadBackDisplay = true;
         }
@@ -326,11 +321,6 @@ public partial class BaseModel : ObservableObject
     {
         NotifyText = data;
         OnPropertyChanged(InfoShow);
-    }
-
-    public void SetIcon(Bitmap image)
-    {
-        Icon = image;
     }
 
     public void InputClose()

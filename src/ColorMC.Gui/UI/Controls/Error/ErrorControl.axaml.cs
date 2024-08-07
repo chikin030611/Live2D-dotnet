@@ -28,7 +28,7 @@ public partial class ErrorControl : BaseUserControl
         _close = close;
         _type = true;
 
-        Title = data ?? App.Lang("ErrorWindow.Title");
+        Title = data ?? "Run Error";
     }
 
     public ErrorControl(string data, string e, bool close) : this()
@@ -48,7 +48,7 @@ public partial class ErrorControl : BaseUserControl
     public override void Closed()
     {
         if ((DataContext as ErrorModel)!.NeedClose
-            || (App.IsHide && !GameManager.IsGameRuning()))
+            || (App.IsHide))
         {
             App.Close();
         }
@@ -66,8 +66,4 @@ public partial class ErrorControl : BaseUserControl
         }
     }
 
-    public override Bitmap GetIcon()
-    {
-        return ImageManager.GameIcon;
-    }
 }

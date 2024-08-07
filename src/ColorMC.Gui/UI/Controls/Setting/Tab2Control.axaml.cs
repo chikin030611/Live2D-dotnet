@@ -9,14 +9,5 @@ public partial class Tab2Control : UserControl
     public Tab2Control()
     {
         InitializeComponent();
-
-        if (SystemInfo.Os == OsType.Android)
-        {
-            var con = ColorMCGui.PhoneGetSetting?.Invoke();
-            if (con is Control con1)
-            {
-                PhoneSetting.Children.Add(con1);
-            }
-        }
     }
 }

@@ -47,23 +47,10 @@
                     BorderBrush="Transparent"
                     BorderThickness="0"
                     Command="{Binding BackClick}"
-                    Content="{setting:Localize HeadControl.Text1}"
                     CornerRadius="0"
                     IsEnabled="{Binding HeadBackEnable}"
                     IsVisible="{Binding HeadBack}" />
             </StackPanel>
-            <Border
-                Name="Icons"
-                Width="25"
-                Height="25"
-                Margin="5,0,0,0"
-                VerticalAlignment="Center"
-                CornerRadius="5"
-                DockPanel.Dock="Left">
-                <Border.Background>
-                    <ImageBrush Source="{Binding Icon}" Stretch="UniformToFill" />
-                </Border.Background>
-            </Border>
             <TextBlock
                 Name="TitleShow"
                 Margin="5,0,0,0"

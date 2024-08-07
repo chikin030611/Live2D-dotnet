@@ -99,26 +99,6 @@ public static class Logs
     }
 
     /// <summary>
-    /// 警告
-    /// </summary>
-    /// <param name="data"></param>
-    public static void Warn(string data)
-    {
-        string text = $"[{DateTime.Now}][Warn]{data}";
-        AddText(text);
-    }
-
-    /// <summary>
-    /// 错误
-    /// </summary>
-    /// <param name="data"></param>
-    public static void Error(string data)
-    {
-        string text = $"[{DateTime.Now}][Error]{data}";
-        AddText(text);
-    }
-
-    /// <summary>
     /// 错误
     /// </summary>
     /// <param name="data"></param>
@@ -138,11 +118,7 @@ public static class Logs
     public static string Crash(string data, Exception e)
     {
         var date = DateTime.Now;
-        string text = $"Version:{ColorMCCore.Version}{Environment.NewLine}" +
-            $"System:{SystemInfo.System}{Environment.NewLine}" +
-            $"SystemName:{SystemInfo.SystemName}{Environment.NewLine}" +
-            $"{data}{Environment.NewLine}" +
-            $"{e}";
+        string text =$"{data}{Environment.NewLine}" + $"{e}";
 
         var file = $"{s_local}{date.Year}_{date.Month}_{date.Day}_" +
             $"{date.Hour}_{date.Minute}_{date.Second}_crash.log";

@@ -20,11 +20,6 @@ public partial class MenuItemModel : ObservableObject
 
     public int Index;
 
-    /// <summary>
-    /// 子项目
-    /// </summary>
-    public SubMenuItemModel[] SubMenu { get; init; }
-
     [ObservableProperty]
     private bool _isCheck;
 
@@ -32,18 +27,5 @@ public partial class MenuItemModel : ObservableObject
     public void Select()
     {
         IsCheck = true;
-    }
-}
-
-public partial class SubMenuItemModel : ObservableObject
-{
-    public string Name { get; init; }
-    public Action Func { get; init; }
-    public bool Hide { get; init; }
-
-    [RelayCommand]
-    public void Select()
-    {
-        Func();
     }
 }

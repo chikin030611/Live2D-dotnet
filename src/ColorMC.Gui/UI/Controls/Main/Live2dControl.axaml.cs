@@ -4,8 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Threading;
-using ColorMC.Core.Objs;
-using ColorMC.Core.Utils;
 using ColorMC.Gui.UI.Model.Main;
 
 namespace ColorMC.Gui.UI.Controls.Main;
@@ -20,12 +18,6 @@ public partial class Live2dControl : UserControl
     public Live2dControl()
     {
         InitializeComponent();
-
-        if (SystemInfo.Os == OsType.Android)
-        {
-            IsVisible = false;
-            return;
-        }
 
         _render = new();
 
@@ -101,11 +93,6 @@ public partial class Live2dControl : UserControl
                 _renderTimer.Pause = false;
             }
         }
-        else if (e.PropertyName == "LowFps")
-        {
-            var model = (sender as MainModel)!;
-            _renderTimer.LowFps = model.LowFps;
-        }
     }
 
     private async void ShowMessage()
@@ -114,7 +101,6 @@ public partial class Live2dControl : UserControl
         {
             return;
         }
-        await App.CrossFade300.Start(null, Border1, _cancel.Token);
         if (_cancel.Token.IsCancellationRequested)
         {
             return;
@@ -124,6 +110,5 @@ public partial class Live2dControl : UserControl
         {
             return;
         }
-        await App.CrossFade300.Start(Border1, null, _cancel.Token);
     }
 }

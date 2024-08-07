@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Media.Imaging;
 using ColorMC.Gui.Manager;
 using ColorMC.Gui.Objs;
 using ColorMC.Gui.UI.Model;
@@ -12,20 +11,13 @@ namespace ColorMC.Gui.UI.Controls.Setting;
 
 public partial class SettingControl : MenuControl
 {
-    private Tab1Control _tab1;
     private Tab2Control _tab2;
-    private Tab3Control _tab3;
-    private Tab4Control _tab4;
-    private Tab5Control _tab5;
-    private Tab6Control _tab6;
-    private Tab7Control _tab7;
-    private Tab8Control _tab8;
 
     private readonly int _needJava;
 
     public SettingControl()
     {
-        Title = App.Lang("SettingWindow.Title");
+        Title = "Launcher Settings";
         UseName = ToString() ?? "SettingControl";
     }
 
@@ -36,20 +28,11 @@ public partial class SettingControl : MenuControl
 
     public override Task<bool> OnKeyDown(object? sender, KeyEventArgs e)
     {
-        if (DataContext is SettingModel model)
-        {
-            return Task.FromResult(model.InputKey(e.KeyModifiers, e.Key));
-        }
-
         return Task.FromResult(false);
     }
 
     public override void IPointerPressed(PointerPressedEventArgs e)
     {
-        if (DataContext is SettingModel model)
-        {
-            model.InputMouse(e.KeyModifiers, e.GetCurrentPoint(this).Properties);
-        }
     }
 
     public override void Closed()
@@ -101,39 +84,8 @@ public partial class SettingControl : MenuControl
                 model.LoadUISetting();
                 _tab2 ??= new();
                 return _tab2;
-            case 1:
-                model.LoadHttpSetting();
-                model.TestGameCloudConnect();
-                _tab3 ??= new();
-                return _tab3;
-            case 2:
-                model.LoadArg();
-                _tab4 ??= new();
-                return _tab4;
-            case 3:
-                model.Load(_needJava);
-                return _tab5 ??= new();
-            case 4:
-                model.LoadServer();
-                _tab6 ??= new();
-                return _tab6;
-            case 5:
-                return _tab1 ??= new();
-            case 6:
-                model.LoadInput();
-                model.SetTab8Click();
-                return _tab8 ??= new();
-            case 7:
-                _tab7 ??= new();
-                _tab7.Start();
-                return _tab7;
             default:
                 throw new InvalidEnumArgumentException();
         }
-    }
-
-    public override Bitmap GetIcon()
-    {
-        return ImageManager.GameIcon;
     }
 }

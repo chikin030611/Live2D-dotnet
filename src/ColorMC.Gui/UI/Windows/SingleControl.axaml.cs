@@ -39,8 +39,6 @@ public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
         PointerPressed += AllControl_PointerPressed;
         PointerReleased += AllControl_PointerReleased;
 
-        ImageManager.PicUpdate += PicUpdate;
-
         PicUpdate();
     }
 
@@ -117,7 +115,6 @@ public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
                 controls.Add(con3);
             }
             Controls.Child = con2;
-            App.CrossFade300.Start(null, con2);
 
             Model.PushBack(Back);
             con.Opened();
@@ -125,7 +122,6 @@ public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
 
         _nowControl = con;
         SetTitle(_nowControl.Title);
-        SetIcon(_nowControl.GetIcon());
     }
 
     public void Active(BaseUserControl con)
@@ -139,7 +135,6 @@ public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
 
         _nowControl = con;
         SetTitle(_nowControl.Title);
-        SetIcon(_nowControl.GetIcon());
     }
 
     public async void Close(BaseUserControl con)
@@ -174,7 +169,6 @@ public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
         }
 
         SetTitle(_nowControl.Title);
-        SetIcon(_nowControl.GetIcon());
 
         ((con as UserControl)?.DataContext as TopModel)?.Close();
         con.Closed();
@@ -224,7 +218,6 @@ public partial class SingleControl : UserControl, IBaseWindow, ITopWindow
 
     public void SetIcon(Bitmap icon)
     {
-        Model.SetIcon(icon);
     }
 
     public void Hide()

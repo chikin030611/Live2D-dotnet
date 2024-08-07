@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Media;
 using ColorMC.Core;
 using ColorMC.Core.Objs;
@@ -21,23 +20,11 @@ namespace ColorMC.Gui;
 
 public static class ColorMCGui
 {
-    private static readonly CoreInitArg s_arg = new()
-    {
-        CurseForgeKey = "$2a$10$6L8AkVsaGMcZR36i8XvCr.O4INa2zvDwMhooYdLZU0bb/E78AsT0m",
-        OAuthKey = "aa0dd576-d717-4950-b257-a478d2c20968"
-    };
-
     public static string RunDir { get; private set; }
-    public static string[] BaseSha1 { get; private set; }
     public static string InputDir { get; private set; }
 
     public static RunType RunType { get; private set; } = RunType.AppBuilder;
 
-    public static Func<Control> PhoneGetSetting { get; set; }
-    public static Func<FrpType, string> PhoneGetFrp { get; set; }
-
-    public static bool IsAot { get; private set; }
-    public static bool IsMin { get; private set; }
     public static bool IsCrash { get; private set; }
     public static bool IsClose { get; private set; }
 
@@ -57,22 +44,17 @@ public static class ColorMCGui
         {
             if (e.Exception.InnerException is DBusException)
             {
-                Logs.Error(App.Lang("App.Error1"), e.Exception);
+                Logs.Error("Thread Error", e.Exception);
                 return;
             }
-            Logs.Crash(App.Lang("App.Error1"), e.Exception);
+            Logs.Crash("Thread Error", e.Exception);
         };
 
         RunType = RunType.Program;
 
         if (string.IsNullOrWhiteSpace(InputDir))
         {
-            RunDir = SystemInfo.Os switch
-            {
-                OsType.Linux => $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}/ColorMC/",
-                OsType.MacOS => "/Users/shared/ColorMC/",
-                _ => AppContext.BaseDirectory
-            };
+            RunDir = AppContext.BaseDirectory;
         }
         else
         {
@@ -80,20 +62,6 @@ public static class ColorMCGui
         }
 
         Console.WriteLine($"RunDir: {RunDir}");
-
-        if (args.Length > 0)
-        {
-            if (args[0] == "-game" && args.Length != 2)
-            {
-                return;
-            }
-            else
-            {
-                BaseBinding.SetLaunch(args[1]);
-            }
-        }
-
-        SystemInfo.Init();
 
         try
         {
@@ -103,8 +71,7 @@ public static class ColorMCGui
             }
             StartLock();
 
-            s_arg.Local = RunDir;
-            ColorMCCore.Init(s_arg);
+            ColorMCCore.Init(RunDir);
 
             BuildAvaloniaApp()
                  .StartWithClassicDesktopLifetime(args);
@@ -124,51 +91,10 @@ public static class ColorMCGui
 
     public static void Reboot()
     {
-        if (SystemInfo.Os != OsType.Android)
-        {
-            IsClose = true;
-            Thread.Sleep(500);
-            Process.Start($"{(SystemInfo.Os == OsType.Windows ?
-                    "ColorMC.Launcher.exe" : "ColorMC.Launcher")}");
-            App.Close();
-        }
-    }
-
-    public static void StartPhone(string local)
-    {
-        SystemInfo.Init();
-
-        RunType = RunType.Phone;
-
-        RunDir = local;
-
-        Console.WriteLine($"RunDir:{RunDir}");
-
-        s_arg.Local = RunDir;
-        ColorMCCore.Init(s_arg);
-        GuiConfigUtils.Init(RunDir);
-        FrpConfigUtils.Init(RunDir);
-    }
-
-    public static void SetRuntimeState(bool aot, bool min)
-    {
-        IsAot = aot;
-        IsMin = min;
-    }
-
-    public static void SetBaseSha1(string[] data)
-    {
-        BaseSha1 = data;
-    }
-
-    public static void SetInputDir(string dir)
-    {
-        InputDir = dir;
-    }
-
-    public static void SetCrash(bool crash)
-    {
-        IsCrash = crash;
+        IsClose = true;
+        Thread.Sleep(500);
+        Process.Start($"{("ColorMC.Launcher.exe")}");
+        App.Close();
     }
 
     public static AppBuilder BuildAvaloniaApp()
@@ -176,50 +102,12 @@ public static class ColorMCGui
         if (RunType == RunType.AppBuilder)
         {
             RunDir = AppContext.BaseDirectory;
-
-            SystemInfo.Init();
         }
 
         GuiConfigUtils.Init(RunDir);
 
-        var config = GuiConfigUtils.Config.Render.Windows;
         var opt = new Win32PlatformOptions();
-        if (SystemInfo.IsArm)
-        {
-            opt.RenderingMode = [Win32RenderingMode.Wgl];
-        }
-        if (config.ShouldRenderOnUIThread is { } value)
-        {
-            opt.ShouldRenderOnUIThread = value;
-        }
-        if (config.OverlayPopups is { } value1)
-        {
-            opt.OverlayPopups = value1;
-        }
-
-        var config1 = GuiConfigUtils.Config.Render.X11;
         var opt1 = new X11PlatformOptions();
-        if (config1.UseDBusMenu is { } value2)
-        {
-            opt1.UseDBusMenu = value2;
-        }
-        if (config1.UseDBusFilePicker is { } value3)
-        {
-            opt1.UseDBusFilePicker = value3;
-        }
-        if (config1.OverlayPopups is { } value4)
-        {
-            opt1.OverlayPopups = value4;
-        }
-        if (SystemInfo.IsArm)
-        {
-            opt1.RenderingMode = [X11RenderingMode.Egl];
-        }
-        else if (config1.SoftwareRender == true)
-        {
-            opt1.RenderingMode = [X11RenderingMode.Software];
-        }
-
         var opt2 = new MacOSPlatformOptions()
         {
             DisableDefaultApplicationMenuItems = true,
