@@ -3,33 +3,38 @@ namespace Live2DDotNet.Objs;
 public record Live2DSetting
 {
     /// <summary>
-    /// Live2D模型地址
+    /// Live2D model address
     /// </summary>
     public string? Model { get; set; }
+
     /// <summary>
-    /// 显示宽度
+    /// Display width
     /// </summary>
     public int Width { get; set; }
+
     /// <summary>
-    /// 显示高度
+    /// Display height
     /// </summary>
     public int Height { get; set; }
+
     /// <summary>
-    /// 是否启用
+    /// Whether it is enabled
     /// </summary>
     public bool Enable { get; set; }
+
     /// <summary>
-    /// 显示位置
+    /// Display position
     /// </summary>
     public int Pos { get; set; }
 }
 
 /// <summary>
-/// Gui配置文件
+/// Gui configuration object
 /// </summary>
 public record GuiConfigObj
 {
-    /// Live2D设置
+    /// <summary>
+    /// Live2D settings
     /// </summary>
     public Live2DSetting Live2D { get; set; }
 }

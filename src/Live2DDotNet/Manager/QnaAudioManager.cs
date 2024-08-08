@@ -4,8 +4,10 @@ namespace Live2DDotNet.Manager;
 
 public class QnaAudioManager()
 {
+    // SoundPlayer instance
     static readonly SoundPlayer player = new();
 
+    // Qna List
     public static readonly QnaObj[] QnaList = [
             new()
             {
@@ -44,6 +46,11 @@ public class QnaAudioManager()
             }
         ];
 
+    /// <summary>
+    /// Get the audio path for a given ID.
+    /// </summary>
+    /// <param name="id">The ID of the audio.</param>
+    /// <returns>The full audio path.</returns>
     public static string GetAudioPath(int id)
     {
         string relativePath = @"..\..\..\..\Live2DDotNet\Resource\Audio";
@@ -52,6 +59,10 @@ public class QnaAudioManager()
         return audioPath;
     }
 
+    /// <summary>
+    /// Play the audio for a given ID.
+    /// </summary>
+    /// <param name="id">The ID of the audio.</param>
     public static void PlayAudio(int id)
     {
         try
@@ -67,6 +78,10 @@ public class QnaAudioManager()
         }
     }
 
+    /// <summary>
+    /// Play the audio from the specified path.
+    /// </summary>
+    /// <param name="path">The path of the audio file.</param>
     public static void PlayAudio(string path)
     {
         try
@@ -81,6 +96,9 @@ public class QnaAudioManager()
         }
     }
 
+    /// <summary>
+    /// Stop the currently playing audio.
+    /// </summary>
     public static void StopAudio()
     {
         try
