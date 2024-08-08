@@ -1,4 +1,5 @@
 ﻿using Live2DDotNet.Avatar;
+using Live2DDotNet.Objs;
 using Live2DDotNet.UI.Controls.Main;
 
 namespace Live2DDotNet.UI.Flyouts;
@@ -38,15 +39,16 @@ public class Live2DFlyout
         };
 
         // Add questions dynamically
-        int numberOfQuestions = QnaController.QnaList.Length;
-        int startId = QnaController.QnaList[0].Id;
-        QnaController controller = new QnaController(live2d);
+        QnaObj[] qnaList = QnaAudioHelper.QnaList;
+        int numberOfQuestions = qnaList.Length;
+        int startId = qnaList[0].Id;
         for (int i = startId; i < numberOfQuestions; i++)
         {
             int questionNumber = i;
+            string qnaQuestion = qnaList[questionNumber].Question;
 
             // Add a new question to the flyout
-            flyoutItems.Add(($"Question {questionNumber}", true, () => controller.StartLive2dSpeaking(questionNumber)));
+            flyoutItems.Add((qnaQuestion, true, () => live2d.StartSpeaking(questionNumber)));
         }
 
         _ = new FlyoutsControl([.. flyoutItems], live2d);

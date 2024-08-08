@@ -1,16 +1,17 @@
 ﻿using Live2DDotNet.Objs;
 using Live2DDotNet.UI.Controls.Main;
+using System.Media;
 namespace Live2DDotNet.Avatar;
 
-public class QnaController(Live2dRender live2d)
+public class QnaAudioHelper()
 {
-    Live2dRender live2d = live2d;
+    static readonly SoundPlayer player = new();
 
     public static readonly QnaObj[] QnaList = [
             new()
             {
                 Id = 0,
-                Question = "",
+                Question = "Intro",
                 Answer = "你好！請問有乜嘢可以幫到你？",
                 AudioPath = "0.wav"
             },
@@ -44,7 +45,7 @@ public class QnaController(Live2dRender live2d)
             }
         ];
 
-    private static string GetAudioPath(int id)
+    public static string GetAudioPath(int id)
     {
         string relativePath = @"..\..\..\..\Live2DDotNet\Resource\Audio";
         string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
@@ -52,11 +53,44 @@ public class QnaController(Live2dRender live2d)
         return audioPath;
     }
 
-    public void StartLive2dSpeaking(int id)
+    public static void PlayAudio(int id)
     {
-        string path = GetAudioPath(id);
+        try
+        {
+            string path = GetAudioPath(id);
+            player.SoundLocation = path;
+            player.Load();
+            player.Play();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error playing audio: {ex.Message}");
+        }
+    }
 
-        AudioPlayer.PlayAudio(path);
-        live2d.StartSpeaking(path);
+    public static void PlayAudio(string path)
+    {
+        try
+        {
+            player.SoundLocation = path;
+            player.Load();
+            player.Play();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error playing audio: {ex.Message}");
+        }
+    }
+
+    public static void StopAudio()
+    {
+        try
+        {
+            player.Stop();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error stopping audio: {ex.Message}");
+        }
     }
 }

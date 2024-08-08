@@ -11,6 +11,7 @@ using Live2DDotNet.UI.Model.Main;
 using Live2DCSharpSDK.App;
 using Live2DCSharpSDK.Framework.Motion;
 using Live2DDotNet.Utils;
+using Live2DDotNet.Avatar;
 
 namespace Live2DDotNet.UI.Controls.Main;
 
@@ -271,8 +272,10 @@ public class Live2dRender : OpenGlControlBase, ICustomHitTest
         return IsVisible;
     }
 
-    public void StartSpeaking(string filePath)
+    public void StartSpeaking(int id)
     {
+        string filePath = QnaAudioHelper.GetAudioPath(id);
+        QnaAudioHelper.PlayAudio(filePath);
         _lapp.StartSpeaking(filePath);
     }
 }
