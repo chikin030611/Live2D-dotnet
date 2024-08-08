@@ -1,4 +1,4 @@
-﻿using Live2DDotNet.Avatar;
+﻿using Live2DDotNet.Manager;
 using Live2DDotNet.Objs;
 using Live2DDotNet.UI.Controls.Main;
 
@@ -39,7 +39,7 @@ public class Live2DFlyout
         };
 
         // Add questions dynamically
-        QnaObj[] qnaList = QnaAudioHelper.QnaList;
+        QnaObj[] qnaList = QnaAudioManager.QnaList;
         int numberOfQuestions = qnaList.Length;
         int startId = qnaList[0].Id;
         for (int i = startId; i < numberOfQuestions; i++)

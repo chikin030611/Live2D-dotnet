@@ -1,9 +1,8 @@
 ﻿using Live2DDotNet.Objs;
-using Live2DDotNet.UI.Controls.Main;
 using System.Media;
-namespace Live2DDotNet.Avatar;
+namespace Live2DDotNet.Manager;
 
-public class QnaAudioHelper()
+public class QnaAudioManager()
 {
     static readonly SoundPlayer player = new();
 
