@@ -41,12 +41,14 @@
     <None Remove="Resource\Icon\Head\max.svg" />
     <None Remove="Resource\Icon\Head\max1.svg" />
     <None Remove="Resource\Icon\Head\min.svg" />
+    <None Remove="Resource\Icon\setting.svg" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Resource\Icon\Head\close.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\max.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\max1.svg" />
     <AvaloniaResource Include="Resource\Icon\Head\min.svg" />
+    <AvaloniaResource Include="Resource\Icon\setting.svg" />
   </ItemGroup>
   <ItemGroup>
     <!--This helps with theme dll-s trimming.

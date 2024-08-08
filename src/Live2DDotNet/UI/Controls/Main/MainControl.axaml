@@ -28,35 +28,33 @@
                     HorizontalAlignment="{Binding L2dPos}"
                     VerticalAlignment="{Binding L2dPos1}" />
                 <DockPanel Margin="10">
-                    <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top">
-                        <Panel
-                            Name="HeadTop"
-                            Height="60"
-                            Margin="0,0,10,0"
-                            DockPanel.Dock="Top">
-                            <StackPanel
-                                Name="Buttons"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Orientation="Horizontal">
-								<StackPanel.Styles>
-									<Style Selector="Button">
-										<Setter Property="Background" Value="Transparent" />
-										<Setter Property="BorderThickness" Value="0" />
-									</Style>
-								</StackPanel.Styles>
-                                <Button
-                                    Width="35"
-                                    Height="35"
-                                    Command="{Binding ShowSetting}"
-                                    CornerRadius="5">
-                                    <svg:SvgControl Path="/Resource/Icon/setting.svg" />
-                                </Button>
-                            </StackPanel>
-                            
-                        </Panel>
+					<DockPanel Margin="10,0,10,0" DockPanel.Dock="Top">
+							<Panel
+                                Name="HeadTop"
+                                Height="60"
+                                Margin="0,0,10,0"
+                                DockPanel.Dock="Top">
+								<StackPanel
+                                    Name="Buttons"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Orientation="Horizontal">
+									<StackPanel.Styles>
+										<Style Selector="Button">
+											<Setter Property="Background" Value="Transparent" />
+											<Setter Property="BorderThickness" Value="0" />
+										</Style>
+									</StackPanel.Styles>
+									<Button
+                                        Width="35"
+                                        Height="35"
+                                        Command="{Binding ShowSetting}"
+                                        CornerRadius="5">
+										<svg:SvgControl Path="/Resource/Icon/setting.svg" />
+									</Button>
+								</StackPanel>
+							</Panel>
                     </DockPanel>
-                    
                     <ScrollViewer Margin="0,10,0,0" VerticalAlignment="Top" />
                 </DockPanel>
                 <Panel
