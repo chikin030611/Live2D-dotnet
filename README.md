@@ -92,7 +92,7 @@ To use the functionalities, right-click on the model. A flyout menu should pop u
 
 ## How it works
 
-The working principles is same as [Live2DCSharpSDK](https://github.com/chikin030611/Live2DCSharpSDK). Please see the README in the repository.
+The working principles is the same as [Live2DCSharpSDK](https://github.com/chikin030611/Live2DCSharpSDK). Please see the "How It Works" in the README in the repository.
 
 ### Main Componenets
 
