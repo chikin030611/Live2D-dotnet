@@ -1,6 +1,6 @@
 # Live2D-dotnet
 
-* 此README使用了AI由英文翻譯為中文。如有任何句子不通順的問題，建議參考英文版。
+\* 此README使用了AI由英文翻譯為中文。如有任何句子不通順的問題，建議參考英文版。
 
 該應用程式展示了 Live2D 模型的所有功能。本 README 僅介紹如何運作和使用該應用程式。若要查看應用程式的詳細工作流程，請參閱[Live2DCSharpSDK](https://github.com/chikin030611/Live2DCSharpSDK)。
 
@@ -84,7 +84,7 @@
 
 ![use1](https://github.com/chikin030611/Live2D-dotnet/blob/master/image/use1.png)
 
-## Modules
+## 模組
 
 - **Live2DCSharpSDK.Framework**：Live2D Cubism 框架
 - **Live2DCSharpSDK.App**：Live2D 模型繪製器
