@@ -19,6 +19,9 @@
     # 複製儲存庫
     git clone https://github.com/chikin030611/Live2D-dotnet.git
 
+    # 轉至儲存庫
+    cd Live2D-dotnet
+
     # 初始化、更新和複製所有子模組。
     git submodule update --init --recursive
 
