@@ -19,6 +19,9 @@ Download the zip file of Cubism SDK from the [website](https://www.live2d.com/en
     # Clone the repository
     git clone https://github.com/chikin030611/Live2D-dotnet.git
 
+    # Go into the repository
+    cd Live2D-dotnet
+
     # Initialize, update, and clone all submodules.
     git submodule update --init --recursive
 
