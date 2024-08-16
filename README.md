@@ -1,4 +1,4 @@
-# Live2D-dotnet
+# Live2D-dotnet ( Live2D model with preset answer and more functionalities (C# .NET) (more complex) )
 
 [中文版README](https://github.com/chikin030611/Live2D-dotnet/blob/master/README_ZH.md)
 
